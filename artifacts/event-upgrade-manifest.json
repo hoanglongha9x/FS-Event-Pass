@@ -1,0 +1,155 @@
+{
+  "checkedAt": "2026-11-23T08:22:23.348Z",
+  "syntax": {
+    "files": [
+      "Code.gs",
+      "EventAccess.gs",
+      "EventImages.gs",
+      "EventWorkflow.gs",
+      "event-admin.js",
+      "event-excel.js",
+      "event-images.js",
+      "event-roster.js",
+      "event-ui.js",
+      "student-pass.js"
+    ],
+    "inlineScripts": 1,
+    "combinedAppsScript": "PASS"
+  },
+  "missingLocalDependencies": [],
+  "teacherOtpImplementationUnchanged": true,
+  "changedComparedWithTaskSnapshot": [
+    "index.html",
+    "event-glass.css",
+    "student-pass.css",
+    "event-roster.js",
+    "student-pass.js",
+    "event-images.js",
+    "Code.gs",
+    "EventAccess.gs",
+    "EventWorkflow.gs",
+    "EventImages.gs"
+  ],
+  "backend": [
+    "Code.gs",
+    "EventAccess.gs",
+    "EventWorkflow.gs",
+    "EventImages.gs"
+  ],
+  "frontend": [
+    "index.html",
+    "tailwind.css",
+    "event-ui.css",
+    "lucian-ui.css",
+    "event-glass.css",
+    "student-pass.css",
+    "event-ui.js",
+    "event-excel.js",
+    "event-roster.js",
+    "event-admin.js",
+    "student-pass.js",
+    "event-images.js",
+    "vendor/lucide.js",
+    "vendor/LUCIDE-LICENSE.txt"
+  ],
+  "files": [
+    {
+      "file": "index.html",
+      "bytes": 289625,
+      "sha256": "4166ba157d16ed0c89343dd1bfe92b1655c527a800533eb6629d54e6efad5517"
+    },
+    {
+      "file": "tailwind.css",
+      "bytes": 32398,
+      "sha256": "77ff0d6bb5dbaad158f95512ef5a1036bc7663a449c9fbd70f840f37ce441a65"
+    },
+    {
+      "file": "event-ui.css",
+      "bytes": 6712,
+      "sha256": "c19c485bf81f99dae335825b360fbad14b9853fce955edef07bf9daf79f60d23"
+    },
+    {
+      "file": "lucian-ui.css",
+      "bytes": 6303,
+      "sha256": "a9e76d24b34afd066758c2ecfb95cc3aa4a01af7d2be92e19138abacc6b31c06"
+    },
+    {
+      "file": "event-glass.css",
+      "bytes": 16928,
+      "sha256": "b6c47e35fd0d85c304a6dbbd9614bf64a228e987cb6cf8cc08433422f777d16a"
+    },
+    {
+      "file": "student-pass.css",
+      "bytes": 12801,
+      "sha256": "4005ed40526e69ae1f9dd3ade852063c310a6d026d08f3fcc576e0eb4323477b"
+    },
+    {
+      "file": "event-ui.js",
+      "bytes": 12588,
+      "sha256": "502c069016b483aa7f3f715cf6947c8a7b3d236bc1a80249cf3e39b28905e547"
+    },
+    {
+      "file": "event-excel.js",
+      "bytes": 10250,
+      "sha256": "f8f6df81648429c2a5ddddefdf495061479b11b347665398a61481e1dbf5e6db"
+    },
+    {
+      "file": "event-roster.js",
+      "bytes": 24059,
+      "sha256": "7c2dd05db8ac3cc021a44006db586b65c7b60591fe9bfbde91aaab7b51eca8e0"
+    },
+    {
+      "file": "event-admin.js",
+      "bytes": 23329,
+      "sha256": "5ab762e058a7cbe6d370196b7e599abce4ef8998950d2187943654778f08d306"
+    },
+    {
+      "file": "student-pass.js",
+      "bytes": 8949,
+      "sha256": "01afea40ccf1bd4bd0bc1bc94fff5cfaedd254594e42c8399cd3179c2c70f948"
+    },
+    {
+      "file": "event-images.js",
+      "bytes": 22182,
+      "sha256": "d1b5b2ac19f2a0de6aa93e70b28704816ef11aa3bb989f873feed266072d53cc"
+    },
+    {
+      "file": "vendor/lucide.js",
+      "bytes": 40626,
+      "sha256": "69495a4eac2acba1ce912c6fb73f475b963fc4fe77888441b0f7cf5df7868a85"
+    },
+    {
+      "file": "vendor/LUCIDE-LICENSE.txt",
+      "bytes": 1920,
+      "sha256": "1dc74a660c9d25d55f3e0423eae3627339b3d2bae9cefeefeee504f82505d5bb"
+    },
+    {
+      "file": "Code.gs",
+      "bytes": 18777,
+      "sha256": "6e03541cd5507c930ed1705011fcebd7a3121dd1ba230b76b9dff1be8d0631dc"
+    },
+    {
+      "file": "EventAccess.gs",
+      "bytes": 34474,
+      "sha256": "76f2d730b1f13def2d62e4d2ddbd843d8146afb80caec6923f5f2e85ecf94266"
+    },
+    {
+      "file": "EventWorkflow.gs",
+      "bytes": 44178,
+      "sha256": "b374632c4abc51ed22a6a6658be24a46db3ffc91e8c03f30bd553fcdd158a75b"
+    },
+    {
+      "file": "EventImages.gs",
+      "bytes": 13429,
+      "sha256": "7bd9a53c24b803e53ebbb887e928651a49f5082a57383bd3d8fa2d4c7bfe70e5"
+    }
+  ],
+  "notIncludedInPartialTaskSnapshot": [
+    "tailwind.css",
+    "lucian-ui.css",
+    "event-excel.js",
+    "event-admin.js",
+    "vendor/lucide.js",
+    "vendor/LUCIDE-LICENSE.txt"
+  ]
+}

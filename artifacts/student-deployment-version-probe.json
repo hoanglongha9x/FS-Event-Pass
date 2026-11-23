@@ -1,0 +1,14 @@
+{
+  "action": "GET_EVENT_API_VERSION",
+  "method": "POST",
+  "deploymentSuffix": "jNTe43yA",
+  "httpStatus": 200,
+  "redirected": true,
+  "finalHost": "script.googleusercontent.com",
+  "contentType": "application/json; charset=utf-8",
+  "json": true,
+  "success": true,
+  "apiVersion": "event-pass-scoped-v1",
+  "otpVersion": "teacher-otp-v3",
+  "teacherPortalVersion": "teacher-portal-v1"
+}

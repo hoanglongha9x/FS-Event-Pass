@@ -1,0 +1,1151 @@
+{
+  "checks": [
+    {
+      "name": "one QR launcher; duplicate main PIN and card prompts removed",
+      "status": "PASS"
+    },
+    {
+      "name": "FAB belongs directly to body with accessible dialog label",
+      "status": "PASS"
+    },
+    {
+      "name": "booth information and order preserved 2",
+      "status": "PASS"
+    },
+    {
+      "name": "FAB visible 2/1280",
+      "status": "PASS"
+    },
+    {
+      "name": "viewport position and circle not clipped 2/1280",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 2/1280/250",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 2/1280/900",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 2/1280/100000",
+      "status": "PASS"
+    },
+    {
+      "name": "no scroll API requests 2/1280",
+      "status": "PASS"
+    },
+    {
+      "name": "last card and footer clear FAB 2/1280",
+      "status": "PASS"
+    },
+    {
+      "name": "no horizontal overflow 2/1280",
+      "status": "PASS"
+    },
+    {
+      "name": "FAB visible 2/320",
+      "status": "PASS"
+    },
+    {
+      "name": "viewport position and circle not clipped 2/320",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 2/320/250",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 2/320/900",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 2/320/100000",
+      "status": "PASS"
+    },
+    {
+      "name": "no scroll API requests 2/320",
+      "status": "PASS"
+    },
+    {
+      "name": "last card and footer clear FAB 2/320",
+      "status": "PASS"
+    },
+    {
+      "name": "no horizontal overflow 2/320",
+      "status": "PASS"
+    },
+    {
+      "name": "FAB visible 2/375",
+      "status": "PASS"
+    },
+    {
+      "name": "viewport position and circle not clipped 2/375",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 2/375/250",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 2/375/900",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 2/375/100000",
+      "status": "PASS"
+    },
+    {
+      "name": "no scroll API requests 2/375",
+      "status": "PASS"
+    },
+    {
+      "name": "last card and footer clear FAB 2/375",
+      "status": "PASS"
+    },
+    {
+      "name": "no horizontal overflow 2/375",
+      "status": "PASS"
+    },
+    {
+      "name": "FAB visible 2/390",
+      "status": "PASS"
+    },
+    {
+      "name": "viewport position and circle not clipped 2/390",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 2/390/250",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 2/390/900",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 2/390/100000",
+      "status": "PASS"
+    },
+    {
+      "name": "no scroll API requests 2/390",
+      "status": "PASS"
+    },
+    {
+      "name": "last card and footer clear FAB 2/390",
+      "status": "PASS"
+    },
+    {
+      "name": "no horizontal overflow 2/390",
+      "status": "PASS"
+    },
+    {
+      "name": "FAB visible 2/430",
+      "status": "PASS"
+    },
+    {
+      "name": "viewport position and circle not clipped 2/430",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 2/430/250",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 2/430/900",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 2/430/100000",
+      "status": "PASS"
+    },
+    {
+      "name": "no scroll API requests 2/430",
+      "status": "PASS"
+    },
+    {
+      "name": "last card and footer clear FAB 2/430",
+      "status": "PASS"
+    },
+    {
+      "name": "no horizontal overflow 2/430",
+      "status": "PASS"
+    },
+    {
+      "name": "booth information and order preserved 6",
+      "status": "PASS"
+    },
+    {
+      "name": "FAB visible 6/1280",
+      "status": "PASS"
+    },
+    {
+      "name": "viewport position and circle not clipped 6/1280",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 6/1280/250",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 6/1280/900",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 6/1280/100000",
+      "status": "PASS"
+    },
+    {
+      "name": "no scroll API requests 6/1280",
+      "status": "PASS"
+    },
+    {
+      "name": "last card and footer clear FAB 6/1280",
+      "status": "PASS"
+    },
+    {
+      "name": "no horizontal overflow 6/1280",
+      "status": "PASS"
+    },
+    {
+      "name": "FAB visible 6/320",
+      "status": "PASS"
+    },
+    {
+      "name": "viewport position and circle not clipped 6/320",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 6/320/250",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 6/320/900",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 6/320/100000",
+      "status": "PASS"
+    },
+    {
+      "name": "no scroll API requests 6/320",
+      "status": "PASS"
+    },
+    {
+      "name": "last card and footer clear FAB 6/320",
+      "status": "PASS"
+    },
+    {
+      "name": "no horizontal overflow 6/320",
+      "status": "PASS"
+    },
+    {
+      "name": "FAB visible 6/375",
+      "status": "PASS"
+    },
+    {
+      "name": "viewport position and circle not clipped 6/375",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 6/375/250",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 6/375/900",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 6/375/100000",
+      "status": "PASS"
+    },
+    {
+      "name": "no scroll API requests 6/375",
+      "status": "PASS"
+    },
+    {
+      "name": "last card and footer clear FAB 6/375",
+      "status": "PASS"
+    },
+    {
+      "name": "no horizontal overflow 6/375",
+      "status": "PASS"
+    },
+    {
+      "name": "FAB visible 6/390",
+      "status": "PASS"
+    },
+    {
+      "name": "viewport position and circle not clipped 6/390",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 6/390/250",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 6/390/900",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 6/390/100000",
+      "status": "PASS"
+    },
+    {
+      "name": "no scroll API requests 6/390",
+      "status": "PASS"
+    },
+    {
+      "name": "last card and footer clear FAB 6/390",
+      "status": "PASS"
+    },
+    {
+      "name": "no horizontal overflow 6/390",
+      "status": "PASS"
+    },
+    {
+      "name": "FAB visible 6/430",
+      "status": "PASS"
+    },
+    {
+      "name": "viewport position and circle not clipped 6/430",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 6/430/250",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 6/430/900",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 6/430/100000",
+      "status": "PASS"
+    },
+    {
+      "name": "no scroll API requests 6/430",
+      "status": "PASS"
+    },
+    {
+      "name": "last card and footer clear FAB 6/430",
+      "status": "PASS"
+    },
+    {
+      "name": "no horizontal overflow 6/430",
+      "status": "PASS"
+    },
+    {
+      "name": "booth information and order preserved 20",
+      "status": "PASS"
+    },
+    {
+      "name": "FAB visible 20/1280",
+      "status": "PASS"
+    },
+    {
+      "name": "viewport position and circle not clipped 20/1280",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 20/1280/250",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 20/1280/900",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 20/1280/100000",
+      "status": "PASS"
+    },
+    {
+      "name": "no scroll API requests 20/1280",
+      "status": "PASS"
+    },
+    {
+      "name": "last card and footer clear FAB 20/1280",
+      "status": "PASS"
+    },
+    {
+      "name": "no horizontal overflow 20/1280",
+      "status": "PASS"
+    },
+    {
+      "name": "FAB visible 20/320",
+      "status": "PASS"
+    },
+    {
+      "name": "viewport position and circle not clipped 20/320",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 20/320/250",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 20/320/900",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 20/320/100000",
+      "status": "PASS"
+    },
+    {
+      "name": "no scroll API requests 20/320",
+      "status": "PASS"
+    },
+    {
+      "name": "last card and footer clear FAB 20/320",
+      "status": "PASS"
+    },
+    {
+      "name": "no horizontal overflow 20/320",
+      "status": "PASS"
+    },
+    {
+      "name": "FAB visible 20/375",
+      "status": "PASS"
+    },
+    {
+      "name": "viewport position and circle not clipped 20/375",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 20/375/250",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 20/375/900",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 20/375/100000",
+      "status": "PASS"
+    },
+    {
+      "name": "no scroll API requests 20/375",
+      "status": "PASS"
+    },
+    {
+      "name": "last card and footer clear FAB 20/375",
+      "status": "PASS"
+    },
+    {
+      "name": "no horizontal overflow 20/375",
+      "status": "PASS"
+    },
+    {
+      "name": "FAB visible 20/390",
+      "status": "PASS"
+    },
+    {
+      "name": "viewport position and circle not clipped 20/390",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 20/390/250",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 20/390/900",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 20/390/100000",
+      "status": "PASS"
+    },
+    {
+      "name": "no scroll API requests 20/390",
+      "status": "PASS"
+    },
+    {
+      "name": "last card and footer clear FAB 20/390",
+      "status": "PASS"
+    },
+    {
+      "name": "no horizontal overflow 20/390",
+      "status": "PASS"
+    },
+    {
+      "name": "FAB visible 20/430",
+      "status": "PASS"
+    },
+    {
+      "name": "viewport position and circle not clipped 20/430",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 20/430/250",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 20/430/900",
+      "status": "PASS"
+    },
+    {
+      "name": "fixed during scroll 20/430/100000",
+      "status": "PASS"
+    },
+    {
+      "name": "no scroll API requests 20/430",
+      "status": "PASS"
+    },
+    {
+      "name": "last card and footer clear FAB 20/430",
+      "status": "PASS"
+    },
+    {
+      "name": "no horizontal overflow 20/430",
+      "status": "PASS"
+    },
+    {
+      "name": "20 booths retain DOM during scrolling",
+      "status": "PASS"
+    },
+    {
+      "name": "ancestor app transform/filter/contain do not move FAB",
+      "status": "PASS"
+    },
+    {
+      "name": "keyboard FAB opens camera via existing scanner",
+      "status": "PASS"
+    },
+    {
+      "name": "FAB hides while scanner is open",
+      "status": "PASS"
+    },
+    {
+      "name": "invalid QR stays open with error",
+      "status": "PASS"
+    },
+    {
+      "name": "other-event QR rejected without JOIN_QUEUE",
+      "status": "PASS"
+    },
+    {
+      "name": "valid QR joins correct booth once",
+      "status": "PASS"
+    },
+    {
+      "name": "camera stopped after successful scan",
+      "status": "PASS"
+    },
+    {
+      "name": "booth details modal does not overlap FAB",
+      "status": "PASS"
+    },
+    {
+      "name": "repeat QR creates no duplicate queue row",
+      "status": "PASS"
+    },
+    {
+      "name": "camera denial retains PIN fallback",
+      "status": "PASS"
+    },
+    {
+      "name": "PIN remains reachable with keyboard-sized viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "PIN is not covered by a toast",
+      "status": "PASS"
+    },
+    {
+      "name": "wrong PIN reports error without joining",
+      "status": "PASS"
+    },
+    {
+      "name": "correct PIN works after camera denial",
+      "status": "PASS"
+    },
+    {
+      "name": "Escape closes scanner, restores FAB and keyboard focus",
+      "status": "PASS"
+    },
+    {
+      "name": "toast leaves floating action accessible",
+      "status": "PASS"
+    },
+    {
+      "name": "passport and backend-confirmed stamp unaffected",
+      "status": "PASS"
+    },
+    {
+      "name": "passport hides FAB",
+      "status": "PASS"
+    },
+    {
+      "name": "review modal also hides FAB",
+      "status": "PASS"
+    },
+    {
+      "name": "reload restores one FAB and official progress",
+      "status": "PASS"
+    },
+    {
+      "name": "FAB hidden after logout",
+      "status": "PASS"
+    }
+  ],
+  "positions": [
+    {
+      "booths": 2,
+      "viewportWidth": 1280,
+      "requestedScroll": 250,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 86
+    },
+    {
+      "booths": 2,
+      "viewportWidth": 1280,
+      "requestedScroll": 900,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 86
+    },
+    {
+      "booths": 2,
+      "viewportWidth": 1280,
+      "requestedScroll": 100000,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 86
+    },
+    {
+      "booths": 2,
+      "viewportWidth": 320,
+      "requestedScroll": 250,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 250
+    },
+    {
+      "booths": 2,
+      "viewportWidth": 320,
+      "requestedScroll": 900,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 253
+    },
+    {
+      "booths": 2,
+      "viewportWidth": 320,
+      "requestedScroll": 100000,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 253
+    },
+    {
+      "booths": 2,
+      "viewportWidth": 375,
+      "requestedScroll": 250,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 123
+    },
+    {
+      "booths": 2,
+      "viewportWidth": 375,
+      "requestedScroll": 900,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 123
+    },
+    {
+      "booths": 2,
+      "viewportWidth": 375,
+      "requestedScroll": 100000,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 123
+    },
+    {
+      "booths": 2,
+      "viewportWidth": 390,
+      "requestedScroll": 250,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 107
+    },
+    {
+      "booths": 2,
+      "viewportWidth": 390,
+      "requestedScroll": 900,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 107
+    },
+    {
+      "booths": 2,
+      "viewportWidth": 390,
+      "requestedScroll": 100000,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 107
+    },
+    {
+      "booths": 2,
+      "viewportWidth": 430,
+      "requestedScroll": 250,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 107
+    },
+    {
+      "booths": 2,
+      "viewportWidth": 430,
+      "requestedScroll": 900,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 107
+    },
+    {
+      "booths": 2,
+      "viewportWidth": 430,
+      "requestedScroll": 100000,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 107
+    },
+    {
+      "booths": 6,
+      "viewportWidth": 1280,
+      "requestedScroll": 250,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 103
+    },
+    {
+      "booths": 6,
+      "viewportWidth": 1280,
+      "requestedScroll": 900,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 103
+    },
+    {
+      "booths": 6,
+      "viewportWidth": 1280,
+      "requestedScroll": 100000,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 103
+    },
+    {
+      "booths": 6,
+      "viewportWidth": 320,
+      "requestedScroll": 250,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 250
+    },
+    {
+      "booths": 6,
+      "viewportWidth": 320,
+      "requestedScroll": 900,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 891
+    },
+    {
+      "booths": 6,
+      "viewportWidth": 320,
+      "requestedScroll": 100000,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 891
+    },
+    {
+      "booths": 6,
+      "viewportWidth": 375,
+      "requestedScroll": 250,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 250
+    },
+    {
+      "booths": 6,
+      "viewportWidth": 375,
+      "requestedScroll": 900,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 761
+    },
+    {
+      "booths": 6,
+      "viewportWidth": 375,
+      "requestedScroll": 100000,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 761
+    },
+    {
+      "booths": 6,
+      "viewportWidth": 390,
+      "requestedScroll": 250,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 250
+    },
+    {
+      "booths": 6,
+      "viewportWidth": 390,
+      "requestedScroll": 900,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 745
+    },
+    {
+      "booths": 6,
+      "viewportWidth": 390,
+      "requestedScroll": 100000,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 745
+    },
+    {
+      "booths": 6,
+      "viewportWidth": 430,
+      "requestedScroll": 250,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 250
+    },
+    {
+      "booths": 6,
+      "viewportWidth": 430,
+      "requestedScroll": 900,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 745
+    },
+    {
+      "booths": 6,
+      "viewportWidth": 430,
+      "requestedScroll": 100000,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 745
+    },
+    {
+      "booths": 20,
+      "viewportWidth": 1280,
+      "requestedScroll": 250,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 250
+    },
+    {
+      "booths": 20,
+      "viewportWidth": 1280,
+      "requestedScroll": 900,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 900
+    },
+    {
+      "booths": 20,
+      "viewportWidth": 1280,
+      "requestedScroll": 100000,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 901
+    },
+    {
+      "booths": 20,
+      "viewportWidth": 320,
+      "requestedScroll": 250,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 250
+    },
+    {
+      "booths": 20,
+      "viewportWidth": 320,
+      "requestedScroll": 900,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 900
+    },
+    {
+      "booths": 20,
+      "viewportWidth": 320,
+      "requestedScroll": 100000,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 3126
+    },
+    {
+      "booths": 20,
+      "viewportWidth": 375,
+      "requestedScroll": 250,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 250
+    },
+    {
+      "booths": 20,
+      "viewportWidth": 375,
+      "requestedScroll": 900,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 900
+    },
+    {
+      "booths": 20,
+      "viewportWidth": 375,
+      "requestedScroll": 100000,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 2996
+    },
+    {
+      "booths": 20,
+      "viewportWidth": 390,
+      "requestedScroll": 250,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 250
+    },
+    {
+      "booths": 20,
+      "viewportWidth": 390,
+      "requestedScroll": 900,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 900
+    },
+    {
+      "booths": 20,
+      "viewportWidth": 390,
+      "requestedScroll": 100000,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 2996
+    },
+    {
+      "booths": 20,
+      "viewportWidth": 430,
+      "requestedScroll": 250,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 250
+    },
+    {
+      "booths": 20,
+      "viewportWidth": 430,
+      "requestedScroll": 900,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 900
+    },
+    {
+      "booths": 20,
+      "viewportWidth": 430,
+      "requestedScroll": 100000,
+      "x": 16,
+      "y": 780,
+      "width": 147.203125,
+      "height": 48,
+      "bottom": 828,
+      "viewport": 844,
+      "scroll": 2980
+    },
+    {
+      "scrollPerformance20Booths": {
+        "p50Ms": 16.700000002980232,
+        "p95Ms": 17.200000002980232,
+        "sameDom": true
+      }
+    }
+  ],
+  "limits": [
+    "CDP safe-area emulation unavailable; real iPhone pending",
+    "Native QR decoder callback and camera denial mocked; getUserMedia uses Chrome fake video device. No physical camera or iOS/Android keyboard tested."
+  ],
+  "fixture": {
+    "students": 395,
+    "classes": 12,
+    "queueRecords": 2366
+  },
+  "environment": "Chrome localhost, Apps Script/Sheets/OTP mocks; external HTTPS blocked"
+}

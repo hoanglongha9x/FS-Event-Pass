@@ -1,0 +1,28 @@
+{
+  "date": "2026-11-22",
+  "deployment": "staging only, version 2",
+  "access": "Only myself",
+  "execution": "same owner for both variants",
+  "url": "https://script.google.com/macros/s/AKfycbyeBnHHbaH91dNVtsaQJ1hUeMzhIshsPqH2lFutxARAVKv8r_fd1sWo4mQTh62ogvL_fQ/exec",
+  "transport": "HTML Service + google.script.run for both variants",
+  "variants": "baseline write helpers preserved from previous staging source; optimized write helpers; branch only in staging",
+  "fixture": {
+    "students": 395,
+    "classes": 12,
+    "booths": 11,
+    "workflowRecords": 2374,
+    "reset": false
+  },
+  "roundsPerVariant": 20,
+  "samplesPerVariant": 253,
+  "network": "same Chrome session and connection, no network throttling configured",
+  "baselineConcurrencyPairs": 10,
+  "optimizedConcurrencyPairs": 10,
+  "studentCompletionReadsPerVariant": 20,
+  "productionChanges": false,
+  "remaining": [
+    "Website fetch POST JSON/redirect path not verified under private staging access",
+    "No physical Safari iPhone or Chrome Android validation",
+    "Opening passport timing measured in local Chrome with synthetic backend, not live fetch transport"
+  ]
+}

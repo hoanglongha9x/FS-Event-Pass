@@ -1,0 +1,13 @@
+{
+  "uiModulesUnchanged": true,
+  "files": [
+    "event-ui.js",
+    "event-ui.css",
+    "student-pass.js",
+    "event-roster.js",
+    "event-images.js",
+    "lucian-ui.css",
+    "tailwind.css",
+    "vendor/lucide.js"
+  ]
+}

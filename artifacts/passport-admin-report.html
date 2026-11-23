@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="vi"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Phiếu trải nghiệm và xóa mềm — FSchool Event Pass</title>
+<style>
+body{margin:0;background:#edf4f8;color:#17374f;font:16px/1.65 system-ui,sans-serif}main{max-width:1100px;margin:auto;padding:30px 20px 70px}h1{line-height:1.2;font-size:32px}h2{margin-top:38px;font-size:23px}a{color:#0066ad}code{background:#dfedf5;border-radius:4px;padding:2px 5px;overflow-wrap:anywhere}table{width:100%;border-collapse:collapse;font-size:14px}td,th{border:1px solid #c3d9e6;padding:10px;text-align:left;vertical-align:top}th{background:#dcebf4}.note{border-left:5px solid #f27024;background:#fff8ed;padding:18px}.ok{color:#087052;font-weight:750}.gallery{display:grid;grid-template-columns:2fr 1fr;gap:16px;align-items:start}.gallery img{width:100%;border:1px solid #bfd5e2;border-radius:12px}figure{margin:0}figcaption{font-size:13px;margin:6px 0 18px}ul,ol{padding-left:24px}@media(max-width:650px){.gallery{grid-template-columns:1fr}table{font-size:12px}td,th{padding:7px}h1{font-size:27px}}
+</style><main>
+<h1>Phiếu trải nghiệm, xóa sự kiện và xóa phân công</h1>
+<p>FSchool Event Pass · THPT FPT Quy Nhơn · 23/11/2026.</p>
+<p class="note"><strong>Bản sửa cục bộ đã qua kiểm thử giả lập. Chưa nghiệm thu triển khai thực tế.</strong> Không cập nhật production, đổi quyền Web App/Drive, tạo/xóa file thật, gửi OTP thật hoặc ghi Google Sheets thật. Các thay đổi chưa commit được giữ nguyên; không khôi phục/xóa các tệp người dùng đã thay đổi từ trước.</p>
+
+<h2>1. Nguyên nhân và giải pháp cho bốn yêu cầu</h2>
+<table><tr><th>Yêu cầu</th><th>Hiện trạng trước sửa</th><th>Thay đổi</th></tr>
+<tr><td>Bỏ ảnh chủ đề khỏi BTC</td><td>Module quản lý cả theme và passport; hai form ảnh cùng checkbox phê duyệt, làm luồng lưu phức tạp.</td><td>Xóa toàn bộ điều khiển theme và checkbox khỏi giao diện BTC. Giữ metadata, file Drive, API theme cũ và việc dùng theme ở khu vực giới thiệu học sinh. Không có migration xóa dữ liệu.</td></tr>
+<tr><td>Một khu vực ảnh phiếu rõ ràng</td><td>Preview và tọa độ chưa chia theo luồng thay ảnh/bố trí. Nạp lại ảnh gọi GET_EVENT_VIEW của sự kiện đang hoạt động, có thể bỏ sót ảnh mới của sự kiện đang chọn.</td><td>Desktop: bên trái thay ảnh/thumbnail/xem/lưu/khôi phục, bên phải tọa độ và preview. Mobile một cột. Nạp lại dùng đúng GET_EVENT_SETUP(eventId đang chọn), gộp request và không cần GET_EVENT_VIEW toàn bộ. Lưu chỉ cập nhật từ ACK có metadata đúng; đối soát lỗi không tự gửi lại write.</td></tr>
+<tr><td>Xóa sự kiện tạo nhầm</td><td>Nút cũ chỉ lưu trữ, chưa có quy tắc xóa mềm và khôi phục riêng.</td><td>Thêm MANAGE_EVENT với delete/restore theo eventId. Kiểm tra phiên/quyền events, revision, active event và dữ liệu phụ thuộc trong cùng LockService. Giữ Lưu trữ cho sự kiện cần giữ lịch sử. Sự kiện xóa mềm không hiện trong các selector thường; BTC khôi phục ở “Sự kiện đã xóa”.</td></tr>
+<tr><td>Xóa từng phân công đã thu hồi</td><td>Danh sách nhóm theo giáo viên chỉ có Sửa/Thu hồi, dễ hiểu nhầm phạm vi thao tác khi giáo viên có nhiều gian.</td><td>Mỗi dòng là một eventId + boothId + email, gồm Sửa | Thu hồi | Xóa. DELETE_EVENT_ASSIGNMENT chỉ xóa mềm đúng dòng đã thu hồi, kiểm tra khóa dữ liệu/quyền/revision bên trong khóa. Các dòng khác, quyền ở sự kiện khác và lịch sử hoàn thành giữ nguyên.</td></tr></table>
+<p>Checkbox đã được thay bằng câu: <strong>“Chỉ sử dụng hình ảnh được phép công bố, không chứa dữ liệu cá nhân”.</strong> Hành động lưu ảnh phiếu của BTC có quyền là hành động phát hành; cờ publishApproved do backend thiết lập. Học sinh/giáo viên thường vẫn bị từ chối trước khi tạo file. Giữ đầy đủ kiểm tra chữ ký MIME, kích thước, dung lượng, sự kiện và file ID lấy từ metadata backend. API không nhận file ID tùy ý để đọc Drive.</p>
+<p>Ảnh đầu vào JPEG/PNG/WebP được chuẩn bị thành PNG/JPEG, giữ alpha bằng PNG, tối đa 1 MB và kích thước backend cho phép. Asset WebP cũ vẫn đọc được trong ứng dụng. Theme cũ không được dùng làm nền dự phòng của phiếu nữa: phiếu chỉ dùng passport, thiếu ảnh dùng nền mặc định và giữ dấu. Khu vực giới thiệu sự kiện vẫn có thể hiển thị theme cũ.</p>
+
+<h2>2. Quy tắc xóa và bảo toàn dữ liệu</h2>
+<p><strong>Sự kiện:</strong> không xóa trực tiếp active event. Có queue/lượt tham gia, xác nhận, draw/drawHistory, eventStudent, vé/bình chọn legacy, EventAccounts hoặc lịch sử EventStaff sẽ bị chặn với lý do rõ ràng. Kiểm tra sử dụng dữ liệu Sheets chính thức dưới khóa, không dựa vào danh sách đang hiển thị hoặc cache frontend. Ảnh/cấu hình gian đơn thuần không bị xóa; khôi phục vẫn đọc lại được metadata cũ.</p>
+<p>Xóa mềm lưu deletedAt/deletedBy và dấu vết lifecycleAudit trong bản ghi cấu hình hiện có; không tạo sheet/schema mới, không deleteRow. Khôi phục bỏ trạng thái xóa, không tự đổi activeEventId, năm học hoặc bật published. SAVE_EVENT_CONFIG thông thường giữ tombstone, không cho client cũ khôi phục bằng cách gửi lại danh sách cũ. Hai request cùng revision: một lần được ghi, lần còn lại nhận CONFLICT.</p>
+<p><strong>Phân công:</strong> phải thu hồi trước; nút Xóa bị khóa khi enabled=true. Xóa mềm giữ nguyên row EventStaff ở enabled=false, thêm dấu vết và ẩn khỏi danh sách quản lý thường. Quyền được đọc lại trên mỗi request. BTC có thể cấp lại chính event/booth/email khi cần; bản ghi cũ được dùng lại, audit còn dấu vết xóa, không tạo dòng phân công trùng. Không có thao tác xóa hồ sơ học sinh hoặc bản ghi hoàn thành.</p>
+<p>Giới hạn hiện có vẫn là tối đa 40 gian và 400 học sinh; không cố định 6/10/15. Giới hạn 70 sự kiện và kích thước bản ghi Sheets vẫn áp dụng, bao gồm các sự kiện đã xóa mềm. Không tự dọn lịch sử khi đạt giới hạn.</p>
+
+<h2>3. File đã thay đổi và bộ file triển khai</h2>
+<table><tr><th>File</th><th>Hàm/phạm vi chính</th></tr>
+<tr><td>EventWorkflow.gs</td><td>manageEventLifecycle_, eventDeletionDependency_, eventLifecycleRevision_; sửa eventPublicConfig_, saveEventConfig_, eventAdminSetup_, dispatchEventPass_ để lọc deleted và giữ audit, routing riêng.</td></tr>
+<tr><td>EventAccess.gs</td><td>deleteEventAssignment_; sửa setEventAssignment_, eventStaff_, listRoster_, eventAccountContext_ và các guard phiên để loại deleted, giữ quyền các gian khác.</td></tr>
+<tr><td>EventImages.gs</td><td>checkedStoredEventImage_; sửa saveEventImage_, eventImageDraft_, readEventImage_: passport không cần checkbox/approval từ client; kiểm tra lại file trước khi restore/layout/approve; giữ hợp đồng theme legacy.</td></tr>
+<tr><td>Code.gs</td><td>eventApiVersion_ chỉ công bố khả năng quản trị/ảnh khi có đủ hàm mới; không làm đổi hợp đồng đăng nhập nếu phần quản trị thiếu file. OTP và xử lý phiên không đổi.</td></tr>
+<tr><td>index.html</td><td>Markup chỉ còn passport, thumbnail và khu vực bố trí; callback nạp đúng selected eventId; chuẩn hóa eventRevision; deleteEvent chuyển sang handler xóa mềm.</td></tr>
+<tr><td>event-admin.js</td><td>Danh sách sự kiện có Xóa/Khôi phục, kiểm tra contract mới; từng dòng phân công với ba nút; archiveManagedEvent, manageEventRemoval, removeManagedAssignment.</td></tr>
+<tr><td>event-images.js</td><td>UI passport độc lập, bỏ listener/theme/checkbox; bảo toàn draft theo sự kiện; kiểm tra ACK metadata, reload đích và xử lý lỗi không tự retry write.</td></tr>
+<tr><td>student-pass.js</td><td>Chỉ dùng ảnh passport cho phiếu; giữ nền mặc định khi thiếu ảnh, không đổi nguồn xác nhận con dấu.</td></tr>
+<tr><td>event-ui.js / event-glass.css</td><td>Bỏ cấu hình icon control theme không dùng; bố cục hai cột/một cột và nhóm nút Xóa, giữ Glassmorphism/FPT/icon/animation.</td></tr>
+<tr><td>tests/event-pass.test.cjs / scripts/event-upgrade-qa.cjs</td><td>Test dữ liệu/role/revision/history, lỗi ảnh, luồng thật qua website giả lập, hộp thoại native và ảnh chụp responsive.</td></tr></table>
+<p><a href="passport-admin-manifest.json">Manifest, cú pháp và SHA-256</a>. Cần đồng bộ đủ <strong>Code.gs, EventAccess.gs, EventWorkflow.gs, EventImages.gs</strong> cho backend. Frontend nên cập nhật nguyên bundle trong manifest, gồm event-admin.js, event-images.js, student-pass.js, các CSS/JS phụ thuộc và vendor Lucide; không đưa tệp kiểm thử vào website production.</p>
+
+<h2>4. Kết quả kiểm thử và bằng chứng</h2>
+<table><tr><th>Bộ kiểm tra</th><th>Kết quả</th><th>Bằng chứng</th></tr>
+<tr><td>Trước sửa</td><td class="ok">86/86 PASS</td><td><a href="passport-admin-baseline-tests.txt">Log baseline</a>.</td></tr>
+<tr><td>Toàn bộ tests/*.cjs hiện tại</td><td class="ok">100/100 PASS, không bỏ qua</td><td><a href="passport-admin-tests.txt">Log</a>: 14 ca bổ sung, gồm không cần theme/checkbox; restore ảnh mất file bị chặn; sự kiện trùng tên, 7 loại phụ thuộc, xóa/restore giữ 395 hồ sơ, stale client; teacher quyền các gian khác, audit và cấp lại; bộ file thiếu/phiên bản cũ bị chặn.</td></tr>
+<tr><td>Chrome nâng cấp</td><td class="ok">76/76 PASS</td><td><a href="passport-admin-browser-results.json">JSON</a>: upload/ACK/GET ảnh, reload và thiết bị khác, default/restore giữ dấu, 320/390/768/1280 px, PNG/JPEG/WebP/alpha, từ chối ghi/sai metadata không báo thành công, reload inactive event chỉ một GET_EVENT_SETUP; nút Xóa/Thu hồi/Khôi phục, cancel không gửi write.</td></tr>
+<tr><td>Chrome đăng nhập</td><td class="ok">33/33 PASS</td><td><a href="student-login-browser-results.json">JSON</a>: mã học sinh, phiên, HTTP 401/metadata cũ, OTP giáo viên gửi/xác minh giả lập qua POST/redirect/JSON.</td></tr>
+<tr><td>Chrome hồi quy giao diện</td><td class="ok">50/50 PASS</td><td><a href="ui-after-metrics.json">JSON</a>: loading, không submit trùng, quyền giáo viên, modal/focus, reduced motion/transparency, hàng chờ, dấu sau backend, bình chọn và quay thưởng.</td></tr>
+<tr><td>Cú pháp và dependency</td><td class="ok">PASS</td><td>Parse JS/GS/inline và bốn GS ghép chung; CSS parse; không trùng ID hoặc thiếu module cục bộ; git diff --check đạt; suffix triển khai OTP giữ nguyên so với snapshot đầu đợt.</td></tr></table>
+<p>Fixture: 395 học sinh, 12 lớp, 11 gian và khoảng 2.374 bản ghi; một sự kiện 15 gian độc lập, thêm sự kiện tạo nhầm. Chrome chặn HTTPS bên ngoài; Drive/Sheets/MailApp là mocks. Các bộ kiểm thử có giao nhau, không cộng thành số tình huống độc lập. <a href="passport-image-format-results.json">Bằng chứng định dạng ảnh/alpha/bytes</a>. Không dùng số liệu này để tuyên bố Google Drive hoặc production đã đạt.</p>
+<div class="gallery">
+<figure><a href="simplify-images-desktop.png"><img src="simplify-images-desktop.png" alt="Một mục ảnh phiếu hai cột desktop"></a><figcaption>Ảnh phiếu desktop: bên trái thao tác ảnh, bên phải bố trí/xem trước.</figcaption></figure>
+<figure><a href="simplify-images-mobile.png"><img src="simplify-images-mobile.png" alt="Ảnh phiếu mobile một cột"></a><figcaption>Ảnh phiếu mobile một cột, không checkbox.</figcaption></figure>
+<figure><a href="simplify-events-1280.png"><img loading="lazy" src="simplify-events-1280.png" alt="Quản lý sự kiện và phân công desktop"></a><figcaption>Giữ hai cột BTC và Glassmorphism hiện có.</figcaption></figure>
+<figure><a href="simplify-deletions-320.png"><img loading="lazy" src="simplify-deletions-320.png" alt="Sửa Thu hồi Xóa trên màn hình 320 px"></a><figcaption>Ba nút theo từng phân công trên 320 px.</figcaption></figure>
+</div>
+<p>Ảnh bổ sung: <a href="simplify-deletions-390.png">Phân công 390 px</a> · <a href="simplify-passport-390.png">Phiếu và con dấu</a> · <a href="simplify-events-320.png">Quản lý sự kiện 320 px</a>. Tất cả là ảnh chụp dữ liệu giả.</p>
+
+<h2>5. Những chức năng đã bảo toàn</h2>
+<p>OTP giáo viên và phiên; shared-code login học sinh; quyền BTC; quyền giáo viên theo event/booth; roster/năm học; QR/PIN, bốc số và thứ tự hàng chờ; xác nhận hoàn thành từ backend; dấu tròn, tên/icon/thời gian; vé may mắn, đánh giá, bình chọn và quay thưởng. Giữ ACK của các thao tác ghi đã tối ưu, đối soát nền và revision ngăn poll cũ ghi đè. Không tăng polling, không tạo dấu từ suy đoán frontend.</p>
+<p>Không xóa file theme/passport cũ, không dọn Drive, không xóa hàng Sheets. Các cờ xóa mềm chỉ được ghi khi BTC thực hiện action và xác nhận trên môi trường đã triển khai.</p>
+
+<h2>6. Hướng dẫn cập nhật Apps Script và frontend</h2>
+<ol>
+<li>BTC lưu bản sao Sheets/metadata, version ID backend và bundle frontend hiện tại. Giữ bí mật cấu hình trong kho bảo mật, không gửi token hoặc Script Properties nhạy cảm vào log.</li>
+<li>Đầu tiên dùng project/Sheets/Drive <strong>staging riêng</strong> và dữ liệu giả. Thay đầy đủ nội dung bốn file Code.gs, EventAccess.gs, EventWorkflow.gs, EventImages.gs rồi Save; không tạo version khi mới cập nhật một phần.</li>
+<li>Giữ nguyên Script Properties hiện có. Ảnh cần <code>FS_EVENT_IMAGE_FOLDER_ID</code> của thư mục artwork riêng; API học sinh cần <code>FS_EVENT_PUBLIC_IMAGES=true</code>. Không chia sẻ công khai thư mục. Các property OTP, HMAC/mã chung, quyền BTC và Spreadsheet ID không cần thay trong đợt này. <a href="https://developers.google.com/apps-script/guides/properties">Script Properties</a>.</li>
+<li>Deploy → Manage deployments → chọn deployment staging → Edit → New version → Deploy. Giữ cấu hình execution/access được BTC phê duyệt. Lưu đúng URL /exec; Save mã trong Editor không cập nhật versioned deployment hiện có. <a href="https://developers.google.com/apps-script/concepts/deployments">Tài liệu deployment</a>.</li>
+<li>POST GET_EVENT_API_VERSION tới staging /exec, kiểm tra <code>eventAdminVersion=event-admin-setup-v2</code>, <code>eventImageVersion=event-images-v3</code>. Các hợp đồng <code>event-pass-scoped-v1</code>, <code>student-event-access-v1</code>, <code>teacher-otp-v3</code> và <code>teacher-portal-v1</code> giữ nguyên. Backend thiếu hàm không được công bố khả năng mới.</li>
+<li>Cập nhật frontend staging nguyên bundle và đúng staging /exec. Tải mới trang; kiểm tra không còn control theme/checkbox, upload/readback/restore, ảnh học sinh, xóa sự kiện tạo nhầm, chặn sự kiện có lịch sử, khôi phục, thu hồi/xóa từng phân công và vai trò trực tiếp qua API. Không thay /exec bằng /dev trong nghiệm thu.</li>
+<li>Chỉ sau khi staging thật đạt và BTC phê duyệt riêng mới cập nhật production: backend đủ bốn file → metadata/kiểm tra quyền → frontend đầy đủ. Không tự đổi quyền Web App sang công khai khi gặp HTTP 401.</li>
+</ol>
+
+<h2>7. Rủi ro và phần chưa nghiệm thu thực tế</h2>
+<ul>
+<li>Chưa triển khai bản này lên staging Google thật hoặc production. Chưa xác nhận quyền Drive, scopes/Workspace policy, POST/CORS/redirect từ website thật và xem trước Drive thật.</li>
+<li>Cần nghiệm thu hai BTC/giáo viên đồng thời trên staging Sheets thật, nhiều thiết bị và mạng chậm/đứt nối. Mock chứng minh kiểm tra quyền/revision và yêu cầu giữ khóa, không thay thế bằng chứng concurrency dịch vụ Google.</li>
+<li>Ảnh có thể được tạo riêng tư trên Drive nhưng chưa gắn metadata nếu xảy ra xung đột/mất quyền sau tạo file. Không tự xóa hoặc tự retry thao tác ghi; nạp lại và đối chiếu trước khi BTC quyết định.</li>
+<li>Dòng hướng dẫn thay checkbox nghĩa là BTC chịu trách nhiệm chọn artwork được phép công bố; ứng dụng không tự nhận diện dữ liệu cá nhân trong ảnh.</li>
+<li>Phân công kể cả đã thu hồi/xóa mềm vẫn là lịch sử cần giữ, vì vậy backend chặn xóa sự kiện có lịch sử này. Dùng Lưu trữ, không xóa thủ công các row để vượt điều kiện.</li>
+<li>Không rollback tùy tiện về backend cũ không hiểu deletedAt: có thể hiện lại sự kiện xóa mềm hoặc làm mất tombstone khi lưu cấu hình. Nếu cần khôi phục phiên bản, giữ dữ liệu, tạm dừng ghi và chọn bản hiểu cơ chế xóa mềm hoặc sửa tiến; đối chiếu cả bundle trước khi mở lại.</li>
+<li>Chưa kiểm tra Safari iPhone/Chrome Android trên thiết bị thật; đã kiểm tra Chrome với viewport/touch và reduced motion/transparency.</li>
+</ul>
+<p class="note"><strong>Trạng thái:</strong> sẵn sàng để BTC rà soát mã và nghiệm thu trên staging thật. <strong>Chưa kết luận hoàn thành triển khai/production.</strong> Không có thao tác triển khai production trong đợt này.</p>
+</main></html>

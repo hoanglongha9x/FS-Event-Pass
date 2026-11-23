@@ -1,0 +1,139 @@
+{
+  "checkedAt": "2026-11-23T09:08:38.876Z",
+  "syntax": "PASS",
+  "cssSyntax": "PASS",
+  "duplicateIds": [],
+  "missingLocalModules": [],
+  "teacherOtpUnchanged": true,
+  "backend": [
+    "Code.gs",
+    "EventAccess.gs",
+    "EventWorkflow.gs",
+    "EventImages.gs"
+  ],
+  "frontend": [
+    "index.html",
+    "event-admin.js",
+    "event-images.js",
+    "event-ui.js",
+    "event-roster.js",
+    "event-excel.js",
+    "student-pass.js",
+    "event-glass.css",
+    "student-pass.css",
+    "lucian-ui.css",
+    "event-ui.css",
+    "tailwind.css",
+    "vendor/lucide.js",
+    "vendor/LUCIDE-LICENSE.txt"
+  ],
+  "changedComparedWithTaskSnapshot": [
+    "Code.gs",
+    "EventAccess.gs",
+    "EventWorkflow.gs",
+    "EventImages.gs",
+    "index.html",
+    "event-admin.js",
+    "event-images.js",
+    "event-ui.js",
+    "event-glass.css"
+  ],
+  "testCounts": {
+    "nodeTests": 100,
+    "browser": 76,
+    "login": 33,
+    "ui": 50
+  },
+  "files": [
+    {
+      "file": "Code.gs",
+      "bytes": 19017,
+      "sha256": "b5f1f40a40722aec11704fc3549c83c71759f34a5b68fe1f56dbe3ac161580e2"
+    },
+    {
+      "file": "EventAccess.gs",
+      "bytes": 37325,
+      "sha256": "d4cd0f7610c0151ee5c111e0dd10a49a52b4fcca2da59516387168e820c3ebc6"
+    },
+    {
+      "file": "EventWorkflow.gs",
+      "bytes": 49105,
+      "sha256": "b560e6622e2e8a13dd32313975ca5cac18f9fe2c78ba7109334567da9efcb899"
+    },
+    {
+      "file": "EventImages.gs",
+      "bytes": 13904,
+      "sha256": "37b03f6408ff53d0acf790c7a0fc0c916619f5f45eafc84d1311b44bf894edbe"
+    },
+    {
+      "file": "index.html",
+      "bytes": 288424,
+      "sha256": "dc16fe6316afd7c41c4a1021d38e9a2747a785d53fef2c68dee3173b6bc6248c"
+    },
+    {
+      "file": "event-admin.js",
+      "bytes": 27548,
+      "sha256": "a11e2bf64e12ff0cb42e228e36194c8d82591f02a6e055b56aea3e49edbc71fc"
+    },
+    {
+      "file": "event-images.js",
+      "bytes": 21101,
+      "sha256": "94ddf43dbc4b1ea7f650c6ff124e3a2a303d2f7a0030cbfb0d6bd4876b8e5167"
+    },
+    {
+      "file": "event-ui.js",
+      "bytes": 12455,
+      "sha256": "20c09aae49156d855b8f44c26834540e9c95869a3b20083e2d5d26c31c5fe341"
+    },
+    {
+      "file": "event-roster.js",
+      "bytes": 24059,
+      "sha256": "7c2dd05db8ac3cc021a44006db586b65c7b60591fe9bfbde91aaab7b51eca8e0"
+    },
+    {
+      "file": "event-excel.js",
+      "bytes": 10250,
+      "sha256": "f8f6df81648429c2a5ddddefdf495061479b11b347665398a61481e1dbf5e6db"
+    },
+    {
+      "file": "student-pass.js",
+      "bytes": 8864,
+      "sha256": "fe0ed148b6707e04261d3315392ce561acce6b6adb9e094221fceba965033d77"
+    },
+    {
+      "file": "event-glass.css",
+      "bytes": 18373,
+      "sha256": "6168104766234f6150f5ebda8b4bada684cdaa4d40eadb56e5d47bd70c7845d1"
+    },
+    {
+      "file": "student-pass.css",
+      "bytes": 12801,
+      "sha256": "4005ed40526e69ae1f9dd3ade852063c310a6d026d08f3fcc576e0eb4323477b"
+    },
+    {
+      "file": "lucian-ui.css",
+      "bytes": 6303,
+      "sha256": "a9e76d24b34afd066758c2ecfb95cc3aa4a01af7d2be92e19138abacc6b31c06"
+    },
+    {
+      "file": "event-ui.css",
+      "bytes": 6712,
+      "sha256": "c19c485bf81f99dae335825b360fbad14b9853fce955edef07bf9daf79f60d23"
+    },
+    {
+      "file": "tailwind.css",
+      "bytes": 32398,
+      "sha256": "77ff0d6bb5dbaad158f95512ef5a1036bc7663a449c9fbd70f840f37ce441a65"
+    },
+    {
+      "file": "vendor/lucide.js",
+      "bytes": 40626,
+      "sha256": "69495a4eac2acba1ce912c6fb73f475b963fc4fe77888441b0f7cf5df7868a85"
+    },
+    {
+      "file": "vendor/LUCIDE-LICENSE.txt",
+      "bytes": 1920,
+      "sha256": "1dc74a660c9d25d55f3e0423eae3627339b3d2bae9cefeefeee504f82505d5bb"
+    }
+  ]
+}

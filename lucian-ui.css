@@ -1,0 +1,161 @@
+/* Adapted visual treatments from Lucian UX/UI Prompt #001, #039, #044, #070 and #083.
+ * https://github.com/Seokwoooo/lucian-uxui-prompt
+ * MIT License
+ * Copyright (c) 2026 Seokwoooo
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
+@media screen {
+  .event-glass {
+    --ux-ink: #152b47;
+    --ux-ink-2: #476078;
+    --ux-surface: #f9fcff;
+    --ux-line: #c6d6e4;
+    --ux-accent: #a9440c;
+    --ux-accent-soft: #fff0df;
+    --ux-ease: cubic-bezier(.2, .8, .2, 1);
+  }
+
+  /* #001. Surface highlights follow the existing action and disabled states. */
+  .event-glass :is(#studentLoginButton, #verifyOtpButton, #sendOtpButton,
+    #staffAssignmentForm > button, #eventConfigCard > button,
+    #newEventName ~ button, .student-pass-trigger) {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    border-radius: .9rem;
+    min-height: 2.75rem;
+    box-shadow: inset 0 1px 0 #ffffff85, inset 0 -1px 0 #071c3c22,
+      0 6px 14px -9px #193c6999;
+    transition: box-shadow 180ms var(--ux-ease), transform 180ms var(--ux-ease);
+  }
+  .event-glass :is(#studentLoginButton, #verifyOtpButton, #sendOtpButton,
+    #staffAssignmentForm > button, #eventConfigCard > button)::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: linear-gradient(150deg, #ffffff20, transparent 55%, #ffffff09);
+  }
+  .event-glass #loginView input {
+    min-height: 3rem;
+    border-color: #a7bdd0;
+    background-color: #fcfeff;
+  }
+
+  /* #039. Selected tabs read as raised pills within the existing navigation. */
+  .event-glass :is(.glass-segments, #adminApp > nav) {
+    border: 1px solid #bacee0;
+    border-radius: 1.1rem;
+    padding: .35rem;
+    gap: .35rem;
+    background: linear-gradient(160deg, #e9f1f7, #f6fafc);
+    box-shadow: inset 0 1px 3px #304e6d13, 0 1px 0 #ffffff;
+  }
+  .event-glass :is(.role-tab, #adminApp > nav .admin-tab) {
+    min-height: 2.75rem;
+    border-radius: .8rem;
+    color: var(--ux-ink-2);
+    transition: background-color 160ms var(--ux-ease), color 160ms var(--ux-ease),
+      box-shadow 160ms var(--ux-ease);
+  }
+  .event-glass :is(.role-tab.active, #adminApp > nav .admin-tab.active) {
+    background: linear-gradient(145deg, #194a76, #163957);
+    color: white;
+    box-shadow: inset 0 1px 0 #ffffff35, 0 3px 8px #122c4a21;
+  }
+  .event-glass .role-tab.active svg { color: #ffd2a6; }
+
+  /* #044. Native details retain keyboard and disclosure behavior. */
+  .event-glass .event-image-advanced {
+    padding: 0;
+    border-color: var(--ux-line);
+    background: var(--ux-surface);
+    border-radius: .8rem;
+  }
+  .event-glass .event-image-advanced summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .75rem;
+    min-height: 2.75rem;
+    padding: .6rem .7rem;
+    font-size: .78rem;
+    color: var(--ux-ink);
+    list-style: none;
+  }
+  .event-glass .event-image-advanced summary::-webkit-details-marker { display: none; }
+  .event-glass .event-image-advanced summary::after {
+    content: "+";
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 50%;
+    background: #e7f0f7;
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+  .event-glass .event-image-advanced[open] summary::after {
+    content: "−";
+    color: #fff;
+    background: #194a76;
+  }
+  .event-glass .event-image-advanced[open] { padding-bottom: .7rem; }
+  .event-glass .event-image-advanced[open] > :not(summary) { margin-inline: .65rem; }
+
+  .event-glass .event-management-layout :is(input:not([type=checkbox]):not([type=file]), select) {
+    min-height: 2.65rem;
+    color: var(--ux-ink);
+    border-color: #b7cbdc;
+    border-radius: .7rem;
+  }
+  .event-glass .event-management-layout :is(label, .event-images-toolbar button,
+    .event-images-buttons button, .event-image-change) { font-size: .78rem; }
+  .event-glass .event-images-buttons button,
+  .event-glass .event-image-change { min-height: 2.35rem; }
+  .event-glass .event-management-layout > article,
+  .event-glass .event-management-tools > article { border-radius: 1.25rem; }
+  .event-glass #staffAssignmentList > div {
+    border: 1px solid #d7e4ee;
+    background: #f3f8fc;
+    border-radius: .75rem;
+    padding: .6rem;
+    gap: .6rem;
+  }
+  .event-glass #staffAssignmentList > div > span { min-width: 0; overflow-wrap: anywhere; line-height: 1.55; }
+  .event-glass :is(.booth-card, .student-pass-trigger):focus-visible {
+    outline: 3px solid #00669d;
+    outline-offset: 3px;
+  }
+
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .event-glass :is(.role-tab, #adminApp > nav .admin-tab):not(:disabled):hover { transform: none; }
+    .event-glass .event-image-change:hover { background: var(--ux-accent-soft); border-color: #d18b56; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .event-glass :is(.role-tab, .admin-tab, .student-pass-trigger) { transition: none; }
+  }
+  @media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+    .event-glass :is(.glass-segments, #adminApp > nav) { background: #edf3f7; }
+    .event-glass :is(#studentLoginButton, #verifyOtpButton, #sendOtpButton,
+      #staffAssignmentForm > button, #eventConfigCard > button)::before { display: none; }
+  }
+}

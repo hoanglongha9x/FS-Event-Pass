@@ -1,0 +1,8 @@
+{
+  "index.html": "47eb5199f9466bddc7cc87542286433a88cff8bbea1bad1beb9588d6db51f3cc",
+  "event-glass.css": "dea433adb119e4b5eac05a533563ae01f3732352103493996570cab83b8f5a4e",
+  "event-roster.js": "29685c88be6da454a26ac5e539dd236a89ac0aa73ff45d0045533e442bdf8e36",
+  "event-images.js": "b4985c2723752d4c6e83c24d13dc41962773b4cae8d898432b5d1b13e7033839",
+  "EventAccess.gs": "1e9b938b59d4d2dad3c6e6207fc07fe8b8d479c2641b504fffebe1dfba16f0cb",
+  "tests/event-pass.test.cjs": "7ef0100661e8ca16a3c2e369f81483a21268dfd138c0264bb1e72483377b1b5a"
+}

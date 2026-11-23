@@ -1,0 +1,56 @@
+{
+  "files": {
+    "index.html": {
+      "bytes": 261595,
+      "sha256": "58339eb7c8a0d059a323e9ed96b36851cbe4d93f2d1f0db5b498bf3e1da6a823"
+    },
+    "event-glass.css": {
+      "bytes": 6188,
+      "sha256": "f3c38d489cb930c7da66cc525af75008bdf35dfe191b2d79320a220b2670b8b7"
+    },
+    "student-pass.css": {
+      "bytes": 11395,
+      "sha256": "43e2f60e6a6739e9e73f2b7d6dcd0865369c65e058bf86df09025c58f3d4bd92"
+    },
+    "student-pass.js": {
+      "bytes": 8137,
+      "sha256": "ce3baa623ab8876df3bb71c7cc79efc272d823307ee1377aafb92559432349f6"
+    },
+    "event-excel.js": {
+      "bytes": 10250,
+      "sha256": "f8f6df81648429c2a5ddddefdf495061479b11b347665398a61481e1dbf5e6db"
+    },
+    "event-roster.js": {
+      "bytes": 21544,
+      "sha256": "c6071b3e69b2ff3acbbde3d8be43289cacd0d2fcb4502a3e69d0b18519d41c6b"
+    },
+    "event-images.js": {
+      "bytes": 15851,
+      "sha256": "f9fa04f3f4c6ce47b3ad7c4f9452c89ba154a431317bb3d152dc438a35196f28"
+    },
+    "Code.gs": {
+      "bytes": 17985,
+      "sha256": "6fc2f88ba6a0e08c6477aa5ce0e08b849d41637af270b6fb079d946bcdf7f847"
+    },
+    "EventAccess.gs": {
+      "bytes": 25965,
+      "sha256": "da6431d3008958c45880e4183936621f8188aadd662c98b478972fd854b0e4eb"
+    },
+    "EventWorkflow.gs": {
+      "bytes": 40529,
+      "sha256": "7cf4ede9e086d1da12687f88d37c2e20de322a9990ba2de876436a22bdbf5203"
+    },
+    "EventImages.gs": {
+      "bytes": 10156,
+      "sha256": "79c92991014c3947752669769595166797c0faf36e493b897fd360010351f5cd"
+    }
+  },
+  "localDependencies": [
+    "student-pass.css",
+    "event-glass.css",
+    "event-excel.js",
+    "event-roster.js",
+    "student-pass.js",
+    "event-images.js"
+  ]
+}

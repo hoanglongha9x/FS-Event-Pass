@@ -1,0 +1,49 @@
+{
+  "queue": {
+    "js": {
+      "p50": 2.55,
+      "p95": 2.9
+    },
+    "frames": {
+      "p50": 33.3,
+      "p95": 34.2
+    },
+    "samples": 20
+  },
+  "queueCpu4": {
+    "p50": 43.4,
+    "p95": 53,
+    "taskMsPerRender": 41.59
+  },
+  "checks": [
+    "logo constrained on initial load",
+    "icons available on initial load",
+    "login-desktop fits 1280",
+    "login-mobile fits 390",
+    "management-desktop fits 1280",
+    "management-768 fits 768",
+    "management-390 fits 390",
+    "management-320 fits 320",
+    "dashboard-mobile fits 390",
+    "benchmark queue is visible",
+    "queue render adds no requests",
+    "student-mobile fits 390",
+    "pass-1280 fits 1280",
+    "round stamps 1280",
+    "pass-768 fits 768",
+    "round stamps 768",
+    "pass-390 fits 390",
+    "round stamps 390",
+    "pass-320 fits 320",
+    "round stamps 320"
+  ],
+  "fixture": {
+    "students": 395,
+    "classes": 12,
+    "booths": 11,
+    "records": 2374
+  },
+  "assets": {
+    "icons": 748165
+  }
+}

@@ -1,0 +1,307 @@
+{
+  "checks": [
+    {
+      "name": "active event year status shown immediately",
+      "status": "PASS"
+    },
+    {
+      "name": "after-1280 no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "desktop event left, year right same row",
+      "status": "PASS"
+    },
+    {
+      "name": "activation immediately below both dropdowns 1280",
+      "status": "PASS"
+    },
+    {
+      "name": "activation fits configuration width 1280",
+      "status": "PASS"
+    },
+    {
+      "name": "school year is select with exact consecutive YYYY-YYYY labels 1280",
+      "status": "PASS"
+    },
+    {
+      "name": "after-768 no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "activation immediately below both dropdowns 768",
+      "status": "PASS"
+    },
+    {
+      "name": "activation fits configuration width 768",
+      "status": "PASS"
+    },
+    {
+      "name": "school year is select with exact consecutive YYYY-YYYY labels 768",
+      "status": "PASS"
+    },
+    {
+      "name": "after-390 no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "mobile dropdowns stack 390",
+      "status": "PASS"
+    },
+    {
+      "name": "activation immediately below both dropdowns 390",
+      "status": "PASS"
+    },
+    {
+      "name": "activation fits configuration width 390",
+      "status": "PASS"
+    },
+    {
+      "name": "school year is select with exact consecutive YYYY-YYYY labels 390",
+      "status": "PASS"
+    },
+    {
+      "name": "after-320 no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "mobile dropdowns stack 320",
+      "status": "PASS"
+    },
+    {
+      "name": "activation immediately below both dropdowns 320",
+      "status": "PASS"
+    },
+    {
+      "name": "activation fits configuration width 320",
+      "status": "PASS"
+    },
+    {
+      "name": "school year is select with exact consecutive YYYY-YYYY labels 320",
+      "status": "PASS"
+    },
+    {
+      "name": "event settings does not read all 395 roster rows",
+      "status": "PASS"
+    },
+    {
+      "name": "bound event year cannot be changed",
+      "status": "PASS"
+    },
+    {
+      "name": "before-1280 no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "before-390 no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "cancel replacement sends no request",
+      "status": "PASS"
+    },
+    {
+      "name": "activation and year ACK precede background reconciliation",
+      "status": "PASS"
+    },
+    {
+      "name": "single write activation request",
+      "status": "PASS"
+    },
+    {
+      "name": "future event year saves without switching active event or year",
+      "status": "PASS"
+    },
+    {
+      "name": "archived event activation stays blocked; explicit reopen available",
+      "status": "PASS"
+    },
+    {
+      "name": "cancel reopen keeps archive state and sends no write",
+      "status": "PASS"
+    },
+    {
+      "name": "reopen does not activate or change year",
+      "status": "PASS"
+    },
+    {
+      "name": "unlinked event permits year selection and compact separate link",
+      "status": "PASS"
+    },
+    {
+      "name": "link ACK does not activate event",
+      "status": "PASS"
+    },
+    {
+      "name": "reload preserves linked year and active event",
+      "status": "PASS"
+    },
+    {
+      "name": "old deployment disables activation/link/reopen with update instructions",
+      "status": "PASS"
+    },
+    {
+      "name": "old-backend-390 no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "mobile dropdowns stack 390",
+      "status": "PASS"
+    },
+    {
+      "name": "activation immediately below both dropdowns 390",
+      "status": "PASS"
+    },
+    {
+      "name": "activation fits configuration width 390",
+      "status": "PASS"
+    },
+    {
+      "name": "school year is select with exact consecutive YYYY-YYYY labels 390",
+      "status": "PASS"
+    },
+    {
+      "name": "teacher does not see event configuration",
+      "status": "PASS"
+    }
+  ],
+  "layoutMetrics": [
+    {
+      "width": 1280,
+      "event": {
+        "x": 53,
+        "y": 186.078125,
+        "w": 273,
+        "h": 42.390625,
+        "bottom": 228.46875
+      },
+      "year": {
+        "x": 338,
+        "y": 186.078125,
+        "w": 273,
+        "h": 42.390625,
+        "bottom": 228.46875
+      },
+      "button": {
+        "x": 53,
+        "y": 240.46875,
+        "w": 558,
+        "h": 44,
+        "bottom": 284.46875
+      }
+    },
+    {
+      "width": 768,
+      "event": {
+        "x": 53,
+        "y": 189.890625,
+        "w": 325,
+        "h": 42.390625,
+        "bottom": 232.28125
+      },
+      "year": {
+        "x": 390,
+        "y": 189.890625,
+        "w": 325,
+        "h": 42.390625,
+        "bottom": 232.28125
+      },
+      "button": {
+        "x": 53,
+        "y": 244.28125,
+        "w": 662,
+        "h": 44,
+        "bottom": 288.28125
+      }
+    },
+    {
+      "width": 390,
+      "event": {
+        "x": 37,
+        "y": 190.390625,
+        "w": 316,
+        "h": 42.390625,
+        "bottom": 232.78125
+      },
+      "year": {
+        "x": 37,
+        "y": 269.890625,
+        "w": 316,
+        "h": 44.78125,
+        "bottom": 314.671875
+      },
+      "button": {
+        "x": 37,
+        "y": 326.671875,
+        "w": 316,
+        "h": 44,
+        "bottom": 370.671875
+      }
+    },
+    {
+      "width": 320,
+      "event": {
+        "x": 37,
+        "y": 200.390625,
+        "w": 246,
+        "h": 42.390625,
+        "bottom": 242.78125
+      },
+      "year": {
+        "x": 37,
+        "y": 279.890625,
+        "w": 246,
+        "h": 44.78125,
+        "bottom": 324.671875
+      },
+      "button": {
+        "x": 37,
+        "y": 336.671875,
+        "w": 246,
+        "h": 44,
+        "bottom": 380.671875
+      }
+    },
+    {
+      "width": 390,
+      "event": {
+        "x": 37,
+        "y": 190.390625,
+        "w": 316,
+        "h": 42.390625,
+        "bottom": 232.78125
+      },
+      "year": {
+        "x": 37,
+        "y": 269.890625,
+        "w": 316,
+        "h": 44.78125,
+        "bottom": 314.671875
+      },
+      "button": {
+        "x": 37,
+        "y": 326.671875,
+        "w": 316,
+        "h": 44,
+        "bottom": 370.671875
+      }
+    }
+  ],
+  "baselineScreenshots": true,
+  "fixture": {
+    "students": 395,
+    "classes": 12,
+    "booths": 11,
+    "records": 2374
+  },
+  "externalServices": "BLOCKED: all HTTPS; Apps Script/Sheets/Drive/MailApp mocked",
+  "actions": [
+    "GET_EVENT_VIEW",
+    "GET_EVENT_DELETE_STATE",
+    "GET_EVENT_SETUP",
+    "CONFIGURE_EVENT_ACTIVATION",
+    "SAVE_EVENT_CONFIG",
+    "GET_EVENT_API_VERSION",
+    "CHECK_TEACHER_SESSION"
+  ]
+}

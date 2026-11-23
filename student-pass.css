@@ -1,0 +1,448 @@
+.student-pass-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: .75rem;
+}
+
+.student-pass-actions {
+  display: flex;
+  align-items: end;
+  justify-content: end;
+  gap: .5rem;
+}
+
+.student-pass-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  min-height: 44px;
+  padding: .5rem .65rem;
+  border: 1px solid #b6d2ff;
+  border-radius: .85rem;
+  background: #edf5ff;
+  color: #173d93;
+  font-size: .75rem;
+  font-weight: 800;
+  text-align: left;
+}
+
+.student-pass-trigger svg {
+  flex: none;
+  width: 1.15rem;
+  height: 1.15rem;
+  stroke-width: 2.2;
+}
+
+.student-pass-count {
+  flex: none;
+  padding: .18rem .38rem;
+  border-radius: .4rem;
+  background: #1b43a1;
+  color: #fff;
+  font-size: .68rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.student-pass-dialog {
+  width: min(76rem, calc(100% - 1.5rem));
+  max-height: calc(100vh - 1.5rem);
+  max-height: calc(100dvh - 1.5rem);
+  margin: auto;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid #a8c6fa;
+  border-radius: 1.35rem;
+  background: #0d2051;
+  color: #eff8ff;
+  box-shadow: 0 24px 100px #07173780;
+}
+
+.student-pass-dialog::backdrop { background: #070f2cb8; }
+
+.student-pass-dialog[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+.student-pass-hero {
+  flex: none;
+  padding: clamp(.85rem, 2.5vw, 1.3rem);
+  background:
+    linear-gradient(122deg, transparent 60%, #794afca3 74%, #dd56ddb3 86%, #ff995edd 100%),
+    repeating-linear-gradient(132deg, transparent 0 25px, #b1dbff23 26px 27px, transparent 28px 55px),
+    radial-gradient(ellipse at 15% 100%, #164bef 8%, transparent 70%),
+    linear-gradient(120deg, #081241, #111d74 68%, #2c32c1);
+  color: white;
+}
+
+.student-pass-hero-top,
+.student-pass-progress {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: .65rem;
+}
+
+.student-pass-hero h2 {
+  margin: 0;
+  font-size: clamp(1.15rem, 3.8vw, 1.65rem);
+  font-weight: 800;
+  letter-spacing: -.045em;
+  line-height: 1.12;
+}
+
+#studentPassEvent {
+  margin: .5rem 0 0;
+  color: #e7efff;
+  font-size: clamp(.85rem, 2vw, 1rem);
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.student-pass-close {
+  flex: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid #d2dfff94;
+  border-radius: .85rem;
+  background: #0e1a64c9;
+  color: #fff;
+  font-size: 1.65rem;
+  line-height: 1;
+}
+
+.student-pass-dialog button:focus-visible,
+.student-pass-trigger:focus-visible {
+  outline: 2px solid #41bffe;
+  outline-offset: 2px;
+}
+
+.student-pass-profile {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1.25fr);
+  gap: .5rem;
+  margin: 0 0 1rem;
+}
+
+.student-pass-profile > div {
+  padding: .55rem .7rem;
+  border-radius: .6rem;
+  background: #d1edff;
+  color: #151f50;
+}
+
+.student-pass-profile > div:first-child { background: #f9ddff; }
+.student-pass-profile > div:last-child { background: #ffe5ce; }
+
+.student-pass-profile dt {
+  font-size: .7rem;
+  font-weight: 700;
+}
+
+.student-pass-profile dd {
+  margin: .1rem 0 0;
+  font-size: .9rem;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.student-pass-body {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: clamp(.85rem, 3.5vw, 1.8rem);
+}
+
+.student-pass-body:focus-visible { outline:2px solid #55d9ff; outline-offset:-3px; }
+
+.student-pass-progress { align-items: center; }
+
+.student-pass-progress h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.student-pass-progress p {
+  margin: 0;
+  padding: .35rem .55rem;
+  border-radius: .55rem;
+  background: #203a6a;
+  color: #edf8ff;
+  font-size: .75rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.student-pass-sync {
+  margin: .75rem 0 0;
+  padding: .55rem .7rem;
+  border: 1px solid #f1c671;
+  border-radius: .55rem;
+  background: #fff4d9;
+  color: #66410b;
+  font-size: .8rem;
+}
+
+.student-pass-booths {
+  --stamp-column-gap: clamp(.75rem, 3vw, 1.75rem);
+  --stamp-columns: var(--pass-desktop-columns,5);
+  --stamp-diameter: 96px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(1.4rem, 4vw, 2rem) var(--stamp-column-gap);
+  grid-area: 1 / 1;
+  align-self: start;
+  min-width: 0;
+  margin: 0;
+  padding: var(--pass-art-header, 1rem) clamp(.5rem, 3vw, 1.5rem) 1.5rem;
+  list-style: none;
+  background: transparent;
+}
+
+.student-pass-booth {
+  display: flex;
+  flex: 0 1 calc((100% + var(--stamp-column-gap)) / var(--stamp-columns) - var(--stamp-column-gap));
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+/* Read-only seals: only a backend-confirmed seal has an icon and confirmation text. */
+.student-pass-stamp {
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  flex:none;
+  box-sizing:border-box;
+  gap:5px;
+  width:min(100%,var(--stamp-diameter));
+  min-height:0;
+  aspect-ratio:1;
+  margin:0 auto;
+  padding:10px;
+  border:2px dashed #a6e7ffaa;
+  border-radius:50%;
+  background:#07274522;
+  -webkit-backdrop-filter:blur(3px);
+  backdrop-filter:blur(3px);
+  color:#c5fff0;
+  cursor:pointer;
+  box-shadow:inset 0 1px 2px #efffff30;
+  appearance:none;
+}
+.student-pass-stamp::before {
+  content:""; position:absolute; inset:5px; border:1px dashed #b9edff77; border-radius:50%; pointer-events:none;
+}
+.student-pass-stamp.is-complete {
+  border-style:solid; border-color:#b0ffe9;
+  background:radial-gradient(ellipse at 30% 12%,#baffee45,transparent 65%),#073b40c4;
+  box-shadow:inset 0 1px 3px #e7fffaa6,0 4px 10px #060e2b66;
+}
+.student-pass-stamp.is-complete::before { border-style:solid; border-color:#a5ffe1bb; }
+.student-pass-stamp.is-selected { outline:2px solid #f3c786; outline-offset:3px; }
+.student-pass-stamp:focus-visible { outline:3px solid #fff2cf; outline-offset:3px; }
+.student-pass-stamp-details {
+  flex:none; display:flex; align-items:start; justify-content:space-between; gap:.65rem;
+  padding:.7rem clamp(.85rem,2.5vw,1.3rem); border-block:1px solid #a8d5ef55;
+  background:linear-gradient(135deg,#133b5f,#142c4e); color:#f0faff;
+}
+.student-pass-stamp-details[hidden] { display:none; }
+.student-pass-stamp-details > div { min-width:0; }
+.student-pass-stamp-details h3 { font-size:.9rem; font-weight:800; overflow-wrap:anywhere; }
+.student-pass-stamp-details p,.student-pass-stamp-details time { font-size:.77rem; line-height:1.5; }
+.student-pass-stamp-details time { color:#b2f4db; }
+.student-pass-stamp-details button { flex:none; width:44px; height:44px; border:1px solid #bbd9ed88; border-radius:.65rem; color:white; font-size:1.4rem; }
+@media(max-height:500px){.student-pass-stamp-details{max-height:28dvh;overflow-y:auto;}}
+
+.student-pass-stamp.animate-stampPop { animation: studentPassSeal .32s ease-out both; }
+
+@keyframes studentPassSeal {
+  from { opacity: .78; transform: scale(1.055) rotate(-3deg); }
+  70% { transform: scale(.985) rotate(.5deg); }
+  to { opacity: 1; transform: scale(1) rotate(0); }
+}
+
+.student-pass-dialog .student-pass-stamp .student-pass-stamp-icon { flex:none; width:26px; height:26px; color:#beffe8; }
+.student-pass-state { margin:0; color:#d6fff1; font-size:10.5px; line-height:1.1; font-weight:850; letter-spacing:0; white-space:nowrap; }
+
+@media (max-width: 42rem) {
+  .student-pass-actions { flex-direction: column-reverse; }
+  .student-pass-booths { --stamp-columns: 2; row-gap: 1.2rem; }
+}
+
+@media (max-width: 32rem) {
+  .student-pass-trigger { gap: .32rem; }
+  .student-pass-trigger > span:first-of-type { max-width: 5rem; line-height: 1.15; }
+  .student-pass-profile { grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); }
+  .student-pass-profile > div:first-child { grid-column: 1 / -1; }
+}
+
+@media (max-width: 22.5rem) {
+  .student-pass-booths { --stamp-columns: 2; }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .student-pass-stamp { background: #152e52; }
+  .student-pass-stamp.is-complete { background: #114147; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .student-pass-stamp.animate-stampPop { animation: none; }
+}
+
+.student-event-artwork {
+  background: var(--event-artwork, linear-gradient(120deg,#1e3a8a,#3157aa)) center / cover;
+}
+.student-event-artwork[style*="--event-artwork"] {
+  background-image: linear-gradient(90deg,#081c51e6,#081c5166), var(--event-artwork);
+}
+/* Information stays outside the artwork. The original image always keeps its ratio. */
+.student-pass-canvas {
+  display: grid;
+  grid-template-columns: minmax(0,1fr);
+  min-width: 0;
+  margin-top: .85rem;
+  overflow: hidden;
+  border: 1px solid #b8eaff45;
+  border-radius: 1rem;
+  background: linear-gradient(145deg,#102757,#123b62 55%,#26365e);
+}
+.student-pass-artwork {
+  grid-area: 1 / 1;
+  align-self: start;
+  width: 100%;
+  aspect-ratio: var(--pass-image-ratio,16 / 9);
+  background: var(--event-artwork) center top / contain no-repeat;
+}
+.student-pass-artwork[hidden] { display: none; }
+.student-pass-pan-hint { margin: .6rem 0 0; font-size: .78rem; color:#d5eaff; }
+.student-pass-booths.has-template {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: var(--pass-image-ratio);
+  padding: 0;
+}
+.student-pass-booths.has-template .student-pass-booth {
+  position: absolute;
+  left: var(--stamp-x);
+  top: var(--stamp-y);
+  width: var(--stamp-diameter);
+  transform: translate(-50%, -50%);
+  display: block;
+  aspect-ratio: 1;
+}
+.student-pass-booths.has-template .student-pass-stamp { width:100%; height:100%; }
+@media(max-width:1100px){.student-pass-booths { --stamp-columns:var(--pass-medium-columns,4); }}
+@media(max-width:800px){.student-pass-booths { --stamp-columns:var(--pass-small-columns,3); }}
+@media(max-width:600px){.student-pass-booths { --stamp-columns:2; }}
+@media(max-width:767px){.student-pass-booths { --stamp-diameter:clamp(76px,20vw,86px); --stamp-columns:2; }
+.student-pass-stamp {gap:3px;padding:9px;}
+.student-pass-dialog .student-pass-stamp .student-pass-stamp-icon {width:21px;height:21px;}
+.student-pass-state {font-size:10px;white-space:normal;max-width:100%;text-align:center;line-height:1.08;}}
+
+.event-images-toolbar,
+.event-images-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  align-items: end;
+  margin-block: .55rem;
+}
+.event-images-card label {
+  display: grid;
+  gap: .25rem;
+  min-width: 0;
+  font-size: .75rem;
+  font-weight: 700;
+}
+.event-images-card :is(input,select,button) {
+  max-width: 100%;
+  min-width: 0;
+  border: 1px solid #d5dfef;
+  padding: .38rem .52rem;
+  border-radius: .5rem;
+  background: #f7faff;
+  color: #193972;
+  font-size: .75rem;
+}
+.event-images-card button:disabled, .event-images-card fieldset:disabled { opacity: .65; }
+.event-images-buttons button:first-child { background: #193972; color: #fff; }
+.event-images-fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+  gap: .8rem;
+  margin-top: .5rem;
+}
+.event-images-fields > section { display: grid; align-content: start; gap: .6rem; min-width: 0; }
+.event-images-fields h3 { font-size: .85rem; font-weight: 800; }
+.event-images-fields img { display: block; width: 100%; height: auto; border-radius: .5rem; }
+.event-images-fields img[hidden], .event-images-fields :is(div,p)[hidden], .student-pass-pan-hint[hidden] { display: none; }
+.event-images-preview { position: relative; }
+:is(#eventPassportPreview,#eventImageViewerCanvas) {
+  display: grid; grid-template-columns:minmax(0,1fr); align-content:start; container-type:inline-size;
+  overflow:hidden; border-radius:.8rem; background:linear-gradient(135deg,#15335c,#316b88); color:white;
+}
+:is(#eventPassportPreview,#eventImageViewerCanvas) > img { grid-area:1 / 1; align-self:start; border-radius:0; }
+#eventPassportEmpty { grid-area:1 / 1; padding:1rem; }
+:is(#eventPassportMarks,#eventImageViewerMarks) {
+  grid-area:1 / 1; align-self:start; display:grid; grid-template-columns:repeat(var(--preview-columns,4),minmax(0,1fr));
+  gap:.8rem .6rem; justify-items:center; padding:var(--preview-art-header,15%) .5rem .8rem;
+}
+:is(#eventPassportPreview,#eventImageViewerCanvas)[data-preview-mode="mobile"] :is(#eventPassportMarks,#eventImageViewerMarks) { grid-template-columns:repeat(2,minmax(0,1fr)); }
+:is(#eventPassportMarks,#eventImageViewerMarks) .event-preview-seal {
+  position:relative; width:var(--preview-seal-size,24px); max-width:100%; aspect-ratio:1;
+  border:1px dashed #b5ecffbb; border-radius:50%; background:#0e304511;
+}
+:is(#eventPassportMarks,#eventImageViewerMarks) .event-preview-seal::before {content:"";position:absolute;inset:4px;border:1px dashed #b5ecff66;border-radius:50%;}
+:is(#eventPassportMarks,#eventImageViewerMarks).is-template-preview { display:block; position:relative; aspect-ratio:var(--preview-image-ratio,16 / 9); padding:0; }
+:is(#eventPassportMarks,#eventImageViewerMarks).is-template-preview span { position:absolute; transform:translate(-50%,-50%); }
+.event-images-positions { max-height: 17rem; overflow: auto; }
+.event-images-positions fieldset {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: .35rem;
+  border: 1px solid #d5dfef;
+  border-radius: .5rem;
+  padding: .5rem;
+  margin-bottom: .35rem;
+}
+.event-images-positions legend { padding-inline: .3rem; font-size: .72rem; font-weight: 800; }
+
+/* Device previews share the same uncropped artwork and circle-only stamp arrangement. */
+.event-image-viewer[open] { display:flex; flex-direction:column; overflow:hidden; }
+.event-image-viewer-heading { flex:none; }
+.event-image-viewer-heading button { min-height:44px; flex:none; }
+.event-image-viewer-scroll { min-height:0; overflow:auto; overscroll-behavior:contain; }
+#eventImageViewerCanvas { width:100%; }
+#eventImageViewerCanvas[data-preview-mode="mobile"] { width:min(100%,390px); margin-inline:auto; }
+#eventImageViewerCanvas img { width:100%; height:auto; }
+
+#eventImageViewerCanvas[data-preview-mode="mobile"] #eventImageViewerMarks { grid-template-columns:repeat(2,minmax(0,1fr)); }
+@media(max-width:360px){#eventImageViewerCanvas[data-preview-mode="mobile"] #eventImageViewerMarks{grid-template-columns:minmax(0,1fr);padding-inline:2rem;}}
+
+/* Text is placed over the printed blanks; it is never painted into the image file. */
+.passport-art-profile {
+  position:relative; grid-area:1 / 1; align-self:start; width:100%; min-width:0;
+  aspect-ratio:var(--profile-image-ratio,16 / 9); z-index:2; pointer-events:none;
+}
+.passport-art-profile[hidden] { display:none; }
+.passport-art-profile > span { position:absolute; display:flex; align-items:center; min-width:0; overflow:hidden; }
+.passport-art-profile > span > span {
+  display:block; width:100%; margin:0; color:#113887; font-weight:800; line-height:1.08;
+  overflow-wrap:anywhere; white-space:normal; text-align:left; text-shadow:0 1px 1px #ffffff55;
+}
+.student-pass-profile.has-art-profile { grid-template-columns:minmax(0,1fr); margin-bottom:.6rem; }
+.student-pass-profile.has-art-profile > div:not(:last-child) { display:none; }
+.student-pass-profile.has-art-profile > div:last-child {
+  display:flex; align-items:center; gap:.5rem; width:fit-content; background:#d8ecff18; color:#ecf8ff;
+  border:1px solid #c3e9ff55; padding:.4rem .6rem;
+}
+.student-pass-profile.has-art-profile dd { margin:0; font-size:.8rem; }

@@ -1,0 +1,10 @@
+{
+  "baselineTests": 118,
+  "tests": 119,
+  "chromeChecks": 305,
+  "regressionChecks": 84,
+  "qrChecks": 147,
+  "backendUnchanged": true,
+  "completionProjectionUnchanged": true,
+  "productionDeployed": false
+}

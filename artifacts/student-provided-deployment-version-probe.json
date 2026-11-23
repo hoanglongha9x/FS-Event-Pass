@@ -1,0 +1,10 @@
+{
+  "action": "GET_EVENT_API_VERSION",
+  "method": "POST",
+  "deploymentSuffix": "2ogvL_fQ",
+  "httpStatus": 401,
+  "redirected": false,
+  "finalHost": "script.google.com",
+  "contentType": "text/html; charset=utf-8",
+  "json": false
+}

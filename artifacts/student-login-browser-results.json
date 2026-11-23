@@ -1,0 +1,418 @@
+{
+  "environment": "Chrome localhost, mocked Apps Script and Sheets, external HTTPS blocked",
+  "fixture": {
+    "students": 395,
+    "classes": 12,
+    "booths": 11,
+    "records": 2374
+  },
+  "checks": [
+    {
+      "name": "public Openday and year-linked login enabled",
+      "status": "PASS"
+    },
+    {
+      "name": "POST version contract",
+      "status": "PASS"
+    },
+    {
+      "name": "wrong shared code",
+      "status": "PASS"
+    },
+    {
+      "name": "unknown student",
+      "status": "PASS"
+    },
+    {
+      "name": "student from other school year",
+      "status": "PASS"
+    },
+    {
+      "name": "locked account rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "inactive event rejected over website POST",
+      "status": "PASS"
+    },
+    {
+      "name": "event without configured access keeps button disabled",
+      "status": "PASS"
+    },
+    {
+      "name": "wrong active school year keeps button disabled",
+      "status": "PASS"
+    },
+    {
+      "name": "valid student signs in through website",
+      "status": "PASS"
+    },
+    {
+      "name": "shared code cleared from field and absent from browser storage",
+      "status": "PASS"
+    },
+    {
+      "name": "own data only and no booth PIN",
+      "status": "PASS"
+    },
+    {
+      "name": "student cannot read admin roster",
+      "status": "PASS"
+    },
+    {
+      "name": "forged other student session denied",
+      "status": "PASS"
+    },
+    {
+      "name": "session restored after reload",
+      "status": "PASS"
+    },
+    {
+      "name": "passport shows correct student without premature stamp",
+      "status": "PASS"
+    },
+    {
+      "name": "student cannot self-complete",
+      "status": "PASS"
+    },
+    {
+      "name": "teacher OTP and assignments still work",
+      "status": "PASS"
+    },
+    {
+      "name": "stamp still absent before student sync",
+      "status": "PASS"
+    },
+    {
+      "name": "stamp appears after teacher backend ACK and sync",
+      "status": "PASS"
+    },
+    {
+      "name": "unchanged read keeps same stamp",
+      "status": "PASS"
+    },
+    {
+      "name": "expired session returns to login",
+      "status": "PASS"
+    },
+    {
+      "name": "student signs in again after expiry",
+      "status": "PASS"
+    },
+    {
+      "name": "logout clears local session",
+      "status": "PASS"
+    },
+    {
+      "name": "logout revokes server session over POST",
+      "status": "PASS"
+    },
+    {
+      "name": "legacy backend version rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "incomplete public unchanged response rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "HTTP 401 distinguished from old API",
+      "status": "PASS"
+    },
+    {
+      "name": "valid backend recovers login button without bypass",
+      "status": "PASS"
+    },
+    {
+      "name": "GET_EVENT_API_VERSION used POST/cors and followed JSON redirect",
+      "status": "PASS"
+    },
+    {
+      "name": "GET_EVENT_VIEW used POST/cors and followed JSON redirect",
+      "status": "PASS"
+    },
+    {
+      "name": "LOGIN_STUDENT used POST/cors and followed JSON redirect",
+      "status": "PASS"
+    },
+    {
+      "name": "LOGOUT_STUDENT used POST/cors and followed JSON redirect",
+      "status": "PASS"
+    }
+  ],
+  "transport": [
+    {
+      "action": "GET_EVENT_API_VERSION",
+      "method": "POST",
+      "mode": "cors",
+      "status": 200,
+      "redirected": true
+    },
+    {
+      "action": "LOGIN_STUDENT",
+      "method": "POST",
+      "mode": "cors",
+      "status": 200,
+      "redirected": true
+    },
+    {
+      "action": "LOGIN_STUDENT",
+      "method": "POST",
+      "mode": "cors",
+      "status": 200,
+      "redirected": true
+    },
+    {
+      "action": "LOGIN_STUDENT",
+      "method": "POST",
+      "mode": "cors",
+      "status": 200,
+      "redirected": true
+    },
+    {
+      "action": "LOGIN_STUDENT",
+      "method": "POST",
+      "mode": "cors",
+      "status": 200,
+      "redirected": true
+    },
+    {
+      "action": "LOGIN_STUDENT",
+      "method": "POST",
+      "mode": "cors",
+      "status": 200,
+      "redirected": true
+    },
+    {
+      "action": "GET_EVENT_VIEW",
+      "method": "POST",
+      "mode": "cors",
+      "status": 200,
+      "redirected": true
+    },
+    {
+      "action": "GET_EVENT_VIEW",
+      "method": "POST",
+      "mode": "cors",
+      "status": 200,
+      "redirected": true
+    },
+    {
+      "action": "GET_EVENT_VIEW",
+      "method": "POST",
+      "mode": "cors",
+      "status": 200,
+      "redirected": true
+    },
+    {
+      "action": "LOGIN_STUDENT",
+      "method": "POST",
+      "mode": "cors",
+      "status": 200,
+      "redirected": true
+    },
+    {
+      "action": "GET_EVENT_VIEW",
+      "method": "POST",
+      "mode": "cors",
+      "status": 200,
+      "redirected": true
+    },
+    {
+      "action": "GET_EVENT_VIEW",
+      "method": "POST",
+      "mode": "cors",
+      "status": 200,
+      "redirected": true
+    },
+    {
+      "action": "LIST_ROSTER",
+      "method": "POST",
+      "mode": "cors",
+      "status": 200,
+      "redirected": true
+    },
+    {
+      "action": "GET_EVENT_VIEW",
+      "method": "POST",
+      "mode": "cors",
+      "status": 200,
+      "redirected": true
+    },
+    {
+      "action": "TEACHER_COMPLETE",
+      "method": "POST",
+      "mode": "cors",
+      "status": 200,
+      "redirected": true
+    },
+    {
+      "action": "GET_EVENT_VIEW",
+      "method": "POST",
+      "mode": "cors",
+      "status": 200,
+      "redirected": true
+    },
+    {
+      "action": "GET_EVENT_VIEW",
+      "method": "POST",
+      "mode": "cors",
+      "status": 200,
+      "redirected": true
+    },
+    {
+      "action": "GET_EVENT_VIEW",
+      "method": "POST",
+      "mode": "cors",
+      "status": 200,
+      "redirected": true
+    },
+    {
+      "action": "GET_EVENT_VIEW",
+      "method": "POST",
+      "mode": "cors",
+      "status": 200,
+      "redirected": true
+    },
+    {
+      "action": "GET_EVENT_VIEW",
+      "method": "POST",
+      "mode": "cors",
+      "status": 200,
+      "redirected": true
+    },
+    {
+      "action": "LOGIN_STUDENT",
+      "method": "POST",
+      "mode": "cors",
+      "status": 200,
+      "redirected": true
+    },
+    {
+      "action": "GET_EVENT_VIEW",
+      "method": "POST",
+      "mode": "cors",
+      "status": 200,
+      "redirected": true
+    },
+    {
+      "action": "GET_EVENT_VIEW",
+      "method": "POST",
+      "mode": "cors",
+      "status": 200,
+      "redirected": true
+    },
+    {
+      "action": "LOGOUT_STUDENT",
+      "method": "POST",
+      "mode": "cors",
+      "status": 200,
+      "redirected": true
+    },
+    {
+      "action": "GET_EVENT_VIEW",
+      "method": "POST",
+      "mode": "cors",
+      "status": 200,
+      "redirected": true
+    },
+    {
+      "action": "GET_EVENT_VIEW",
+      "method": "POST",
+      "mode": "cors",
+      "status": 200,
+      "redirected": true
+    },
+    {
+      "action": "GET_EVENT_VIEW",
+      "method": "POST",
+      "mode": "cors",
+      "status": 200,
+      "redirected": true
+    },
+    {
+      "action": "GET_EVENT_API_VERSION",
+      "method": "POST",
+      "mode": "cors",
+      "status": 200,
+      "redirected": true
+    },
+    {
+      "action": "GET_EVENT_VIEW",
+      "method": "POST",
+      "mode": "cors",
+      "status": 200,
+      "redirected": true
+    },
+    {
+      "action": "GET_EVENT_API_VERSION",
+      "method": "POST",
+      "mode": "cors",
+      "status": 200,
+      "redirected": true
+    },
+    {
+      "action": "GET_EVENT_VIEW",
+      "method": "POST",
+      "mode": "cors",
+      "status": 401,
+      "redirected": false
+    },
+    {
+      "action": "GET_EVENT_VIEW",
+      "method": "POST",
+      "mode": "cors",
+      "status": 200,
+      "redirected": true
+    },
+    {
+      "action": "GET_EVENT_API_VERSION",
+      "method": "POST",
+      "mode": "cors",
+      "status": 200,
+      "redirected": true
+    },
+    {
+      "action": "SEND_TEACHER_OTP_V3",
+      "method": "POST",
+      "mode": "cors",
+      "status": 200,
+      "redirected": true
+    },
+    {
+      "action": "GET_EVENT_API_VERSION",
+      "method": "POST",
+      "mode": "cors",
+      "status": 200,
+      "redirected": true
+    },
+    {
+      "action": "VERIFY_TEACHER_OTP_V3",
+      "method": "POST",
+      "mode": "cors",
+      "status": 200,
+      "redirected": true
+    },
+    {
+      "action": "GET_EVENT_VIEW",
+      "method": "POST",
+      "mode": "cors",
+      "status": 200,
+      "redirected": true
+    },
+    {
+      "action": "TEACHER_COMPLETE",
+      "method": "POST",
+      "mode": "cors",
+      "status": 200,
+      "redirected": true
+    },
+    {
+      "action": "GET_EVENT_VIEW",
+      "method": "POST",
+      "mode": "cors",
+      "status": 200,
+      "redirected": true
+    }
+  ]
+}

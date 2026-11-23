@@ -1,0 +1,229 @@
+{
+  "checks": [
+    {
+      "name": "configuration opens event screen without roster request",
+      "status": "PASS"
+    },
+    {
+      "name": "staging fixture does not point at production",
+      "status": "PASS"
+    },
+    {
+      "name": "saving other image never approves an unreviewed draft",
+      "status": "PASS"
+    },
+    {
+      "name": "independent theme and passport versions",
+      "status": "PASS"
+    },
+    {
+      "name": "private Drive files read back before success",
+      "status": "PASS"
+    },
+    {
+      "name": "template coordinates persisted for all booths",
+      "status": "PASS"
+    },
+    {
+      "name": "selection synchronized across event/staff/image controls",
+      "status": "PASS"
+    },
+    {
+      "name": "Openday starts with its own default preview",
+      "status": "PASS"
+    },
+    {
+      "name": "event artwork versions never reused",
+      "status": "PASS"
+    },
+    {
+      "name": "icon saved for selected event only",
+      "status": "PASS"
+    },
+    {
+      "name": "multi-booth grant acknowledged from backend",
+      "status": "PASS"
+    },
+    {
+      "name": "edit replaces only chosen teacher's event assignments",
+      "status": "PASS"
+    },
+    {
+      "name": "teacher picker restores that teacher's active assignments",
+      "status": "PASS"
+    },
+    {
+      "name": "event draft and correct artwork restored",
+      "status": "PASS"
+    },
+    {
+      "name": "unsaved image draft and approval state survive event switch",
+      "status": "PASS"
+    },
+    {
+      "name": "subtabs preserve search and avoid duplicate roster read",
+      "status": "PASS"
+    },
+    {
+      "name": "students-desktop no horizontal page overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "students-mobile no horizontal page overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "events-1280 no horizontal page overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "desktop columns balanced and aligned",
+      "status": "PASS"
+    },
+    {
+      "name": "events-768 no horizontal page overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "mobile/tablet order 768",
+      "status": "PASS"
+    },
+    {
+      "name": "events-390 no horizontal page overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "mobile/tablet order 390",
+      "status": "PASS"
+    },
+    {
+      "name": "events-320 no horizontal page overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "mobile/tablet order 320",
+      "status": "PASS"
+    },
+    {
+      "name": "theme default independent of passport",
+      "status": "PASS"
+    },
+    {
+      "name": "another browser loads the saved event images",
+      "status": "PASS"
+    },
+    {
+      "name": "full passport artwork with no premature stamps",
+      "status": "PASS"
+    },
+    {
+      "name": "official completion adds one stamp with correct icon",
+      "status": "PASS"
+    },
+    {
+      "name": "passport-1280 no horizontal page overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "round stamps 1280",
+      "status": "PASS"
+    },
+    {
+      "name": "passport-768 no horizontal page overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "round stamps 768",
+      "status": "PASS"
+    },
+    {
+      "name": "passport-390 no horizontal page overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "round stamps 390",
+      "status": "PASS"
+    },
+    {
+      "name": "passport-320 no horizontal page overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "round stamps 320",
+      "status": "PASS"
+    },
+    {
+      "name": "reload keeps official progress",
+      "status": "PASS"
+    },
+    {
+      "name": "event switch ACK contains correct booths",
+      "status": "PASS"
+    },
+    {
+      "name": "Openday passport has its own 15 booths and no STEM stamp",
+      "status": "PASS"
+    },
+    {
+      "name": "openday-pass-mobile no horizontal page overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "reduced motion preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "keyboard switches configuration subtab",
+      "status": "PASS"
+    },
+    {
+      "name": "touch switches configuration subtab",
+      "status": "PASS"
+    },
+    {
+      "name": "Drive-compatible output: PNG opaque",
+      "status": "PASS"
+    },
+    {
+      "name": "Drive-compatible output: JPEG with mismatched filename",
+      "status": "PASS"
+    },
+    {
+      "name": "Drive-compatible output: WebP opaque",
+      "status": "PASS"
+    },
+    {
+      "name": "Drive-compatible output: WebP transparent",
+      "status": "PASS"
+    },
+    {
+      "name": "Drive-compatible output: large opaque PNG",
+      "status": "PASS"
+    },
+    {
+      "name": "Drive-compatible output: large transparent PNG",
+      "status": "PASS"
+    }
+  ],
+  "fixture": {
+    "students": 395,
+    "classes": 12,
+    "boothsA": 11,
+    "boothsB": 15
+  },
+  "externalServices": "BLOCKED; Sheets, Drive, MailApp are mocks",
+  "actions": [
+    "GET_EVENT_VIEW",
+    "GET_EVENT_SETUP",
+    "SAVE_EVENT_IMAGE",
+    "PREVIEW_EVENT_IMAGE",
+    "SAVE_EVENT_BOOTHS",
+    "SET_EVENT_ASSIGNMENT",
+    "LIST_ROSTER",
+    "LOGIN_STUDENT",
+    "GET_EVENT_IMAGE",
+    "TEACHER_COMPLETE",
+    "SAVE_EVENT_CONFIG",
+    "LOGOUT_STUDENT"
+  ]
+}

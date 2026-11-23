@@ -1,0 +1,523 @@
+{
+  "checks": [
+    {
+      "name": "passport filename selects matching printed-field template",
+      "status": "PASS"
+    },
+    {
+      "name": "passport preview uses a sample DOM name, not a real roster lookup",
+      "status": "PASS"
+    },
+    {
+      "name": "passportMobile filename selects matching printed-field template",
+      "status": "PASS"
+    },
+    {
+      "name": "passportMobile preview uses a sample DOM name, not a real roster lookup",
+      "status": "PASS"
+    },
+    {
+      "name": "dynamic own name and class in printed blanks 1280",
+      "status": "PASS"
+    },
+    {
+      "name": "uncropped supplied image and overlay share ratio 1280",
+      "status": "PASS"
+    },
+    {
+      "name": "correct name percentage coordinates 1280",
+      "status": "PASS"
+    },
+    {
+      "name": "correct className percentage coordinates 1280",
+      "status": "PASS"
+    },
+    {
+      "name": "legible complete name and no horizontal overflow 1280",
+      "status": "PASS"
+    },
+    {
+      "name": "stamps stay below printed fields and do not falsely complete 1280",
+      "status": "PASS"
+    },
+    {
+      "name": "dynamic own name and class in printed blanks 430",
+      "status": "PASS"
+    },
+    {
+      "name": "uncropped supplied image and overlay share ratio 430",
+      "status": "PASS"
+    },
+    {
+      "name": "correct name percentage coordinates 430",
+      "status": "PASS"
+    },
+    {
+      "name": "correct className percentage coordinates 430",
+      "status": "PASS"
+    },
+    {
+      "name": "legible complete name and no horizontal overflow 430",
+      "status": "PASS"
+    },
+    {
+      "name": "stamps stay below printed fields and do not falsely complete 430",
+      "status": "PASS"
+    },
+    {
+      "name": "dynamic own name and class in printed blanks 393",
+      "status": "PASS"
+    },
+    {
+      "name": "uncropped supplied image and overlay share ratio 393",
+      "status": "PASS"
+    },
+    {
+      "name": "correct name percentage coordinates 393",
+      "status": "PASS"
+    },
+    {
+      "name": "correct className percentage coordinates 393",
+      "status": "PASS"
+    },
+    {
+      "name": "legible complete name and no horizontal overflow 393",
+      "status": "PASS"
+    },
+    {
+      "name": "stamps stay below printed fields and do not falsely complete 393",
+      "status": "PASS"
+    },
+    {
+      "name": "dynamic own name and class in printed blanks 390",
+      "status": "PASS"
+    },
+    {
+      "name": "uncropped supplied image and overlay share ratio 390",
+      "status": "PASS"
+    },
+    {
+      "name": "correct name percentage coordinates 390",
+      "status": "PASS"
+    },
+    {
+      "name": "correct className percentage coordinates 390",
+      "status": "PASS"
+    },
+    {
+      "name": "legible complete name and no horizontal overflow 390",
+      "status": "PASS"
+    },
+    {
+      "name": "stamps stay below printed fields and do not falsely complete 390",
+      "status": "PASS"
+    },
+    {
+      "name": "dynamic own name and class in printed blanks 375",
+      "status": "PASS"
+    },
+    {
+      "name": "uncropped supplied image and overlay share ratio 375",
+      "status": "PASS"
+    },
+    {
+      "name": "correct name percentage coordinates 375",
+      "status": "PASS"
+    },
+    {
+      "name": "correct className percentage coordinates 375",
+      "status": "PASS"
+    },
+    {
+      "name": "legible complete name and no horizontal overflow 375",
+      "status": "PASS"
+    },
+    {
+      "name": "stamps stay below printed fields and do not falsely complete 375",
+      "status": "PASS"
+    },
+    {
+      "name": "dynamic own name and class in printed blanks 320",
+      "status": "PASS"
+    },
+    {
+      "name": "uncropped supplied image and overlay share ratio 320",
+      "status": "PASS"
+    },
+    {
+      "name": "correct name percentage coordinates 320",
+      "status": "PASS"
+    },
+    {
+      "name": "correct className percentage coordinates 320",
+      "status": "PASS"
+    },
+    {
+      "name": "legible complete name and no horizontal overflow 320",
+      "status": "PASS"
+    },
+    {
+      "name": "stamps stay below printed fields and do not falsely complete 320",
+      "status": "PASS"
+    },
+    {
+      "name": "long name is preserved with readable separate fallback",
+      "status": "PASS"
+    },
+    {
+      "name": "official completion unchanged with profile overlay",
+      "status": "PASS"
+    },
+    {
+      "name": "reload keeps profile template and backend-confirmed stamp",
+      "status": "PASS"
+    },
+    {
+      "name": "student text never changes stored Drive image bytes",
+      "status": "PASS"
+    },
+    {
+      "name": "tiny Desktop fallback keeps readable separate identity instead of clipped text",
+      "status": "PASS"
+    }
+  ],
+  "metrics": [
+    {
+      "width": 1280,
+      "canvas": {
+        "x": 61.796875,
+        "y": 273.328125,
+        "w": 1156.40625,
+        "h": 542.84375,
+        "bottom": 816.171875,
+        "right": 1218.203125
+      },
+      "overlay": {
+        "x": 62.796875,
+        "y": 274.328125,
+        "w": 1154.40625,
+        "h": 412.109375,
+        "bottom": 686.4375,
+        "right": 1217.203125
+      },
+      "name": {
+        "x": 194.84375,
+        "y": 301.828125,
+        "w": 245.953125,
+        "h": 49.515625,
+        "bottom": 351.34375,
+        "right": 440.796875
+      },
+      "className": {
+        "x": 137.078125,
+        "y": 368.40625,
+        "w": 303.71875,
+        "h": 49.515625,
+        "bottom": 417.921875,
+        "right": 440.796875
+      },
+      "art": {
+        "x": 62.796875,
+        "y": 274.328125,
+        "w": 1154.40625,
+        "h": 412.109375,
+        "bottom": 686.4375,
+        "right": 1217.203125
+      },
+      "nameFont": 20,
+      "nameFits": true,
+      "overflow": 0,
+      "firstStamp": {
+        "x": 166.609375,
+        "y": 439.171875,
+        "w": 96,
+        "h": 96,
+        "bottom": 535.171875,
+        "right": 262.609375
+      },
+      "done": 0
+    },
+    {
+      "width": 430,
+      "canvas": {
+        "x": 35.046875,
+        "y": 190.578125,
+        "w": 359.90625,
+        "h": 917.125,
+        "bottom": 1107.703125,
+        "right": 394.953125
+      },
+      "overlay": {
+        "x": 36.046875,
+        "y": 191.578125,
+        "w": 357.90625,
+        "h": 775.515625,
+        "bottom": 967.09375,
+        "right": 393.953125
+      },
+      "name": {
+        "x": 158.984375,
+        "y": 343.28125,
+        "w": 207.625,
+        "h": 39.734375,
+        "bottom": 383.015625,
+        "right": 366.609375
+      },
+      "className": {
+        "x": 114.65625,
+        "y": 402.75,
+        "w": 252.5625,
+        "h": 37.609375,
+        "bottom": 440.359375,
+        "right": 367.21875
+      },
+      "art": {
+        "x": 36.046875,
+        "y": 191.578125,
+        "w": 357.90625,
+        "h": 775.515625,
+        "bottom": 967.09375,
+        "right": 393.953125
+      },
+      "nameFont": 18.5,
+      "nameFits": true,
+      "overflow": 0,
+      "firstStamp": {
+        "x": 85.734375,
+        "y": 470.765625,
+        "w": 86,
+        "h": 86,
+        "bottom": 556.765625,
+        "right": 171.734375
+      },
+      "done": 0
+    },
+    {
+      "width": 393,
+      "canvas": {
+        "x": 33.75,
+        "y": 189.28125,
+        "w": 325.5,
+        "h": 845.84375,
+        "bottom": 1035.125,
+        "right": 359.25
+      },
+      "overlay": {
+        "x": 34.75,
+        "y": 190.28125,
+        "w": 323.5,
+        "h": 700.96875,
+        "bottom": 891.25,
+        "right": 358.25
+      },
+      "name": {
+        "x": 145.875,
+        "y": 327.390625,
+        "w": 187.671875,
+        "h": 35.921875,
+        "bottom": 363.3125,
+        "right": 333.546875
+      },
+      "className": {
+        "x": 105.8125,
+        "y": 381.140625,
+        "w": 228.28125,
+        "h": 34,
+        "bottom": 415.140625,
+        "right": 334.09375
+      },
+      "art": {
+        "x": 34.75,
+        "y": 190.28125,
+        "w": 323.5,
+        "h": 700.96875,
+        "bottom": 891.25,
+        "right": 358.25
+      },
+      "nameFont": 17,
+      "nameFits": true,
+      "overflow": 0,
+      "firstStamp": {
+        "x": 79.21875,
+        "y": 442.625,
+        "w": 78.59375,
+        "h": 78.59375,
+        "bottom": 521.21875,
+        "right": 157.8125
+      },
+      "done": 0
+    },
+    {
+      "width": 390,
+      "canvas": {
+        "x": 33.640625,
+        "y": 189.171875,
+        "w": 322.71875,
+        "h": 840.109375,
+        "bottom": 1029.28125,
+        "right": 356.359375
+      },
+      "overlay": {
+        "x": 34.640625,
+        "y": 190.171875,
+        "w": 320.71875,
+        "h": 694.9375,
+        "bottom": 885.109375,
+        "right": 355.359375
+      },
+      "name": {
+        "x": 144.796875,
+        "y": 326.109375,
+        "w": 186.0625,
+        "h": 35.609375,
+        "bottom": 361.71875,
+        "right": 330.859375
+      },
+      "className": {
+        "x": 105.09375,
+        "y": 379.390625,
+        "w": 226.3125,
+        "h": 33.703125,
+        "bottom": 413.09375,
+        "right": 331.40625
+      },
+      "art": {
+        "x": 34.640625,
+        "y": 190.171875,
+        "w": 320.71875,
+        "h": 694.9375,
+        "bottom": 885.109375,
+        "right": 355.359375
+      },
+      "nameFont": 17,
+      "nameFits": true,
+      "overflow": 0,
+      "firstStamp": {
+        "x": 78.65625,
+        "y": 440.34375,
+        "w": 78,
+        "h": 78,
+        "bottom": 518.34375,
+        "right": 156.65625
+      },
+      "done": 0
+    },
+    {
+      "width": 375,
+      "canvas": {
+        "x": 33.59375,
+        "y": 189.125,
+        "w": 307.8125,
+        "h": 816.484375,
+        "bottom": 1005.609375,
+        "right": 341.40625
+      },
+      "overlay": {
+        "x": 34.59375,
+        "y": 190.125,
+        "w": 305.8125,
+        "h": 662.640625,
+        "bottom": 852.765625,
+        "right": 340.40625
+      },
+      "name": {
+        "x": 139.640625,
+        "y": 319.734375,
+        "w": 177.40625,
+        "h": 33.953125,
+        "bottom": 353.6875,
+        "right": 317.046875
+      },
+      "className": {
+        "x": 101.765625,
+        "y": 370.546875,
+        "w": 215.796875,
+        "h": 32.140625,
+        "bottom": 402.6875,
+        "right": 317.5625
+      },
+      "art": {
+        "x": 34.59375,
+        "y": 190.125,
+        "w": 305.8125,
+        "h": 662.640625,
+        "bottom": 852.765625,
+        "right": 340.40625
+      },
+      "nameFont": 16,
+      "nameFits": true,
+      "overflow": 0,
+      "firstStamp": {
+        "x": 75.671875,
+        "y": 428.671875,
+        "w": 76,
+        "h": 76,
+        "bottom": 504.671875,
+        "right": 151.671875
+      },
+      "done": 0
+    },
+    {
+      "width": 320,
+      "canvas": {
+        "x": 33.59375,
+        "y": 207.9375,
+        "w": 252.8125,
+        "h": 773.578125,
+        "bottom": 981.515625,
+        "right": 286.40625
+      },
+      "overlay": {
+        "x": 34.59375,
+        "y": 208.9375,
+        "w": 250.8125,
+        "h": 543.46875,
+        "bottom": 752.40625,
+        "right": 285.40625
+      },
+      "name": {
+        "x": 120.75,
+        "y": 315.234375,
+        "w": 145.5,
+        "h": 27.84375,
+        "bottom": 343.078125,
+        "right": 266.25
+      },
+      "className": {
+        "x": 89.6875,
+        "y": 356.921875,
+        "w": 176.984375,
+        "h": 26.359375,
+        "bottom": 383.28125,
+        "right": 266.671875
+      },
+      "art": {
+        "x": 34.59375,
+        "y": 208.9375,
+        "w": 250.8125,
+        "h": 543.46875,
+        "bottom": 752.40625,
+        "right": 285.40625
+      },
+      "nameFont": 13,
+      "nameFits": true,
+      "overflow": 0,
+      "firstStamp": {
+        "x": 61.09375,
+        "y": 404.578125,
+        "w": 76,
+        "h": 76,
+        "bottom": 480.578125,
+        "right": 137.09375
+      },
+      "done": 0
+    }
+  ],
+  "fixture": {
+    "students": 395,
+    "classes": 12,
+    "booths": 11
+  },
+  "references": "User-supplied artwork PNGs, unchanged on disk; profile text rendered as HTML only",
+  "externalServices": "BLOCKED; mock Sheets/Drive/MailApp, localhost POST/redirect/JSON"
+}

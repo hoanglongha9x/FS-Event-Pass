@@ -1,0 +1,109 @@
+{
+  "shots": [
+    {
+      "width": 1440,
+      "boxes": [
+        {
+          "id": "eventConfigCard",
+          "x": 112,
+          "y": 269.1875,
+          "width": 600,
+          "height": 890.71875
+        },
+        {
+          "id": "staffAssignmentCard",
+          "x": 728,
+          "y": 269.1875,
+          "width": 600,
+          "height": 462.78125
+        },
+        {
+          "id": "eventImagesCard",
+          "x": 728,
+          "y": 747.96875,
+          "width": 600,
+          "height": 556.015625
+        }
+      ],
+      "scroll": 1440,
+      "counts": [
+        1,
+        1,
+        1
+      ],
+      "advancedOpen": false,
+      "clipHeight": 1309.984375
+    },
+    {
+      "width": 390,
+      "boxes": [
+        {
+          "id": "eventConfigCard",
+          "x": 16,
+          "y": 338.5,
+          "width": 358,
+          "height": 899.5
+        },
+        {
+          "id": "staffAssignmentCard",
+          "x": 16,
+          "y": 1254,
+          "width": 358,
+          "height": 521.953125
+        },
+        {
+          "id": "eventImagesCard",
+          "x": 16,
+          "y": 1791.953125,
+          "width": 358,
+          "height": 805.40625
+        }
+      ],
+      "scroll": 390,
+      "counts": [
+        1,
+        1,
+        1
+      ],
+      "advancedOpen": false,
+      "clipHeight": 2603.359375
+    },
+    {
+      "width": 320,
+      "boxes": [
+        {
+          "id": "eventConfigCard",
+          "x": 16,
+          "y": 338.5,
+          "width": 288,
+          "height": 915.5
+        },
+        {
+          "id": "staffAssignmentCard",
+          "x": 16,
+          "y": 1270,
+          "width": 288,
+          "height": 521.953125
+        },
+        {
+          "id": "eventImagesCard",
+          "x": 16,
+          "y": 1807.953125,
+          "width": 288,
+          "height": 907.78125
+        }
+      ],
+      "scroll": 320,
+      "counts": [
+        1,
+        1,
+        1
+      ],
+      "advancedOpen": false,
+      "clipHeight": 2721.734375
+    }
+  ],
+  "duplicateRequests": false,
+  "previewWithoutRequest": true,
+  "advancedPositions": 11
+}

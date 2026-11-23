@@ -1,0 +1,65 @@
+{
+  "checkedAt": "2026-11-23T10:47:04.372Z",
+  "syntax": "PASS",
+  "css": "PASS",
+  "changed": [
+    "index.html",
+    "event-glass.css",
+    "event-ui.js"
+  ],
+  "protectedFilesUnchanged": [
+    "Code.gs",
+    "EventAccess.gs",
+    "EventWorkflow.gs",
+    "EventImages.gs",
+    "student-pass.js",
+    "student-pass.css",
+    "event-admin.js",
+    "event-roster.js",
+    "event-images.js",
+    "event-ui.css"
+  ],
+  "businessFunctionsUnchanged": [
+    "parseBoothTarget",
+    "resolveBoothTarget",
+    "onScanSuccess",
+    "joinBoothByPin",
+    "joinBoothImmediately",
+    "openQrScanner",
+    "closeQrScanner",
+    "requestExperience",
+    "submitStudentLogin",
+    "loginAdmin",
+    "sendTeacherOtp",
+    "verifyTeacherLogin",
+    "restoreAppSession",
+    "eventCall"
+  ],
+  "tests": {
+    "baseline": 104,
+    "node": 104,
+    "browser": 147,
+    "ui": 50
+  },
+  "fixedMeasurements": 45,
+  "maxVerticalDriftPx": 0,
+  "maxScrollPx": 3126,
+  "files": [
+    {
+      "file": "index.html",
+      "sha256": "1356068f11948958d679574fcfeb70a636da98cdb8eae1b30841fa25778db7ca"
+    },
+    {
+      "file": "event-glass.css",
+      "sha256": "4b6b3d64a51ddfcdd29377a94cb762e05c3979cc5503fd02983216f966caccee"
+    },
+    {
+      "file": "event-ui.js",
+      "sha256": "3afcf6ceb4691f1442be499d17ff591d375cd71378e7552a6a5dcff88b77a4b0"
+    },
+    {
+      "file": "scripts/student-qr-qa.cjs",
+      "sha256": "ac68c3a653fef9ee6f9def21414760e79265b0b590ea7580f9f0827942102f78"
+    }
+  ]
+}

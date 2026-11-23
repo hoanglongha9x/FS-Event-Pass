@@ -1,0 +1,27 @@
+{
+  "uiResults": [
+    {
+      "width": 320,
+      "passOpenP50Ms": 31.299999997019768,
+      "passOpenP95Ms": 31.5,
+      "stamps": 11
+    },
+    {
+      "width": 390,
+      "passOpenP50Ms": 31.25,
+      "passOpenP95Ms": 31.5,
+      "stamps": 11
+    },
+    {
+      "width": 1280,
+      "passOpenP50Ms": 31.25,
+      "passOpenP95Ms": 31.5,
+      "stamps": 11
+    }
+  ],
+  "reduced": {
+    "blur": "none",
+    "stampBlur": "none",
+    "animation": "1e-05s"
+  }
+}

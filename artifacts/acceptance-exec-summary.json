@@ -1,0 +1,280 @@
+[
+  {
+    "action": "SAVE_EVENT_BOOTHS",
+    "variant": "baseline",
+    "n": 20,
+    "waitP50": 5315.9,
+    "waitP95": 6086.8,
+    "backend": [
+      1195.5,
+      2282
+    ],
+    "sheets": [
+      529.5,
+      1045
+    ],
+    "responseBytes": [
+      16.0,
+      16
+    ],
+    "readBytes": [
+      462507.5,
+      615622
+    ],
+    "total": [
+      5315.9,
+      6086.8
+    ],
+    "criticalRequests": 2,
+    "totalRequests": 2
+  },
+  {
+    "action": "SAVE_EVENT_BOOTHS",
+    "variant": "optimized",
+    "n": 20,
+    "waitP50": 2317.6,
+    "waitP95": 3500.3,
+    "backend": [
+      1183.5,
+      2184
+    ],
+    "sheets": [
+      589.0,
+      847
+    ],
+    "responseBytes": [
+      2674.5,
+      2675
+    ],
+    "readBytes": [
+      463367.5,
+      616484
+    ],
+    "total": [
+      5038.4,
+      6090.1
+    ],
+    "criticalRequests": 1,
+    "totalRequests": 2
+  },
+  {
+    "action": "SAVE_EVENT_CONFIG",
+    "variant": "baseline",
+    "n": 20,
+    "waitP50": 5097.4,
+    "waitP95": 7259.6,
+    "backend": [
+      1411.0,
+      2354
+    ],
+    "sheets": [
+      707.0,
+      994
+    ],
+    "responseBytes": [
+      16.0,
+      16
+    ],
+    "readBytes": [
+      296675.0,
+      394549
+    ],
+    "total": [
+      5097.4,
+      7259.6
+    ],
+    "criticalRequests": 2,
+    "totalRequests": 2
+  },
+  {
+    "action": "SAVE_EVENT_CONFIG",
+    "variant": "optimized",
+    "n": 20,
+    "waitP50": 2373.9,
+    "waitP95": 3098.4,
+    "backend": [
+      1198.0,
+      1763
+    ],
+    "sheets": [
+      612.5,
+      927
+    ],
+    "responseBytes": [
+      475.0,
+      475
+    ],
+    "readBytes": [
+      297535.0,
+      395409
+    ],
+    "total": [
+      5112.4,
+      5743.5
+    ],
+    "criticalRequests": 1,
+    "totalRequests": 2
+  },
+  {
+    "action": "TEACHER_COMPLETE",
+    "variant": "baseline",
+    "n": 20,
+    "waitP50": 5597.2,
+    "waitP95": 6726.3,
+    "backend": [
+      1524.0,
+      2689
+    ],
+    "sheets": [
+      876.0,
+      1459
+    ],
+    "responseBytes": [
+      16.0,
+      16
+    ],
+    "readBytes": [
+      296718.0,
+      394592
+    ],
+    "total": [
+      5597.2,
+      6726.3
+    ],
+    "criticalRequests": 2,
+    "totalRequests": 2
+  },
+  {
+    "action": "TEACHER_COMPLETE",
+    "variant": "optimized",
+    "n": 20,
+    "waitP50": 2771.0,
+    "waitP95": 3809.3,
+    "backend": [
+      1583.5,
+      2407
+    ],
+    "sheets": [
+      951.0,
+      1861
+    ],
+    "responseBytes": [
+      474.0,
+      484
+    ],
+    "readBytes": [
+      297578.0,
+      395453
+    ],
+    "total": [
+      5310.6,
+      6348.0
+    ],
+    "criticalRequests": 1,
+    "totalRequests": 2
+  },
+  {
+    "action": "student_after_complete",
+    "variant": "baseline",
+    "n": 20,
+    "rpc": [
+      2327.9,
+      3471.9
+    ],
+    "backend": [
+      1126.5,
+      1886
+    ],
+    "sheets": [
+      763.5,
+      1208
+    ],
+    "responseBytes": [
+      4823.0,
+      5201
+    ],
+    "lock": [
+      0.0,
+      0
+    ],
+    "successes": 20
+  },
+  {
+    "action": "concurrent_writes",
+    "variant": "baseline",
+    "n": 20,
+    "rpc": [
+      3579.2,
+      5382.4
+    ],
+    "backend": [
+      2310.0,
+      4182
+    ],
+    "sheets": [
+      868.5,
+      1319
+    ],
+    "responseBytes": [
+      116.0,
+      216
+    ],
+    "lock": [
+      448.5,
+      2014
+    ],
+    "successes": 10
+  },
+  {
+    "action": "student_after_complete",
+    "variant": "optimized",
+    "n": 20,
+    "rpc": [
+      2267.2,
+      3224.8
+    ],
+    "backend": [
+      1119.0,
+      1557
+    ],
+    "sheets": [
+      732.0,
+      963
+    ],
+    "responseBytes": [
+      4824.5,
+      5240
+    ],
+    "lock": [
+      0.0,
+      0
+    ],
+    "successes": 20
+  },
+  {
+    "action": "concurrent_writes",
+    "variant": "optimized",
+    "n": 20,
+    "rpc": [
+      3193.9,
+      4212.4
+    ],
+    "backend": [
+      2154.5,
+      2807
+    ],
+    "sheets": [
+      717.0,
+      1150
+    ],
+    "responseBytes": [
+      342.0,
+      480
+    ],
+    "lock": [
+      490.5,
+      1762
+    ],
+    "successes": 10
+  }
+]

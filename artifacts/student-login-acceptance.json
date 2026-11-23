@@ -1,0 +1,143 @@
+{
+  "result": "PASS_ON_MOCK_WEBSITE_PRODUCTION_NOT_DEPLOYED",
+  "sourceTestCount": 75,
+  "browserTests": 33,
+  "uiRegressionChecks": 50,
+  "syntax": "PASS",
+  "requiredScenarios": [
+    {
+      "requirement": "Backend phiên bản đúng",
+      "status": "PASS",
+      "evidence": "POST version contract"
+    },
+    {
+      "requirement": "GET_EVENT_VIEW công khai đúng phiên bản",
+      "status": "PASS",
+      "evidence": "public Openday and year-linked login enabled"
+    },
+    {
+      "requirement": "Nút bật khi cấu hình hợp lệ",
+      "status": "PASS",
+      "evidence": "valid backend recovers login button without bypass"
+    },
+    {
+      "requirement": "Mã học sinh và mã chung hợp lệ",
+      "status": "PASS",
+      "evidence": "valid student signs in through website"
+    },
+    {
+      "requirement": "Mã truy cập sai",
+      "status": "PASS",
+      "evidence": "wrong shared code"
+    },
+    {
+      "requirement": "Mã học sinh không tồn tại",
+      "status": "PASS",
+      "evidence": "unknown student"
+    },
+    {
+      "requirement": "Học sinh thuộc năm học khác",
+      "status": "PASS",
+      "evidence": "student from other school year"
+    },
+    {
+      "requirement": "Sự kiện chưa mở",
+      "status": "PASS",
+      "evidence": "inactive event rejected over website POST"
+    },
+    {
+      "requirement": "Phiên hết hạn",
+      "status": "PASS",
+      "evidence": "expired session returns to login"
+    },
+    {
+      "requirement": "Khôi phục phiên",
+      "status": "PASS",
+      "evidence": "session restored after reload"
+    },
+    {
+      "requirement": "Đăng xuất",
+      "status": "PASS",
+      "evidence": "logout revokes server session over POST"
+    },
+    {
+      "requirement": "Không đọc dữ liệu học sinh khác",
+      "status": "PASS",
+      "evidence": "forged other student session denied"
+    },
+    {
+      "requirement": "OTP giáo viên",
+      "status": "PASS",
+      "evidence": "teacher OTP and assignments still work"
+    },
+    {
+      "requirement": "Phiếu đúng học sinh",
+      "status": "PASS",
+      "evidence": "passport shows correct student without premature stamp"
+    }
+  ],
+  "changedFiles": {
+    "index.html": {
+      "sha256": "1191a5d46291ed840cc5eb25e0ce0234d4fdeb572ba1a5aca9d693fd292acc82"
+    },
+    "Code.gs": {
+      "sha256": "16a9c227c696680234a3742cf57dd89ea0865aca0eb892aba8cf21662fd6c9f3"
+    },
+    "EventAccess.gs": {
+      "sha256": "5ade00bfb5f0cb78063b72c92d116306fb0719609949d53dc380e8d1eb5ef125"
+    },
+    "EventWorkflow.gs": {
+      "sha256": "ad63ca1b8df4fc143beae00fc092dd5b2c6efb29e14949683691b700abf80d06"
+    },
+    "tests/event-pass.test.cjs": {
+      "sha256": "c29ed092dce9196791552d63f44f5fe03580350659d39d7f60d4d92f2300ab69"
+    },
+    "scripts/student-login-qa.cjs": {
+      "sha256": "27c4470fbb8535b107596807290ab19a298902b01ee0264334f704496188a277"
+    }
+  },
+  "liveDeployment": {
+    "configuredBefore": {
+      "action": "GET_EVENT_API_VERSION",
+      "method": "POST",
+      "deploymentSuffix": "jNTe43yA",
+      "httpStatus": 200,
+      "redirected": true,
+      "finalHost": "script.googleusercontent.com",
+      "contentType": "application/json; charset=utf-8",
+      "json": true,
+      "success": true,
+      "apiVersion": "event-pass-scoped-v1",
+      "otpVersion": "teacher-otp-v3",
+      "teacherPortalVersion": "teacher-portal-v1"
+    },
+    "providedByUser": {
+      "action": "GET_EVENT_API_VERSION",
+      "method": "POST",
+      "deploymentSuffix": "2ogvL_fQ",
+      "httpStatus": 401,
+      "redirected": false,
+      "finalHost": "script.google.com",
+      "contentType": "text/html; charset=utf-8",
+      "json": false
+    },
+    "opendayLiveConfiguration": "UNVERIFIED: supplied /exec returned HTTP 401 without cookies; no live student data read"
+  },
+  "configuration": {
+    "requiredProperties": [
+      "FS_EVENT_SPREADSHEET_ID",
+      "FS_EVENT_ADMINS"
+    ],
+    "autoManagedProperties": [
+      "FS_EVENT_STUDENT_ACCESS_KEY",
+      "student-event-access:<eventId>"
+    ],
+    "notes": [
+      "Never store the shared access code as the HMAC key or plaintext property",
+      "Do not rotate a valid HMAC key; replacing a missing or invalid global key requires resetting affected event access configurations",
+      "Saving an event access code changes its generation and revokes prior student sessions"
+    ]
+  },
+  "uiFilesUnchanged": true,
+  "teacherOtpAndSessionImplementationUnchanged": true
+}

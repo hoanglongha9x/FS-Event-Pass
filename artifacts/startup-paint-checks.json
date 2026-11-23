@@ -1,0 +1,44 @@
+[
+  {
+    "variant": "before",
+    "paints": [
+      {
+        "name": "first-paint",
+        "timeMs": 92,
+        "logoWidth": 944,
+        "logoHeight": 616,
+        "headerDisplay": "block",
+        "hiddenPanels": "block"
+      },
+      {
+        "name": "first-contentful-paint",
+        "timeMs": 92,
+        "logoWidth": 944,
+        "logoHeight": 616,
+        "headerDisplay": "block",
+        "hiddenPanels": "block"
+      }
+    ]
+  },
+  {
+    "variant": "after",
+    "paints": [
+      {
+        "name": "first-paint",
+        "timeMs": 1256,
+        "logoWidth": 49,
+        "logoHeight": 32,
+        "headerDisplay": "flex",
+        "hiddenPanels": "none"
+      },
+      {
+        "name": "first-contentful-paint",
+        "timeMs": 1256,
+        "logoWidth": 49,
+        "logoHeight": 32,
+        "headerDisplay": "flex",
+        "hiddenPanels": "none"
+      }
+    ]
+  }
+]

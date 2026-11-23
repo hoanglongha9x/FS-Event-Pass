@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="vi"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nút Xóa sự kiện — FSchool Event Pass</title>
+<style>body{margin:0;background:#edf4f8;color:#18364e;font:16px/1.65 system-ui,sans-serif}main{max-width:1050px;margin:auto;padding:30px 20px 70px}h1{font-size:31px;line-height:1.2}h2{font-size:23px;margin-top:36px}a{color:#0066ad}code{background:#dfeef6;border-radius:4px;padding:2px 5px;overflow-wrap:anywhere}table{width:100%;border-collapse:collapse;font-size:14px}th,td{border:1px solid #c5dae7;text-align:left;vertical-align:top;padding:10px}th{background:#d9eaf5}.note{background:#fff8ed;border-left:5px solid #f27024;padding:17px}.ok{color:#087052;font-weight:750}.gallery{display:grid;grid-template-columns:2fr 1fr;gap:16px;align-items:start}.gallery img{width:100%;border:1px solid #bbd2e2;border-radius:12px}figure{margin:0}figcaption{font-size:13px;margin:5px 0 18px}@media(max-width:650px){.gallery{grid-template-columns:1fr}td,th{padding:7px}table{font-size:12px}}</style>
+<main><h1>Sửa nút Xóa sự kiện bị khóa toàn bộ</h1><p>FSchool Event Pass · 23/11/2026 · Bản sửa cục bộ, chưa triển khai production.</p>
+<p class="note">Không gửi lệnh xóa tới hệ thống thật. Chỉ đọc GET_EVENT_API_VERSION từ /exec đang cấu hình; mọi thao tác xóa/khôi phục, ảnh và kiểm thử nghiệp vụ dùng dịch vụ giả lập.</p>
+
+<h2>1. Nguyên nhân có bằng chứng</h2>
+<p>Điều kiện cũ của nút Xóa là <code>!setup || !item.eventRevision || item.id === activeEvent().id</code>. Trong đó setup chỉ được chấp nhận khi GET_EVENT_SETUP trả <code>event-admin-setup-v2</code> và API ảnh <code>event-images-v3</code>. Do vậy lỗi phiên bản/cấu hình ảnh của sự kiện đang chọn có thể làm khóa cả danh sách Xóa. Nút còn phụ thuộc revision ở GET_EVENT_VIEW, kể cả khi backend đã có luồng xóa riêng.</p>
+<p>POST metadata ngày 23/11/2026, khoảng 17:13 giờ Việt Nam, tới URL /exec trong index.html (hậu tố <code>jNTe43yA</code>) nhận HTTP 200, redirect và JSON: <code>eventAdminVersion=event-admin-setup-v1</code>, <code>eventImageVersion=event-images-v2</code>; chưa công bố <code>eventDeleteVersion</code>. Đây là bằng chứng deployment hiện tại chưa khớp bundle frontend mới. <a href="event-delete-deployment-probe.json">Kết quả probe an toàn</a>.</p>
+<p>Không dùng phiên BTC thật trong lần kiểm tra này, nên chưa xác minh quyền thực tế hoặc dữ liệu phụ thuộc của từng sự kiện thật. Không thử gọi MANAGE_EVENT trên production. Mã cục bộ đã có định tuyến <code>doPost → dispatchEventPass_ → manageEventLifecycle_</code>; các action mới không đi qua hàm xử lý bản ghi đồng bộ.</p>
+
+<h2>2. Điều kiện khóa từng sự kiện</h2>
+<table><tr><th>Sự kiện người dùng nêu</th><th>Kết luận hiện tại</th><th>Sau cập nhật đúng backend/frontend</th></tr>
+<tr><td>Ngày hội Openday — đang hoạt động</td><td>Ngoài lỗi phiên bản chung, activeEventId là điều kiện chặn hợp lệ.</td><td>Vẫn khóa. Hiển thị đúng “Vui lòng ngừng kích hoạt sự kiện trước khi xóa”. Không tự ngừng kích hoạt.</td></tr>
+<tr><td>Chào mừng 20/11 — lưu trữ</td><td>“Lưu trữ” không phải điều kiện cấm xóa. Hiện đang chịu khóa chung do setup/backend không tương thích; chưa có đọc dữ liệu riêng để kết luận lịch sử thật.</td><td>API kiểm tra riêng: trống nghiệp vụ → nút đỏ nhẹ; có lượt, tài khoản, phân công hoặc lịch sử cần giữ → khóa và nêu lý do.</td></tr>
+<tr><td>j — lưu trữ, có thể tạo nhầm</td><td>Tên ngắn hay trạng thái lưu trữ không chứng minh không có dữ liệu. Chưa xác định eventId/lịch sử thật.</td><td>Xác định bằng eventId. Cho xóa mềm khi backend xác nhận đủ điều kiện; hộp thoại ghi tên, ID, năm học.</td></tr></table>
+<p>Thiếu ảnh, API ảnh cũ, năm học cũ/chưa liên kết và trạng thái lưu trữ không tự khóa thao tác xóa. Nếu API kiểm tra xóa chưa được triển khai, phản hồi sai cấu trúc, mất quyền hoặc mất kết nối, nút vẫn khóa với lý do cụ thể; không tự đặt canDelete=true.</p>
+
+<h2>3. Những thay đổi đã thực hiện</h2>
+<ul>
+<li>Thêm POST <code>GET_EVENT_DELETE_STATE</code>, hợp đồng <code>event-delete-v1</code>. Kiểm tra phiên và quyền events tại backend; trả trạng thái, lý do và revision theo từng eventId, không trả hồ sơ học sinh/PIN/file Drive.</li>
+<li>Đọc các ledger phục vụ kiểm tra danh sách một lần mỗi loại thay vì gọi Sheets riêng cho từng dòng. Không thêm timer/polling mới; gộp các yêu cầu đang chạy, giữ trạng thái theo phiên/ngữ cảnh danh sách; không lặp request vô hạn khi backend thiếu handler.</li>
+<li>Nút Xóa dùng kết quả API riêng, không phụ thuộc selected setup/phiên bản ảnh hoặc revision thiếu trong GET_EVENT_VIEW. Khi khóa, lý do hiện ngay dưới dòng và được liên kết aria-describedby. Khi hợp lệ, nút màu đỏ nhẹ.</li>
+<li>MANAGE_EVENT vẫn kiểm tra lại phiên, quyền, activeEventId, revision và dữ liệu Sheets chính thức dưới LockService. Có dữ liệu nghiệp vụ mới phát sinh sau bước kiểm tra cũng bị chặn. Thay eventId nhưng giữ revision của sự kiện khác nhận CONFLICT.</li>
+<li>Sau backend xác nhận, cập nhật danh sách tại chỗ và chuyển khỏi sự kiện vừa xóa sang sự kiện hợp lệ. Giữ revision chống poll cũ; trạng thái khả năng xóa được đọc lại nền. Không tự gửi lại write khi lỗi.</li>
+<li>Khôi phục vẫn dùng xóa mềm và audit hiện có, không tự kích hoạt sự kiện. Chuẩn bị phản hồi trước khi ghi để lỗi dựng metadata không xảy ra sau khi đã ghi trạng thái xóa.</li>
+<li>Thêm <code>diagnoseEventDelete()</code> phía frontend: chỉ trả hậu tố deployment, cờ quyền events, phiên bản và lý do theo eventId; không trả token, email, OTP hoặc dữ liệu học sinh.</li>
+</ul>
+<p><strong>Giữ nguyên:</strong> bảo vệ dữ liệu, roster/năm học, OTP, đăng nhập học sinh, hàng chờ, con dấu, quay thưởng; không xóa row Sheets hay file Drive. BTC không có quyền events và giáo viên thường không được đọc API kiểm tra xóa hoặc gọi API xóa.</p>
+
+<h2>4. File đã sửa</h2>
+<table><tr><th>File</th><th>Phạm vi</th></tr>
+<tr><td>EventWorkflow.gs</td><td>eventDeleteState_, eventDeletionDependency_, manageEventLifecycle_, dispatchEventPass_; thêm EVENT_DELETE_VERSION.</td></tr>
+<tr><td>Code.gs</td><td>eventApiVersion_ công bố khả năng xóa riêng khi có handler. Luồng OTP không đổi.</td></tr>
+<tr><td>event-admin.js</td><td>loadEventDeleteState, eventDeleteEligibility, cache theo phiên, lý do từng dòng, manageEventRemoval, diagnoseEventDelete và nạp lại trạng thái độc lập.</td></tr>
+<tr><td>event-glass.css</td><td>Nút đỏ nhẹ khi khả dụng, lý do khóa đọc được trên mobile; giữ FPT/Glassmorphism.</td></tr>
+<tr><td>tests/event-pass.test.cjs / scripts/event-upgrade-qa.cjs</td><td>Test phiên bản, archived trống, year/image độc lập, quyền, request gộp, dữ liệu mới phát sinh, ID bị thay, reload/restore và chụp giao diện.</td></tr></table>
+<p><a href="event-delete-manifest.json">Manifest và SHA-256</a>. EventAccess.gs, EventImages.gs, index.html và các thay đổi chưa commit từ đợt trước được giữ nguyên trong đợt sửa này.</p>
+
+<h2>5. Kết quả kiểm thử</h2>
+<table><tr><th>Bộ kiểm tra</th><th>Kết quả</th><th>Bằng chứng</th></tr>
+<tr><td>Trước sửa</td><td class="ok">100/100 PASS</td><td><a href="event-delete-baseline-tests.txt">Baseline</a></td></tr>
+<tr><td>Toàn bộ tests/*.cjs</td><td class="ok">104/104 PASS, 0 bỏ qua</td><td><a href="event-delete-tests.txt">Log</a>: archived trống/thiếu năm và ảnh; active và dependency bị chặn; giáo viên/học sinh bị từ chối; tamper eventId; dữ liệu phát sinh sau preflight; API thiếu/sai cấu trúc khóa rõ lý do, không retry liên tục.</td></tr>
+<tr><td>Chrome nâng cấp</td><td class="ok">84/84 PASS</td><td><a href="event-delete-browser-results.json">JSON</a>: archived trống có nút đỏ, xác nhận/hủy, xóa/restore, selected event chuyển đúng, reload không hồi sinh, quyền các gian khác giữ nguyên, 320/390/1280 px không tràn ngang; các ca ảnh/phiếu trước đó vẫn đạt.</td></tr>
+<tr><td>Chrome hồi quy UI</td><td class="ok">50/50 PASS</td><td><a href="ui-after-metrics.json">JSON</a>: OTP giả lập, loading, icon, modal/focus, hàng chờ, dấu từ backend, bình chọn, quay thưởng và reduced motion/transparency.</td></tr>
+<tr><td>Cú pháp</td><td class="ok">PASS</td><td>JS/Apps Script/inline/CSS parse, không thiếu module; git diff --check đạt; triển khai OTP giữ nguyên so với snapshot đầu đợt.</td></tr></table>
+<p>Dữ liệu giả quy mô 395 học sinh, 12 lớp, 11/15 gian và khoảng 2.374 bản ghi. HTTPS ra ngoài bị chặn trong Chrome; Drive/Sheets/MailApp là mocks. Các kết quả này không chứng nhận production hoặc kết luận sự kiện 20/11/j thật không có dữ liệu.</p>
+<div class="gallery"><figure><a href="event-delete-buttons-1280.png"><img src="event-delete-buttons-1280.png" alt="Nút Xóa và lý do khóa desktop"></a><figcaption>Desktop — dữ liệu giả, archived trống có nút đỏ.</figcaption></figure><figure><a href="event-delete-buttons-390.png"><img src="event-delete-buttons-390.png" alt="Nút Xóa và lý do mobile"></a><figcaption>390 px — lý do khóa hiện trực tiếp.</figcaption></figure></div>
+<p><a href="event-delete-buttons-320.png">Ảnh 320 px</a>. Tên sự kiện trong ảnh là fixture kiểm thử, không phải kết quả kiểm tra dữ liệu thật.</p>
+
+<h2>6. Cần cập nhật deployment</h2>
+<p><strong>Có.</strong> /exec hiện tại vẫn công bố bộ phiên bản cũ. Chỉ Save mã trong Editor không thay versioned deployment. Không làm nút sáng bằng cách bỏ kiểm tra phiên bản hoặc đặt canDelete giả.</p>
+<ol>
+<li>BTC ghi nhận version backend/bundle frontend cũ và lưu bản sao dữ liệu theo quy trình hiện có.</li>
+<li>Trên staging riêng, đồng bộ đủ bộ hiện tại: <strong>Code.gs, EventWorkflow.gs, EventAccess.gs, EventImages.gs</strong>. Hai file backend sửa trong đợt này là Code.gs và EventWorkflow.gs; hai file còn lại cần khớp bản nâng cấp trước để toàn bộ quản trị/ảnh hoạt động.</li>
+<li>Deploy → Manage deployments → chọn đúng deployment staging → Edit → New version → Deploy. Giữ nguyên execution/access và /exec đúng môi trường, không đổi Web App sang công khai để vượt lỗi.</li>
+<li>POST GET_EVENT_API_VERSION: cần <code>eventDeleteVersion=event-delete-v1</code>; toàn bundle hiện tại có <code>eventAdminVersion=event-admin-setup-v2</code>, <code>eventImageVersion=event-images-v3</code>. Cập nhật event-admin.js, event-glass.css cùng bundle frontend tương ứng, tải mới trang để tránh JS cache cũ.</li>
+<li>Đăng nhập BTC staging có events, mở Quản lý sự kiện. GET_EVENT_DELETE_STATE phải dùng POST, trả JSON hợp đồng hợp lệ. Chạy <code>diagnoseEventDelete()</code> trong Console để đối chiếu phiên bản, cờ quyền và từng lý do; không dán token hoặc toàn bộ request đăng nhập vào log.</li>
+<li>Nghiệm thu staging thật với dữ liệu giả đủ tám trường hợp người dùng yêu cầu. Sau phê duyệt riêng mới áp dụng lên production. Không thử xóa j hoặc 20/11 thật để kiểm tra handler.</li>
+</ol>
+<p class="note"><strong>Chưa triển khai hoặc xóa dữ liệu thật.</strong> Chưa có kết quả GET_EVENT_DELETE_STATE bằng phiên BTC thật trên deployment hiện hành. Vì vậy lịch sử cụ thể của j/20/11 và quyền phiên thực tế còn cần BTC đối chiếu sau khi cập nhật đúng deployment. Không rollback về backend cũ không hiểu deletedAt khi đã phát sinh xóa mềm; giữ dữ liệu và đối chiếu trước khi mở thao tác ghi.</p>
+</main></html>

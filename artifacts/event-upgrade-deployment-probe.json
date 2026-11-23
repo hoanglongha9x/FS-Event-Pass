@@ -1,0 +1,30 @@
+{
+  "checkedAt": "2026-11-23T06:35:48.115Z",
+  "sourceUrlUnchangedSinceTaskStart": true,
+  "sourceDeploymentSuffix": "jNTe43yA",
+  "probes": [
+    {
+      "label": "current-source",
+      "action": "GET_EVENT_API_VERSION",
+      "method": "POST",
+      "credentials": "omit",
+      "httpStatus": 200,
+      "redirected": true,
+      "json": true,
+      "success": true,
+      "apiVersion": "event-pass-scoped-v1",
+      "otpVersion": "teacher-otp-v3",
+      "teacherPortalVersion": "teacher-portal-v1",
+      "studentAccessVersion": "student-event-access-v1"
+    },
+    {
+      "label": "previously-provided",
+      "action": "GET_EVENT_API_VERSION",
+      "method": "POST",
+      "credentials": "omit",
+      "httpStatus": 401,
+      "redirected": false,
+      "json": false
+    }
+  ]
+}

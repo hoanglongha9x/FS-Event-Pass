@@ -1,0 +1,79 @@
+{
+  "queue": {
+    "js": {
+      "p50": 3.2,
+      "p95": 3.4
+    },
+    "frames": {
+      "p50": 33.3,
+      "p95": 33.4
+    },
+    "samples": 20
+  },
+  "queueCpu4": {
+    "p50": 33.3,
+    "p95": 45.7,
+    "taskMsPerRender": 29.74
+  },
+  "checks": [
+    "logo constrained on initial load",
+    "icons available on initial load",
+    "initial icons and logo survive disabled JavaScript",
+    "first-paint-no-js fits 390",
+    "login-desktop fits 1280",
+    "login-mobile fits 390",
+    "no icon CDN or Tailwind runtime",
+    "existing SVG preserved",
+    "new DOM icon initialized",
+    "one toast only and error semantics",
+    "toast dismisses",
+    "OTP loading begins before response",
+    "OTP loading finishes after backend",
+    "no duplicate OTP submission",
+    "failed OTP does not sign in",
+    "management-desktop fits 1280",
+    "management-768 fits 768",
+    "management-390 fits 390",
+    "management-320 fits 320",
+    "dashboard-mobile fits 390",
+    "benchmark queue is visible",
+    "queue render adds no requests",
+    "write pending state before acknowledgement",
+    "write pending state ends after acknowledgement",
+    "error state ends loading",
+    "reduced motion and transparency",
+    "reduced motion suppresses confetti",
+    "reduced-mobile fits 320",
+    "teacher retains assigned-booth permissions",
+    "student-mobile fits 390",
+    "pass-1280 fits 1280",
+    "round stamps 1280",
+    "pass-768 fits 768",
+    "round stamps 768",
+    "pass-390 fits 390",
+    "round stamps 390",
+    "pass-320 fits 320",
+    "round stamps 320",
+    "native dialog Escape restores focus",
+    "custom modal autofocus",
+    "custom modal traps Tab",
+    "custom modal Escape restores focus and resets booth",
+    "waiting queue has no completed stamp",
+    "stamp appears only after official completion",
+    "same poll does not recreate stamp",
+    "completed-pass-mobile fits 390",
+    "draw has no victory before backend acknowledgement",
+    "draw reveals backend result and confetti",
+    "stage-desktop fits 1280",
+    "stage-mobile fits 390"
+  ],
+  "fixture": {
+    "students": 395,
+    "classes": 12,
+    "booths": 11,
+    "records": 2374
+  },
+  "assets": {
+    "icons": 35688
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "passed": [
+    "student_0_scope_no_pin_no_secrets",
+    "student_1_scope_no_pin_no_secrets",
+    "anonymous_public_only",
+    "teacher_assignment_and_scoped_ack",
+    "staff_views_no_tokens",
+    "diagnostic_logs_no_tokens"
+  ],
+  "failed": []
+}

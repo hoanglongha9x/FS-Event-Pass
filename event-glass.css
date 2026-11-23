@@ -1,0 +1,369 @@
+/* FSchool event surfaces. Dense lists use a translucent fill without live blur. */
+/* A body-level control, outside animated/filtered application containers. */
+#studentQrFab {
+  display:none; position:fixed; right:auto;
+  left:max(1rem,env(safe-area-inset-left,0px));
+  bottom:calc(1rem + env(safe-area-inset-bottom,0px));
+  z-index:45; align-items:center; justify-content:center; gap:.5rem;
+  min-height:48px; max-width:calc(100vw - 2rem - env(safe-area-inset-left,0px) - env(safe-area-inset-right,0px));
+  padding:.8rem 1rem; border:1px solid #ffd3b5; border-radius:999px;
+  color:white; background:linear-gradient(145deg,#fa883af5,#ec6417f5),#f27024;
+  box-shadow:inset 0 1px 0 #ffffff6e,0 8px 24px -8px #9d421975;
+  font-size:.78rem; font-weight:800; line-height:1.3; transform:none;
+  -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+}
+body:has(#studentApp:not(.hidden)) #studentQrFab { display:inline-flex; }
+body:has(#studentApp:not(.hidden)) { padding-bottom:calc(5.5rem + env(safe-area-inset-bottom,0px)); }
+body:has(#studentApp:not(.hidden)) #toastStack { bottom:calc(5rem + env(safe-area-inset-bottom,0px)); }
+body:has(:is(#qrScannerModal,#boothModal,#reviewModal,#favoriteVoteModal,#stationQrModal):not(.hidden),dialog[open]) #studentQrFab { display:none; }
+body:has(:is(#qrScannerModal,#boothModal,#reviewModal,#favoriteVoteModal,#stationQrModal):not(.hidden),dialog[open]) #toastStack { bottom:1rem; }
+body:has(#qrScannerModal:not(.hidden)) #toastStack { display:none; }
+.event-glass #studentQrFab:is(:hover,:active) { transform:none; }
+#qrScannerModal > section {
+  max-height:94vh; max-height:calc(100dvh - .5rem - env(safe-area-inset-top,0px));
+  padding-bottom:max(1.25rem,env(safe-area-inset-bottom,0px)); overscroll-behavior:contain;
+}
+#qr-pin-input { scroll-margin-block:1rem; }
+@media(max-width:639px){ #qr-pin-input { font-size:16px; } }
+@media(prefers-reduced-transparency:reduce){
+  #studentQrFab { background:#f27024; -webkit-backdrop-filter:none; backdrop-filter:none; }
+}
+@media screen {
+  .event-glass {
+    --glass-panel: #f9fcfe;
+    --glass-fill: linear-gradient(145deg, rgb(255 255 255 / 92%), rgb(242 249 255 / 80%));
+    --glass-edge: rgb(255 255 255 / 92%);
+    --glass-rim: 0 0 0 1px rgb(31 77 111 / 13%), inset 0 1px 0 white;
+    --glass-shadow: 0 12px 36px -20px rgb(20 62 98 / 35%);
+    background-color: #e4eef2;
+    background-image:
+      radial-gradient(ellipse at 5% 18rem, #b9d8eb 0, transparent 44rem),
+      radial-gradient(ellipse at 95% 7rem, #f8d6bd 0, transparent 38rem),
+      radial-gradient(ellipse at 74% 40rem, #bce2dc 0, transparent 42rem);
+    background-repeat: no-repeat;
+    background-size: 100% 60rem;
+  }
+
+  .event-glass > header {
+    background: #f7fbfc;
+    border-color: var(--glass-edge);
+    box-shadow: 0 1px 0 #2947651c;
+  }
+  .event-glass #headerGuest {
+    max-width: 47%;
+    color: #813c1a;
+    background: #fff4e9;
+    overflow-wrap: anywhere;
+  }
+
+  .event-glass :is(.glass-signin, .admin-panel .shadow-card.bg-white,
+    #studentApp .shadow-card.bg-white, #studentBoothList .booth-card, #eventCards .bg-white,
+    #mobileAdminNav > div:first-child, #teacher-mobile-menu-dropdown, #adminApp nav,
+    #eventArchiveDialog, #rosterEditor, #boothModal > div, #reviewModal > div,
+    #favoriteVoteModal > div) {
+    border: 1px solid var(--glass-edge);
+    background: var(--glass-fill), var(--glass-panel);
+    box-shadow: var(--glass-rim), var(--glass-shadow);
+  }
+  .event-glass .glass-signin {
+    --glass-panel: transparent;
+    box-shadow: var(--glass-rim), 0 26px 65px -30px #22476066;
+  }
+  .event-glass #loginView { padding-block: clamp(.4rem, 2vw, 1.75rem); }
+  .event-glass #loginView > div:first-child h1 {
+    font-size: clamp(1.65rem, 3vw, 2.65rem);
+    letter-spacing: -.045em;
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+  .glass-poster {
+    isolation: isolate;
+    background: radial-gradient(ellipse at 0 0, #14558b, transparent 65%),
+      linear-gradient(142deg, #092c54 22%, #123f69 63%, #2b747a);
+  }
+  .glass-poster-light {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    background: linear-gradient(128deg, transparent 54%, #78f1ea28 54.2%, transparent 64%),
+      linear-gradient(129deg, transparent 65%, #b2eff06e 65.3%, #54c7d04d 68%, transparent 80%);
+  }
+  .glass-poster-light::after {
+    position: absolute;
+    content: "";
+    width: 92%;
+    height: 110%;
+    right: -63%;
+    top: -8%;
+    transform: rotate(32deg);
+    border: 1px solid #ffffff78;
+    background: linear-gradient(80deg, #bde9ff21 40%, #f7d4a7bb 100%);
+    box-shadow: -18px 0 0 -17px #a7f6ff80, -34px 0 0 -33px #a7f6ff60;
+  }
+  .glass-poster h2 { letter-spacing: -.04em; font-size: clamp(2rem, 3.6vw, 3rem); }
+  .glass-poster h2 span { color: #ffc792; }
+  .glass-poster .glass-emblem {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    align-items: center;
+    column-gap: .8rem;
+    margin-top: 2rem;
+    border-color: #ddfaff70;
+    background: linear-gradient(110deg, #ecffff27, #d4faff0d);
+    box-shadow: inset 0 1px 1px #fff5, 0 10px 22px #05233838;
+  }
+  .glass-emblem > :first-child { grid-row: span 2; width: 2rem; height: 2rem; color: #dcf7ff; }
+  .glass-emblem p { grid-column: 2; }
+  .event-glass :is(.glass-segments, #adminApp nav) {
+    background: linear-gradient(110deg, #e1edf3ed, #e9eef1ea);
+    box-shadow: inset 0 1px 3px #38576b27, 0 1px 0 white;
+  }
+  .event-glass :is(.role-tab.active, .admin-tab.active) {
+    color: #813b14;
+    background: linear-gradient(165deg, white, #fff6e9);
+    box-shadow: inset 0 1px 0 white, 0 1px 3px #354c6329;
+  }
+  .event-glass #loginView input {
+    background-color: #f9fcfdeb;
+    border-color: #9fb4c7;
+    box-shadow: inset 0 1px 3px #2341660d;
+  }
+  .event-glass :is(button,a,input,textarea,select,summary):focus-visible {
+    outline: 3px solid #00669d;
+    outline-offset: 2px;
+  }
+  .event-glass :is(#studentLoginButton, #verifyOtpButton) {
+    background: linear-gradient(160deg, #b94b10, #99360d) !important;
+    box-shadow: inset 0 1px 0 #ffcb95a8, 0 5px 12px #87370b25;
+  }
+  .event-glass #sendOtpButton { background: linear-gradient(150deg, #245d90, #173c68); }
+  .event-glass #loginView button:disabled { opacity: .59; cursor: not-allowed; }
+  .event-glass .student-pass-trigger {
+    background: linear-gradient(145deg, #fbffff, #d4ebfa);
+    border: 1px solid #a6c4d9;
+    box-shadow: inset 0 1px white, 0 3px 9px #224b6b18;
+  }
+  .event-glass .student-pass-dialog {
+    border-color: #c0eaffbd;
+    box-shadow: inset 0 1px 0 #e8fcff70, 0 24px 100px #07173780;
+  }
+  .event-glass #rosterRows { background: #f8fbfd; }
+  .event-glass .shimmer-button::after { animation: none; opacity: 0; }
+
+  @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .event-glass { --glass-panel: transparent; }
+    .event-glass > header, .event-glass #teacher-mobile-menu-dropdown {
+      background-color: #f6fafcdd;
+      -webkit-backdrop-filter: blur(12px) saturate(125%);
+      backdrop-filter: blur(12px) saturate(125%);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .event-glass #loginView { max-width: 34rem; }
+    .event-glass .glass-signin { border-top: 4px solid #236491; }
+    .event-glass #loginView > div:first-child { text-align: left; }
+    .event-glass #loginView > div:first-child p { margin-inline: 0; }
+  }
+
+  @media (prefers-reduced-transparency: reduce), (prefers-contrast: more), (forced-colors: active) {
+    .event-glass, .event-glass .glass-signin { --glass-panel: white; --glass-fill: none; }
+    .event-glass { background: #eff4f7; }
+    .event-glass > header, .event-glass #teacher-mobile-menu-dropdown,
+    .event-glass .student-pass-stamp {
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+    .event-glass > header, .event-glass #teacher-mobile-menu-dropdown { background: white; }
+    .event-glass .glass-poster-light { display: none; }
+    .event-glass .glass-emblem { background: #183f61; }
+    .event-glass .student-pass-stamp { background: #152e52; }
+    .event-glass .student-pass-stamp.is-complete { background: #114147; }
+  }
+}
+
+/* Event management uses one instance of each form in desktop and mobile layouts. */
+.event-management-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+  align-items: start;
+}
+.event-management-tools { display: grid; gap: 1rem; min-width: 0; }
+.event-management-tools:has(> [hidden]):not(:has(> :not([hidden]))) { display: none; }
+.event-management-layout > :is(#studentRosterCard, #boothConfigCard) { grid-column: 1 / -1; }
+.event-images-compact .event-images-fields { grid-template-columns: minmax(0, 1fr); }
+.event-images-compact .event-images-fields > section {
+  padding-top: .8rem;
+  border-top: 1px solid #d5dfef;
+}
+.event-images-compact .event-images-fields img,
+.event-images-compact #eventPassportPreview { width: 8rem; max-width: 100%; }
+.event-images-compact #eventPassportImagePreview { width: 100%; }
+.event-images-compact .event-images-fields img { margin-block: .25rem; }
+.event-images-compact:has(#eventPassportAdvanced[open]) #eventPassportPreview { width: 100%; }
+.event-image-change {
+  width: fit-content;
+  padding: .45rem .65rem;
+  border: 1px solid #a8c0d6;
+  border-radius: .5rem;
+  background: #f7fbff;
+  color: #183c6d;
+  cursor: pointer;
+}
+.event-image-change:focus-within { outline: 2px solid #00669d; outline-offset: 2px; }
+.event-image-empty {
+  display: grid;
+  place-content: center;
+  width: 8rem;
+  min-height: 4.25rem;
+  border: 1px dashed #a5bcd0;
+  border-radius: .6rem;
+  background: #edf5fa;
+  color: #47637b;
+  font-size: .7rem;
+}
+.event-image-advanced {
+  border: 1px solid #c4d8e7;
+  border-radius: .65rem;
+  padding: .6rem;
+  background: #f6faff;
+}
+.event-image-advanced summary { cursor: pointer; font-size: .75rem; font-weight: 700; color: #173d72; }
+.event-image-advanced[open] summary { margin-bottom: .7rem; }
+.event-image-viewer {
+  width: min(68rem, calc(100% - 1.5rem));
+  max-height: calc(100dvh - 1.5rem);
+  margin: auto;
+  padding: 1rem;
+  overflow: auto;
+  border: 1px solid #c0d9ea;
+  border-radius: 1rem;
+  background: #f8fbfd;
+  color: #183c6d;
+}
+.event-image-viewer::backdrop { background: #07182bba; }
+.event-image-viewer-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
+.event-image-viewer-heading h2 { font-size: .85rem; font-weight: 800; overflow-wrap: anywhere; }
+.event-image-viewer-heading button { border: 1px solid #abc3d9; border-radius: .6rem; padding: .5rem .8rem; }
+.event-image-viewer > img { display: block; width: 100%; height: auto; }
+.event-management-layout :is(label, fieldset, select) { min-width: 0; max-width: 100%; }
+@media (min-width: 1024px) {
+  .event-management-layout { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .event-management-layout:not(:has(> #eventConfigCard:not([hidden]))) { grid-template-columns: minmax(0, 1fr); }
+  .event-management-layout:has(> #eventConfigCard:not([hidden])):not(:has(.event-management-tools > :not([hidden]))) { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 420px) {
+  .event-management-layout > article,
+  .event-management-tools > article { padding: .9rem; }
+  .event-images-compact .event-images-buttons { gap: .35rem; }
+}
+#staffAssignmentList { max-height: 12rem; overflow-y: auto; overscroll-behavior: contain; }
+
+/* Configuration has two persistent screens; moving between them does not recreate forms. */
+.event-glass .config-subnav { display:flex; flex-wrap:wrap; gap:.5rem; margin-top:1rem; }
+.event-glass .config-subnav button { display:inline-flex; align-items:center; justify-content:center; gap:.45rem;
+  min-height:44px; flex:1 1 12rem; padding:.75rem 1rem; border:1px solid #b9d0e5; border-radius:1rem;
+  background:#f4f9fccf; color:#254963; font-size:.8rem; font-weight:800; }
+.event-glass .config-subnav button[aria-selected="true"] { color:white; background:#174c76; box-shadow:0 5px 12px -7px #12385699; }
+.event-glass .config-context { margin:.65rem 0; color:#425c73; font-size:.75rem; overflow-wrap:anywhere; }
+.event-glass .managed-reload { display:inline-flex; align-items:center; gap:.4rem; padding:.5rem .75rem; border-radius:.7rem; background:#edf5fc; color:#195488; font-size:.73rem; font-weight:700; }
+.event-glass #adminConfigPanel .event-management-layout { grid-template-columns:minmax(0,1fr); }
+.event-management-main, .event-management-tools { display:contents; }
+#eventConfigCard { order:1; } #staffAssignmentCard { order:2; } #eventImagesCard { order:3; } #boothConfigCard { order:4; }
+.event-glass #configStudentsView { margin-top:1rem; }
+.event-glass #adminConfigPanel :is(fieldset,form,article,section) { min-width:0; }
+.event-glass #adminConfigPanel article { scroll-margin-top:5.5rem; }
+.event-glass .managed-event-editor { margin-block:1rem; padding-block:1rem; border-block:1px solid #d9e6ef; }
+.event-glass .managed-event-choice-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.75rem; }
+.event-glass .managed-event-choice-grid label { display:grid; gap:.4rem; min-width:0; font-size:.75rem; font-weight:750; }
+.event-glass .managed-event-choice-grid select { width:100%; min-width:0; min-height:44px; padding:.65rem; border:1px solid #b4cee3; border-radius:.75rem; background:#fcfeff; color:#18364e; font-size:.8rem; }
+.event-glass .managed-event-link { margin-block:.75rem; padding:.65rem; border:1px solid #d2e2ed; border-radius:.75rem; background:#f3f9fd9c; font-size:.75rem; }
+.event-glass .managed-event-link summary { cursor:pointer; font-weight:750; }
+.event-glass .managed-event-link button { padding:.6rem; margin:.4rem .3rem 0 0; min-height:40px; border-radius:.6rem; background:#e1edf6; color:#174c76; font-weight:750; }
+@media(max-width:600px){.event-glass .managed-event-choice-grid { grid-template-columns:minmax(0,1fr); }}
+.event-glass :is(.managed-event-editor,.managed-create-event,.managed-staff-fields,.managed-booth) label { display:grid; gap:.35rem; margin-block:.6rem; font-size:.73rem; font-weight:700; color:#385671; }
+.event-glass :is(.managed-event-editor,.managed-create-event,.managed-staff-fields,.managed-booth) :is(input:not([type=checkbox]),select,textarea) {
+  width:100%; min-width:0; padding:.65rem .7rem; border:1px solid #b4cee3; border-radius:.7rem; color:#152e48; background:#fcfeff; font-size:.8rem; }
+.event-glass :is(.managed-event-editor,.managed-create-event,.managed-staff-fields,.managed-booth-actions) button {
+  display:inline-flex; align-items:center; justify-content:center; gap:.4rem; min-height:40px; padding:.55rem .8rem;
+  border-radius:.7rem; color:white; background:#174c76; font-size:.75rem; font-weight:750; }
+.event-glass .managed-create-event { margin-block:1rem; padding:.7rem; border-radius:.8rem; background:#eff6fb9c; }
+.event-glass .managed-create-event summary { font-size:.8rem; font-weight:800; color:#174c76; }
+.event-glass .managed-event-row { display:flex; align-items:center; gap:.4rem; border-bottom:1px solid #dce7ef; padding-block:.4rem; }
+.event-glass .managed-event-row button { display:flex; align-items:center; gap:.6rem; min-width:0; text-align:left; padding:.6rem; border-radius:.7rem; color:#234e70; }
+.event-glass .managed-event-row button:first-child { flex:1; font-size:.75rem; font-weight:750; }
+.event-glass .managed-event-row [aria-pressed="true"] { background:#e5f1fc; }
+.event-glass .managed-event-row small { display:block; margin-top:.25rem; font-size:.65rem; font-weight:500; color:#526c80; }
+.event-glass .managed-event-actions { display:flex; flex:none; align-items:center; gap:.25rem; }
+.event-glass .managed-event-actions button { font-size:.72rem; }
+.event-glass .managed-event-actions button:disabled { opacity:.45; cursor:not-allowed; }
+.event-glass .managed-event-row.has-delete-status { display:grid; grid-template-columns:minmax(0,1fr) auto; }
+.event-glass .event-delete-button:not(:disabled) { color:#b42332; background:#fff0f1; border:1px solid #f2bcc3; }
+.event-glass .event-delete-button:not(:disabled):hover { background:#ffe0e4; }
+.event-glass .event-delete-button { min-height:40px; }
+.event-glass .event-delete-reason { grid-column:1/-1; margin:0 .6rem .4rem; color:#5d687a; font-size:.7rem; line-height:1.5; overflow-wrap:anywhere; }
+.event-glass .managed-deleted-events { margin-top:1rem; font-size:.75rem; }
+.event-glass .managed-deleted-events summary { cursor:pointer; font-weight:800; }
+.event-glass .managed-deleted-events .managed-event-row > span { flex:1; }
+.event-glass .managed-event-row span { min-width:0; overflow-wrap:anywhere; }
+.event-glass .managed-booth { padding:.9rem; border:1px solid #c8dce9; border-radius:1rem; background:#f7fbfd94; }
+.event-glass .managed-booth-heading { display:flex; align-items:start; gap:.4rem; color:#174f7c; font-size:.8rem; overflow-wrap:anywhere; }
+.event-glass .managed-booth summary { cursor:pointer; min-height:40px; align-items:center; }
+.event-glass .managed-booth summary::after { content:"+"; margin-left:auto; font-size:1rem; }
+.event-glass .managed-booth details[open] summary::after { content:"−"; }
+.event-glass .managed-staff-fields { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.5rem; }
+.event-glass .managed-staff-fields > :is(fieldset,button) { grid-column:1/-1; }
+.event-glass .managed-staff-fields > label { margin:0; }
+.event-glass .managed-booth-actions { display:flex; flex-wrap:wrap; gap:.4rem; }
+.event-glass .managed-add-booth { grid-column:1/-1; min-height:44px; border-radius:.8rem; background:#0066b3; color:white; font-size:.8rem; font-weight:800; }
+.event-glass .managed-staff-booths { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.4rem; max-height:11rem; overflow-y:auto; }
+.event-glass .managed-staff-booths label { display:flex; align-items:start; gap:.5rem; padding:.55rem; margin:0; border:1px solid #c4d9e8; border-radius:.65rem; background:#f4f9fc; overflow-wrap:anywhere; }
+.event-glass .managed-staff-booths input { flex:none; margin-top:.2rem; accent-color:#0066b3; }
+.event-glass .staff-assignment-row { display:grid; grid-template-columns:minmax(0,1fr); align-items:center; gap:.4rem; padding:.7rem; border:1px solid #d4e4ee; border-radius:.75rem; background:#f3f8fc; overflow-wrap:anywhere; }
+.event-glass .staff-assignment-actions { display:flex; flex-wrap:wrap; gap:.4rem; }
+.event-glass .staff-assignment-actions button { min-height:40px; }
+.event-glass .staff-assignment-actions button:disabled { opacity:.45; cursor:not-allowed; }
+.event-glass .staff-assignment-row button { color:#174c76; border-radius:.5rem; padding:.5rem; background:white; font-size:.7rem; font-weight:750; }
+.event-glass .event-image-storage { font-size:.72rem; line-height:1.6; color:#77511b; overflow-wrap:anywhere; margin-block:.7rem; }
+.event-glass .event-image-approval { display:flex; align-items:start; gap:.5rem; font-size:.7rem; line-height:1.6; color:#3b546b; }
+.event-glass .event-image-approval input { flex:none; margin-top:.3rem; accent-color:#0066b3; }
+.event-glass .event-layout-preview-tabs { display:flex; gap:.4rem; margin-block:.6rem; }
+.event-glass .event-layout-preview-tabs button { padding:.4rem .65rem; border:1px solid #b9cfe0; border-radius:.6rem; font-size:.7rem; }
+.event-glass .event-layout-preview-tabs [aria-pressed="true"] { color:white; background:#174c76; }
+.event-glass .event-images-fields section:has(#eventPassportAdvanced[open]) #eventPassportPreview { width:100%; max-width:100%; }
+.event-glass #eventPassportPreview[data-preview-mode="mobile"] { width:min(100%,320px); margin-inline:auto; }
+.event-glass #eventPassportPreview img { width:100%; }
+@media(min-width:1024px){
+  .event-glass #adminConfigPanel .event-management-layout { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .event-glass .event-management-main,.event-glass .event-management-tools { display:grid; align-content:start; gap:1rem; min-width:0; }
+  .event-glass .event-management-main > article,.event-glass .event-management-tools > article { order:0; }
+  .event-glass #adminConfigPanel .event-management-layout:not(:has(.event-management-main > :not([hidden]))),
+  .event-glass #adminConfigPanel .event-management-layout:not(:has(.event-management-tools > :not([hidden]))) { grid-template-columns:minmax(0,1fr); }
+}
+@media(max-width:389px){
+  .event-glass .managed-staff-fields { grid-template-columns:minmax(0,1fr); }
+  .event-glass .managed-staff-booths { grid-template-columns:minmax(0,1fr); }
+}
+@media(max-width:600px){
+  .event-glass .staff-assignment-actions button { flex:1; }
+  .event-glass .managed-event-row { align-items:start; }
+  .event-glass .managed-event-actions { flex-direction:column; }
+}
+@media (min-width: 1100px) {
+  .event-images-compact .event-images-fields { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .8rem; }
+  #staffAssignmentForm { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #staffAssignmentForm > :is(label:nth-of-type(3), button) { grid-column: 1 / -1; }
+}
+.event-glass .passport-images-card .event-images-fields { grid-template-columns:minmax(0,1fr); align-items:start; }
+.event-glass .passport-images-card .event-images-fields > section { min-width:0; }
+.event-glass .passport-images-card #eventPassportThumbnail { max-width:150px; max-height:130px; object-fit:contain; }
+.event-glass .passport-images-card .event-image-change { width:max-content; }
+.event-glass .passport-images-card .event-images-buttons { align-items:stretch; }
+.event-glass .passport-images-card .event-images-buttons button { min-height:40px; }
+.event-glass .passport-images-card #eventPassportPreview { width:100%; }
+@media(min-width:1024px){
+  .event-glass .passport-images-card .event-images-fields { grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; }
+}

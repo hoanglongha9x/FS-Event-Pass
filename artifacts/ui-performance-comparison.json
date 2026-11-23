@@ -1,0 +1,59 @@
+{
+  "environment": "Local headless Chrome; mocked backend; production HTTPS blocked",
+  "fixture": {
+    "students": 395,
+    "classes": 12,
+    "booths": 11,
+    "records": 2374
+  },
+  "samplesPerMode": 20,
+  "warmups": 4,
+  "before": {
+    "queue": {
+      "js": {
+        "p50": 2.55,
+        "p95": 2.9
+      },
+      "frames": {
+        "p50": 33.3,
+        "p95": 34.2
+      },
+      "samples": 20
+    },
+    "cpu4": {
+      "p50": 43.4,
+      "p95": 53,
+      "taskMsPerRender": 41.59
+    },
+    "iconBytes": 748165
+  },
+  "after": {
+    "queue": {
+      "js": {
+        "p50": 3.3,
+        "p95": 3.5
+      },
+      "frames": {
+        "p50": 33.3,
+        "p95": 33.6
+      },
+      "samples": 20
+    },
+    "cpu4": {
+      "p50": 33.7,
+      "p95": 43.9,
+      "taskMsPerRender": 30.77
+    },
+    "iconBytes": 35688
+  },
+  "browserChecks": {
+    "before": 20,
+    "after": 50
+  },
+  "notes": [
+    "frames measures renderQueue plus two requestAnimationFrame callbacks, not network latency",
+    "baseline creates icons asynchronously; current build creates new SVG synchronously inside renderQueue",
+    "CPU task duration is mean of 24 renders including warm-up",
+    "20 samples on desktop emulation do not establish physical phone or production performance"
+  ]
+}

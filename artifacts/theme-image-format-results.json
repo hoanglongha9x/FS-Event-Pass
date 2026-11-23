@@ -1,0 +1,59 @@
+{
+  "environment": "Chrome localhost with mocked Drive; no real Drive preview tested",
+  "formats": [
+    {
+      "input": "PNG opaque",
+      "mime": "image/png",
+      "bytes": 69446,
+      "width": 1200,
+      "height": 700,
+      "transparent": false,
+      "status": "PASS"
+    },
+    {
+      "input": "JPEG with mismatched filename",
+      "mime": "image/jpeg",
+      "bytes": 56710,
+      "width": 1200,
+      "height": 700,
+      "transparent": false,
+      "status": "PASS"
+    },
+    {
+      "input": "WebP opaque",
+      "mime": "image/png",
+      "bytes": 170584,
+      "width": 1200,
+      "height": 700,
+      "transparent": false,
+      "status": "PASS"
+    },
+    {
+      "input": "WebP transparent",
+      "mime": "image/png",
+      "bytes": 170671,
+      "width": 1200,
+      "height": 700,
+      "transparent": true,
+      "status": "PASS"
+    },
+    {
+      "input": "large opaque PNG",
+      "mime": "image/jpeg",
+      "bytes": 655453,
+      "width": 1200,
+      "height": 700,
+      "transparent": false,
+      "status": "PASS"
+    },
+    {
+      "input": "large transparent PNG",
+      "mime": "image/png",
+      "bytes": 693593,
+      "width": 600,
+      "height": 350,
+      "transparent": true,
+      "status": "PASS"
+    }
+  ]
+}

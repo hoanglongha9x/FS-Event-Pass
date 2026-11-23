@@ -1,0 +1,13 @@
+{
+  "checkedAt": "2026-11-23T10:13:18.227Z",
+  "action": "GET_EVENT_API_VERSION",
+  "method": "POST",
+  "deploymentSuffix": "jNTe43yA",
+  "status": 200,
+  "redirected": true,
+  "json": true,
+  "success": true,
+  "apiVersion": "event-pass-scoped-v1",
+  "eventAdminVersion": "event-admin-setup-v1",
+  "eventImageVersion": "event-images-v2"
+}

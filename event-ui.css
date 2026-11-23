@@ -1,0 +1,136 @@
+/* Shared interaction states. Visual references from Lucian #001/#039/#044/#070/#083.
+   Source attribution and MIT license are retained in lucian-ui.css. */
+.event-glass {
+  --ux-accent: #0066b3;
+  --ux-accent-soft: #e9f3fc;
+  --ux-orange: #f27024;
+  --ux-mint: #00a651;
+  --ux-danger: #b4233b;
+  --ux-warn: #925012;
+  --ux-ink: #172b45;
+  --ux-ink-2: #425b73;
+  --ui-radius: .85rem;
+  --ui-time: 180ms;
+  --ui-ease: cubic-bezier(.2,.8,.2,1);
+}
+.event-glass .lucide {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  flex: none;
+  stroke-width: 2;
+  vertical-align: middle;
+}
+.event-glass .lucide:is([class*="h-3"],[class*="h-4"]), .event-glass .ui-icon-small { width:16px; height:16px; }
+.event-glass .lucide[class*="h-6"] { width:24px; height:24px; }
+.event-glass .lucide:is([class*="h-7"],[class*="h-8"]) { width:32px; height:32px; }
+.event-glass .ui-action-icon { margin-inline-end:.35em; }
+.event-glass button.flex > .ui-action-icon { margin-inline-end:0; }
+.event-glass .ui-label-caption { display:inline-flex; align-items:center; gap:.4rem; vertical-align:middle; }
+.event-glass button {
+  position:relative;
+  transition:transform var(--ui-time) var(--ui-ease),opacity var(--ui-time) var(--ui-ease),
+    background-color var(--ui-time) var(--ui-ease),box-shadow var(--ui-time) var(--ui-ease),color var(--ui-time) var(--ui-ease);
+}
+.event-glass button:not(:disabled):active { transform:translateY(1px) scale(.985); }
+.event-glass :is(button,input,select,textarea,summary,a):focus-visible {
+  outline:3px solid var(--ux-accent);
+  outline-offset:3px;
+}
+.event-glass button:disabled { opacity:.5; cursor:not-allowed; transform:none; }
+.event-glass button[data-ui-state="loading"] { cursor:progress; pointer-events:none; overflow:hidden; }
+.event-glass button[data-ui-state="loading"]::after {
+  content:"";
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:38%;
+  height:3px;
+  border-radius:2px;
+  background:currentColor;
+  opacity:.7;
+  animation:ui-pending 1s ease-in-out infinite;
+}
+.event-glass button[data-ui-state="success"] { box-shadow:0 0 0 2px #008a46,inset 0 1px 0 #ffffff50; }
+.event-glass button[data-ui-state="error"] { box-shadow:0 0 0 2px var(--ux-danger); }
+@keyframes ui-pending { from{transform:translateX(-110%)} to{transform:translateX(370%)} }
+@media (hover:hover) and (prefers-reduced-motion:no-preference) {
+  .event-glass button:not(:disabled):not([data-ui-state="loading"]):hover { transform:translateY(-1px); }
+  .event-glass :is(.role-tab,.admin-tab,table button):not(:disabled):hover { transform:none; }
+}
+.event-glass .login-panel:not(.hidden) { animation:ui-panel-in 180ms var(--ui-ease); }
+@keyframes ui-panel-in { from{opacity:.65;transform:translateY(4px)} to{opacity:1;transform:none} }
+.event-glass .animate-fadeInUp { animation-duration:200ms; }
+.event-glass #progressBar::after, .event-glass .shimmer-button::after { display:none; animation:none; }
+.event-glass table button { min-height:36px; }
+.event-glass table tr { transition:background-color 140ms ease; }
+.event-glass .ui-row-selected { background:#e8f3fd; box-shadow:inset 3px 0 0 var(--ux-accent); }
+.event-glass #rosterRows tr:hover { background:#f0f7fc; }
+.event-glass #rosterRows tr.ui-row-selected:hover { background:#e8f3fd; }
+
+.ui-sync {
+  display:inline-flex; align-items:center; gap:.4rem; align-self:start;
+  padding:.45rem .65rem; border-radius:999px;
+  color:#40576c; background:#edf3f8; font-size:.7rem; font-weight:700;
+}
+.ui-sync[data-status-kind="ok"] { color:#086a3a; background:#e7f8ef; }
+.ui-sync[data-status-kind="error"] { color:#9e2338; background:#fff0f2; }
+.ui-sync[data-status-kind="loading"] { color:#124f83; background:#e8f3fc; }
+.ui-sync[data-status-kind="loading"] svg { animation:ui-sync-spin 1.2s linear infinite; }
+@keyframes ui-sync-spin { to{transform:rotate(360deg)} }
+
+#toastStack { pointer-events:none; }
+.ui-toast {
+  --toast-ink:#174f83; --toast-soft:#eaf4ff;
+  display:flex; align-items:flex-start; gap:.65rem;
+  width:100%; min-width:0; padding:.8rem;
+  border:1px solid #d3e1ed; border-radius:1rem;
+  background:#fbfdff; color:#18324d;
+  box-shadow:0 12px 36px -16px #15375666,inset 0 1px 0 white;
+  pointer-events:auto; animation:ui-panel-in 180ms var(--ui-ease);
+  transition:opacity 180ms ease,transform 180ms ease;
+}
+.ui-toast[data-tone="success"] { --toast-ink:#087342; --toast-soft:#e7f8ef; border-color:#a2d9bc; }
+.ui-toast[data-tone="error"] { --toast-ink:#aa233c; --toast-soft:#fff0f3; border-color:#e8b1bb; }
+.ui-toast[data-tone="warning"] { --toast-ink:#925012; --toast-soft:#fff2df; border-color:#e4c593; }
+.ui-toast-icon {
+  display:grid; place-items:center; width:34px; height:34px; flex:none;
+  border-radius:.7rem; background:var(--toast-soft); color:var(--toast-ink);
+}
+.ui-toast-message { min-width:0; flex:1; align-self:center; overflow-wrap:anywhere; font-size:.78rem; font-weight:650; line-height:1.6; }
+.ui-toast-close {
+  display:grid; place-items:center; width:32px; height:32px; flex:none;
+  border-radius:.6rem; color:#425b73; background:#f0f5f9;
+}
+.ui-toast.ui-toast-leave { opacity:0; transform:translateY(5px); animation:none; }
+
+.event-glass .student-pass-stamp-icon { width:20px; height:20px; }
+.event-glass .student-pass-stamp.animate-stampPop { animation-duration:220ms; }
+.event-glass .student-pass-stamp:not(.is-complete) .student-pass-stamp-icon { color:#b7e8ff; }
+.event-glass .student-pass-stamp.has-long-name .student-pass-stamp-icon { width:16px; height:16px; }
+.event-glass :is(#studentPassClose,#eventImageViewerClose,#eventArchiveClose) { min-height:44px; min-width:44px; }
+.event-glass #luckyDrawStageDisplay {
+  box-shadow:inset 0 1px 0 #c1ecff55,0 16px 40px -24px #0066b388;
+}
+.event-glass .winner-reveal { animation-duration:220ms; }
+.event-glass #drawNumber.stage-number-win { filter:drop-shadow(0 0 16px #00a65166); }
+@media (max-width:767px) {
+  .event-glass :is(button:not([data-rating]),.event-image-change) { min-height:44px; }
+  .event-glass table button { min-width:44px; }
+  .event-glass .ui-toast-close { min-width:36px; min-height:36px; }
+  .event-glass > header a, .event-glass > header a > div { min-width:0; }
+  .event-glass #headerSession { flex:none; }
+  .event-glass #headerSession button { min-width:44px; }
+}
+@media (max-width:480px) {
+  .event-glass #headerUser { display:none; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .event-glass *, .event-glass *::before, .event-glass *::after {
+    animation:none!important; transition:none!important; scroll-behavior:auto!important;
+  }
+  .event-glass button[data-ui-state="loading"]::after { width:100%; transform:none; opacity:.6; }
+}
+@media (prefers-reduced-transparency:reduce), (forced-colors:active) {
+  .ui-toast { background:white; }
+}

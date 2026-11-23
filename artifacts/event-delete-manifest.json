@@ -1,0 +1,62 @@
+{
+  "checkedAt": "2026-11-23T10:24:40.436Z",
+  "syntax": "PASS",
+  "css": "PASS",
+  "missingLocalModules": [],
+  "duplicateIds": [],
+  "teacherOtpUnchanged": true,
+  "backendBundle": [
+    "Code.gs",
+    "EventAccess.gs",
+    "EventWorkflow.gs",
+    "EventImages.gs"
+  ],
+  "changed": [
+    "Code.gs",
+    "EventWorkflow.gs",
+    "event-admin.js",
+    "event-glass.css",
+    "tests/event-pass.test.cjs",
+    "scripts/event-upgrade-qa.cjs"
+  ],
+  "tests": {
+    "baseline": 100,
+    "node": 104,
+    "browser": 84,
+    "ui": 50
+  },
+  "files": [
+    {
+      "file": "Code.gs",
+      "sha256": "de583a643f248f3be1c06420e0a0e7d0094ad749385535ecc48d232a4c316a04"
+    },
+    {
+      "file": "EventWorkflow.gs",
+      "sha256": "c5123022602585cba0641e7838c1cda33afe661ea0872e8d6896da65b234c57d"
+    },
+    {
+      "file": "event-admin.js",
+      "sha256": "c09c1e550e8b9546f64c846bb6ae0e9caa3d16a986abf0a468f9e1d75a71083a"
+    },
+    {
+      "file": "event-glass.css",
+      "sha256": "0cac1ad7c27c21ecc9c93409d409e9d33194bce10987071a5579d0155a669ef8"
+    },
+    {
+      "file": "tests/event-pass.test.cjs",
+      "sha256": "61369ab22e0e9475dede97c65ae1d50f6a652558e6cff5ede052044eefc5454f"
+    },
+    {
+      "file": "scripts/event-upgrade-qa.cjs",
+      "sha256": "f3201a066f2c64db4aa156f3c961589a79268a15c244c7b2b298fe74fad7c5dc"
+    },
+    {
+      "file": "EventAccess.gs",
+      "sha256": "d4cd0f7610c0151ee5c111e0dd10a49a52b4fcca2da59516387168e820c3ebc6"
+    },
+    {
+      "file": "EventImages.gs",
+      "sha256": "37b03f6408ff53d0acf790c7a0fc0c916619f5f45eafc84d1311b44bf894edbe"
+    }
+  ]
+}

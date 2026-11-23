@@ -1,0 +1,65 @@
+{
+  "syntax": {
+    "files": 12,
+    "inlineScripts": 1,
+    "localDependencies": 11
+  },
+  "files": {
+    "index.html": {
+      "bytes": 285456,
+      "sha256": "d28b4011d2a7a31dbdea93705917f763966a46fb4fc71e4097e9a2dcebd28740"
+    },
+    "event-ui.js": {
+      "bytes": 12588,
+      "sha256": "502c069016b483aa7f3f715cf6947c8a7b3d236bc1a80249cf3e39b28905e547"
+    },
+    "event-ui.css": {
+      "bytes": 6712,
+      "sha256": "c19c485bf81f99dae335825b360fbad14b9853fce955edef07bf9daf79f60d23"
+    },
+    "event-roster.js": {
+      "bytes": 24788,
+      "sha256": "9dca4d881f1e90f149dc03b61a3dafd2cab9bc31ddba2ee1eb57e40b1186cbb3"
+    },
+    "event-images.js": {
+      "bytes": 17343,
+      "sha256": "87eabb8656ebc4edf93a3319a9a1671553e9f718b03c1d884035f1a46884cab1"
+    },
+    "student-pass.js": {
+      "bytes": 8079,
+      "sha256": "b927389624b4debcf5c2f6702b1d50de7d4bbd9eebc6bac53451517782348964"
+    },
+    "lucian-ui.css": {
+      "bytes": 6303,
+      "sha256": "a9e76d24b34afd066758c2ecfb95cc3aa4a01af7d2be92e19138abacc6b31c06"
+    },
+    "tailwind.config.cjs": {
+      "bytes": 407,
+      "sha256": "be26a34416c72c795b50f5a53554c4768db4216ecfafb47e94164944c52f9c98"
+    },
+    "tailwind.css": {
+      "bytes": 32733,
+      "sha256": "55753a2950992bb4fabf8ba33c0a9487a0fc5fe4f850bcefb993bbe449426608"
+    },
+    "vendor/lucide.js": {
+      "bytes": 35688,
+      "sha256": "8be62e8c0d77bcb7a319e44cc72a18f8fb58d7b644a803e6fe0f3b952c0fc4c5"
+    },
+    "vendor/LUCIDE-LICENSE.txt": {
+      "bytes": 1920,
+      "sha256": "1dc74a660c9d25d55f3e0423eae3627339b3d2bae9cefeefeee504f82505d5bb"
+    },
+    "scripts/build-ui-icons.cjs": {
+      "bytes": 3695,
+      "sha256": "1588a5f5078f07df3470c8bb99bc431737abb5207f4261c93ba67e095ad26a73"
+    },
+    "scripts/ui-browser-qa.cjs": {
+      "bytes": 24496,
+      "sha256": "28ae7e081e687799214a6690b2d4219875c85d242e27c112fde26a056ab2b609"
+    },
+    "tests/event-pass.test.cjs": {
+      "bytes": 102894,
+      "sha256": "2b4f768eebbb3590e34a1376cb29fc867fa92d65306b17fa970aa2c292ba0a50"
+    }
+  }
+}

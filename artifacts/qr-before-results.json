@@ -1,0 +1,11 @@
+{
+  "checks": [],
+  "positions": [],
+  "limits": [],
+  "fixture": {
+    "students": 395,
+    "classes": 12,
+    "queueRecords": 2364
+  },
+  "environment": "Chrome localhost, Apps Script/Sheets/OTP mocks; external HTTPS blocked"
+}
