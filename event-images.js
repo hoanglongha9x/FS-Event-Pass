@@ -66,16 +66,15 @@
 
   window.createEventImageManager = function (getElement, endpoint, api, refresh) {
     const card = getElement("eventImagesCard"), select = getElement("eventImagesSelect"), status = getElement("eventImagesStatus");
-    const form = getElement("eventImagesForm"), mode = getElement("eventPassportMode"), capacity = getElement("eventPassportCapacity");
-    const positions = getElement("eventPassportPositions"), guide = getElement("eventPassportGuide");
+    const form = getElement("eventImagesForm");
     const templatePreview = getElement("eventPassportPreview");
     const publicAssets = new Map(), targets = new Map();
     const drafts = new Map();
     const previewImage = getElement("eventPassportImagePreview"), fileInput = getElement("eventPassportFile"), variant = getElement("eventPassportVariant"), profileControl=getElement("eventPassportProfileTemplate");
     const profileRenderer=window.FSchoolPassArtwork, inlineProfile=profileRenderer.createArtProfile(templatePreview);
     const previews = {passport: {}, passportMobile: {}};
-    let editingKind = "passport", layoutDirty = false, profileTemplates={}, profileDirty={};
-    let events = [], booths = [], selected = null, revision = "", draft = {}, slots = new Map(), epoch = 0, busy = false, dirty = false;
+    let editingKind = "passport", profileTemplates={}, profileDirty={};
+    let events = [], booths = [], selected = null, revision = "", draft = {}, epoch = 0, busy = false, dirty = false;
     let optionsKey = "", boothKey = "", ready = true;
 
     function publicUrl(eventId, kind, version) {
@@ -159,6 +158,9 @@
       return asset?{...asset,layout:{...asset.layout,profileTemplate:profileTemplates[kind]||""}}:null;
     }
     function mobileSupported() { return selected?.images?.passportVariantsVersion === "passport-responsive-v1"; }
+    function layoutSupported(){return mobileSupported()&&profileSupported()&&selected?.images?.passportLayoutVersion===window.FSchoolPassportLayout.version;}
+    const layoutEditor=window.createPassportLayoutEditor(getElement,()=>({kind:editingKind,booths,images:selected?.images,
+      asset:previewAsset,supported:layoutSupported(),busy}),()=>{dirty=true;},say);
     function previewKind() {
       return templatePreview.dataset.previewMode === "mobile" && (draft.passportMobile || selected?.images?.passportMobile?.version) ? "passportMobile" : "passport";
     }
@@ -171,9 +173,10 @@
       frame.dataset.previewMode = templatePreview.dataset.previewMode || "desktop";
       frame.style.setProperty("--preview-image-ratio",templatePreview.style.getPropertyValue("--preview-image-ratio"));
       frame.style.setProperty("--preview-art-header",templatePreview.style.getPropertyValue("--preview-art-header"));
-      drawMarkers(getElement("eventImageViewerMarks"));
+
       viewer.dataset.previewMode = templatePreview.dataset.previewMode || "desktop";
       viewer.showModal();
+      layoutEditor.renderAll();
       profileRenderer.placeArtProfile(viewerProfile,previewAsset(kind),{name:"HỌC SINH MẪU",className:"10A1"});
     });
 
@@ -201,7 +204,7 @@
       getElement("eventPassportPreviewInfo").textContent = (mobile ? "Mobile" : "Desktop") +
         (mobile && kind === "passport" ? " · Dùng ảnh Desktop dự phòng" : " · Ảnh riêng") + ". Ảnh hiển thị đầy đủ, không cắt hoặc kéo giãn.";
       getElement("eventPassportRestore").disabled = !selected?.images?.[editingKind]?.canRestore;
-      getElement("eventPassportAdvanced").hidden = editingKind === "passportMobile";
+      getElement("eventPassportAdvanced").hidden = false;
       getElement("eventPassportVariantStatus").textContent = !mobileSupported() ?
         "Ảnh Desktop vẫn hoạt động. BTC cập nhật backend hỗ trợ passport-responsive-v1 để lưu ảnh Mobile riêng." :
         editingKind === "passportMobile" ? "Ảnh Mobile độc lập. Nếu chưa có, học sinh dùng ảnh Desktop đầy đủ tỷ lệ; dấu xếp tự động." :
@@ -216,73 +219,11 @@
 
     function say(message) { status.textContent = message; }
 
-    function drawMarkers(marks = getElement("eventPassportMarks")) {
-      const kind = previewKind(), mobile = templatePreview.dataset.previewMode === "mobile";
-      const asset=previewAsset(kind),preset=profileRenderer.profileTemplate(asset),imageHeight=1100*(asset?.height||1)/(asset?.width||1);
-      const template = !mobile && kind === "passport" && mode.value === "template" && booths.length > 0 &&
-        booths.every(booth => {const slot=slots.get(booth.id);return slot && [slot.x,slot.y,slot.size].every(Number.isFinite) && slot.size * 11 >= 96 && (!preset||slot.y*imageHeight/100-48>=preset.header*imageHeight/100);});
-      templatePreview.classList.toggle("show-image-markers", true);
-      marks.classList.toggle("is-template-preview", template);
-      marks.style.setProperty("--preview-art-header",asset?.width>0?((preset?.header||22)*asset.height/asset.width)+"%":"1rem");
-      const total = booths.length || 1;
-      marks.style.setProperty("--preview-columns",Math.ceil(total / Math.ceil(total / 5)));
-      marks.style.setProperty("--preview-seal-size",mobile ? "clamp(24px,24cqw,86px)" : "clamp(16px,8.73cqw,96px)");
-      marks.replaceChildren(...booths.map(booth => {
-        const marker = document.createElement("span");
-        marker.className = "event-preview-seal";
-        marker.title = booth.name;
-        const slot = slots.get(booth.id);
-        if (template && slot && [slot.x,slot.y,slot.size].every(Number.isFinite)) {
-          marker.style.left = slot.x + "%";marker.style.top = slot.y + "%";marker.style.width = "var(--preview-seal-size)";
-        }
-        return marker;
-      }));
-      if (typeof window.renderIcons === "function") window.renderIcons(marks);
-    }
-
-    function layoutControls() {
-      const template = mode.value === "template";
-      positions.hidden = !template;
-      getElement("eventPassportLayoutTools").hidden = !template;
-      const count = Number(capacity.value);
-      guide.textContent = !template ? "" : count < booths.length ?
-        `Ảnh có ${count} ô cho ${booths.length} gian hàng. Hãy chọn vòng tròn tự động hoặc dùng ảnh có đủ ô.` :
-        `Ảnh có ${count} ô cho ${booths.length} gian hàng. X, Y và vùng đặt dấu tính theo phần trăm ảnh; dấu hiển thị 96 px ở Desktop, 76–86 px trên Mobile. Mobile hoặc khung quá nhỏ sẽ tự xếp dấu để giữ tên dễ đọc, không kéo rộng ảnh.`;
-      drawMarkers();
-    }
-
+    function drawMarkers() { layoutEditor.renderAll(); }
+    function buildSlots() { layoutEditor.renderControls(); }
     function rememberDraft() {
-      if (selected && dirty) drafts.set(selected.id, {revision, draft: {...draft}, mode: mode.value, capacity: capacity.value,
-        layoutDirty, profileTemplates:{...profileTemplates},profileDirty:{...profileDirty}, slots: [...slots].map(([id, value]) => [id, {...value}])});
-    }
-
-    function buildSlots() {
-      const rows = booths.map(booth => {
-        const group = document.createElement("fieldset"), legend = document.createElement("legend");
-        legend.textContent = booth.name;
-        group.append(legend);
-        const slot = slots.get(booth.id) || {x: "", y: "", size: ""};
-        slots.set(booth.id, slot);
-        for (const [key, title] of [["x", "X (%)"], ["y", "Y (%)"], ["size", "Vùng đặt dấu (%)"]]) {
-          const label = document.createElement("label"), input = document.createElement("input");
-          label.textContent = title;
-          input.type = "number";
-          input.min = "0";
-          input.max = "100";
-          input.step = "0.1";
-          input.value = slot[key];
-          input.addEventListener("input", () => {
-            dirty = true; layoutDirty = true;
-            slot[key] = input.value === "" ? "" : Number(input.value);
-            drawMarkers();
-          });
-          label.append(input);
-          group.append(label);
-        }
-        return group;
-      });
-      positions.replaceChildren(...rows);
-      layoutControls();
+      if(selected&&dirty)drafts.set(selected.id,{revision,draft:{...draft},profileTemplates:{...profileTemplates},
+        profileDirty:{...profileDirty},editorState:layoutEditor.snapshot()});
     }
 
     function pickEvent(event) {
@@ -292,26 +233,21 @@
       selected = event;
       getElement("eventPassportAdvanced").removeAttribute("open");
       revision = event?.images?.revision || "";
-      dirty = false; layoutDirty = false;
+      dirty = false;
       profileTemplates=Object.fromEntries(kinds.map(kind=>[kind,event?.images?.[kind]?.layout?.profileTemplate||""]));profileDirty={};
       draft = {};
-      const layout = event?.images?.passport?.layout;
-      slots = new Map((layout?.slots || []).map(slot => [slot.boothId, {...slot}]));
-      mode.value = layout?.mode || "auto";
-      capacity.value = layout?.capacity || booths.length;
       say(event?.archived ? "Sự kiện lưu trữ. Ảnh chỉ hiển thị trong bản xem trước của BTC." : "");
       form.disabled = busy || !event || !ready;
       const saved = event && drafts.get(event.id);
       if (saved) {
-        revision = saved.revision; draft = saved.draft; mode.value = saved.mode; capacity.value = saved.capacity;
-        slots = new Map(saved.slots); layoutDirty = saved.layoutDirty === true;
+        revision = saved.revision; draft = saved.draft;
         profileTemplates={...profileTemplates,...saved.profileTemplates};profileDirty={...saved.profileDirty};dirty = true;
         say("Đã khôi phục bản nháp của " + event.name + (revision !== (event.images?.revision || "") ? ". Ảnh trên máy chủ đã thay đổi; cần nạp lại trước khi lưu." : "."));
       }
       if (!mobileSupported()) editingKind = "passport";
       variant.value = editingKind;
       for (const option of variant.options) option.disabled = option.value === "passportMobile" && !mobileSupported();
-      buildSlots();
+      layoutEditor.reset(event?.images,saved?.editorState);
       for (const kind of kinds) {
         clearPreview(kind);
         fileInput.value = "";
@@ -348,7 +284,7 @@
         select.value = event?.id || "";
       }
       select.value = event?.id || "";
-      const capabilityChanged = event?.images?.passportVariantsVersion !== selected?.images?.passportVariantsVersion || event?.images?.passportProfileVersion !== selected?.images?.passportProfileVersion;
+      const capabilityChanged = event?.images?.passportVariantsVersion !== selected?.images?.passportVariantsVersion || event?.images?.passportProfileVersion !== selected?.images?.passportProfileVersion || event?.images?.passportLayoutVersion !== selected?.images?.passportLayoutVersion;
       if (event?.id !== selected?.id || (!busy && capabilityChanged) || (!dirty && !busy && (event?.images?.revision || "") !== revision)) pickEvent(event);
       else if (boothKey !== nextBoothKey) buildSlots();
       boothKey = nextBoothKey;
@@ -384,19 +320,20 @@
 
     async function save(kind, operation) {
       if (!selected || busy || !ready) return;
+      if(operation==="restoreLayout"&&!layoutSupported()){say("BTC cần cập nhật Apps Script hỗ trợ passport-layout-v2 để khôi phục bố trí.");return;}
       if (kind === "passportMobile" && !mobileSupported()) { say("BTC cần cập nhật backend hỗ trợ passport-responsive-v1."); return; }
       if(profileTemplates[kind]&&!profileSupported()){say("BTC cần backend hỗ trợ passport-profile-v1.");return;}
       const event = selected, ticket = epoch;
       const image = draft[kind];
       if (operation === "save") operation = image ? "upload" : selected.images?.[kind]?.version ? (selected.images[kind].publishApproved ? "layout" : "approve") : "";
       if (!operation) { say("Hãy chọn ảnh trước khi lưu."); return; }
-      const layout = kind === "passport" && mode.value === "template" ? {mode: "template", capacity: Number(capacity.value),
-        slots: booths.map(booth => ({boothId: booth.id, ...slots.get(booth.id)}))} : {mode: "auto"};
-      if(profileTemplates[kind])layout.profileTemplate=profileTemplates[kind];
-      if (kind === "passport" && ["layout", "upload"].includes(operation) &&
-          layout.mode === "template" && layout.capacity < booths.length) {
-        say("Ảnh mẫu không đủ ô cho số gian hàng. Chọn vòng tròn tự động hoặc thay ảnh mẫu.");
-        return;
+      let layout={mode:"auto"};
+      if(["layout","upload","approve"].includes(operation)){
+        try{
+          if(layoutSupported())layout=layoutEditor.getLayout(kind);
+          else if(layoutEditor.isDirty(kind))throw Error("BTC cần cập nhật Apps Script hỗ trợ passport-layout-v2 trước khi lưu bố trí.");
+          if(profileTemplates[kind])layout.profileTemplate=profileTemplates[kind];
+        }catch(error){say(error.message);return;}
       }
       const feedback=window.FSchoolUi.begin();
       busy = true;
@@ -408,18 +345,20 @@
           ...(operation === "upload" ? {upload: await encode(image.blob)} : {})});
         if (!result.images || typeof result.images.revision !== "string" || !result.images.revision ||
             (operation !== "default" && !result.images[kind]?.version) ||
-            (["upload","layout","approve"].includes(operation) && layout.profileTemplate && result.images[kind]?.layout?.profileTemplate !== layout.profileTemplate)) throw new Error("Chưa đối chiếu được metadata ảnh đã lưu. Hãy nạp lại để kiểm tra trước khi gửi lại.");
+            (["upload","layout","approve"].includes(operation) && layout.profileTemplate && result.images[kind]?.layout?.profileTemplate !== layout.profileTemplate) ||
+            (layout.layoutVersion && (result.images.passportLayoutVersion!==layout.layoutVersion || JSON.stringify(window.FSchoolPassportLayout.canonical(result.images[kind]?.layout))!==JSON.stringify(window.FSchoolPassportLayout.canonical(layout))))) throw new Error("Chưa đối chiếu được metadata ảnh đã lưu. Hãy nạp lại để kiểm tra trước khi gửi lại.");
         window.FSchoolUi.end(feedback,"success");
         if (ticket !== epoch) return;
         event.images = result.images;
         delete draft[kind];
-        if (kind === "passport") layoutDirty = false;
+        layoutEditor.committed(kind,result.images[kind]?.layout);
         delete profileDirty[kind];
+        profileTemplates[kind]=result.images[kind]?.layout?.profileTemplate||"";
         revision = result.images.revision;
-        dirty = layoutDirty || Object.keys(draft).length > 0 || Object.values(profileDirty).some(Boolean);
+        dirty = layoutEditor.hasDirty() || Object.keys(draft).length > 0 || Object.values(profileDirty).some(Boolean);
         if (dirty) rememberDraft(); else drafts.delete(event.id);
         pickEvent(event);
-        say("Đã lưu ảnh và bố trí phiếu.");
+        say(layout.layoutVersion||operation==="restoreLayout"?"Đã lưu ảnh và bố trí phiếu.":"Đã lưu ảnh.");
         void refresh(event.id, result.images).then(result => {
           if (ticket === epoch - 1 && result === false) say("Đã lưu, đang chờ đồng bộ.");
         }).catch(() => { if (selected?.id === event.id) say("Đã lưu, đang chờ đồng bộ."); });
@@ -434,13 +373,13 @@
       }
     }
 
-    for (const [id,operation] of [["eventPassportSave","save"],["eventPassportDefault","default"],["eventPassportRestore","restore"]]) {
+    for (const [id,operation] of [["eventPassportSave","save"],["eventPassportDefault","default"],["eventPassportRestore","restore"],["eventPassportRestoreLayout","restoreLayout"]]) {
       getElement(id).addEventListener("click", () => void save(editingKind, operation));
     }
     fileInput.addEventListener("change", () => void selectFile(editingKind));
     profileControl.addEventListener("change",()=>{
       if(busy||!profileSupported())return;
-      profileTemplates[editingKind]=profileControl.value;profileDirty[editingKind]=true;dirty=true;updatePreview();
+      profileTemplates[editingKind]=profileControl.value;profileDirty[editingKind]=true;dirty=true;updatePreview();layoutEditor.renderControls();
     });
     variant.addEventListener("change", () => {
       if (busy) return;
@@ -448,7 +387,7 @@
       editingKind = variant.value === "passportMobile" ? "passportMobile" : "passport";
       fileInput.value = "";
       setPreviewMode(editingKind === "passportMobile" ? "mobile" : "desktop");
-      updatePreview();
+      updatePreview();layoutEditor.renderControls();
     });
     select.addEventListener("change", () => typeof window.selectManagedEvent === "function" ? window.selectManagedEvent(select.value) : pickEvent(events.find(event => event.id === select.value)));
     getElement("eventImagesReload").addEventListener("click", async () => {
@@ -469,12 +408,13 @@
       } catch(error) { if(ticket === epoch)say(error.message || "Chưa nạp được ảnh đã lưu."); }
       finally { busy=false;select.disabled=false;form.disabled=!selected||!ready; }
     });
-    for (const control of [mode, capacity]) control.addEventListener("change", () => { dirty = true; layoutDirty = true; layoutControls(); });
     function setPreviewMode(value) {
+      if(value==="mobile"&&!mobileSupported()){say("BTC cần cập nhật passport-responsive-v1 để cấu hình Mobile độc lập.");}
+      else {editingKind=value==="mobile"?"passportMobile":"passport";variant.value=editingKind;}
       templatePreview.dataset.previewMode = value;
       getElement("eventPassportPreviewDesktop").setAttribute("aria-pressed", String(value === "desktop"));
       getElement("eventPassportPreviewMobile").setAttribute("aria-pressed", String(value === "mobile"));
-      updatePreview();
+      updatePreview();layoutEditor.renderControls();
     }
     for (const [id, value] of [["eventPassportPreviewDesktop", "desktop"], ["eventPassportPreviewMobile", "mobile"]]) {
       getElement(id).addEventListener("click", () => setPreviewMode(value));

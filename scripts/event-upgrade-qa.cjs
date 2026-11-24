@@ -41,7 +41,7 @@ cloud.cache.remove("event-pass-read-v1");
 const [fixtureStudent]=studentLogins(cloud,btc,[profiles[0].code],eventA);
 const calls=[];
 const profileBackend=(action, task)=>{calls.push(action);return {result:task(),metric:{action}};};
-const allowedFile=new Set(["event-admin.js","event-ui.js","event-ui.css","vendor/lucide.js","tailwind.css","lucian-ui.css","event-glass.css","index.html","student-pass.css","student-pass.js","event-roster.js","event-excel.js","event-images.js"]);
+const allowedFile=new Set(["passport-layout.js","passport-layout-editor.js","event-admin.js","event-ui.js","event-ui.css","vendor/lucide.js","tailwind.css","lucian-ui.css","event-glass.css","index.html","student-pass.css","student-pass.js","event-roster.js","event-excel.js","event-images.js"]);
 const redirects=new Map(), servers=[], tabs=[], measurements=[];
 const injected="window.diagnosticMeasure=()=>{}";
 const baselineDir=null;
@@ -227,12 +227,8 @@ async function run(){
   check("theme UI and approval checkboxes removed",await page.run("!document.querySelector('[id^=eventTheme]')&&!document.querySelector('#eventImagesForm input[type=checkbox]')"));
   check("legacy theme metadata preserved",cloud.post("GET_EVENT_SETUP",{...btc,eventId:eventA}).event.images.theme.version===themeA);
   check("private Drive files read back before success",cloud.imageFiles.size===2);
-  // Configure a real template through the numeric controls, keyed by boothId.
-  await page.run("document.getElementById('eventPassportAdvanced').open=true;document.getElementById('eventPassportMode').value='template';document.getElementById('eventPassportMode').dispatchEvent(new Event('change'));document.getElementById('eventPassportCapacity').value='11'");
-  await page.run(`document.querySelectorAll('#eventPassportPositions fieldset').forEach((group,i)=>{
-    const values=[18+(i%4)*21,28+Math.floor(i/4)*27,11];
-    group.querySelectorAll('input').forEach((input,j)=>{input.value=values[j];input.dispatchEvent(new Event('input',{bubbles:true}));});
-  });document.getElementById('eventPassportSave').click()`);
+  // New editor generates unique slot IDs, then persists explicit booth/page mappings.
+  await page.run("document.getElementById('eventPassportAdvanced').open=true;document.getElementById('eventPassportMode').value='template';document.getElementById('eventPassportMode').dispatchEvent(new Event('change'));document.getElementById('eventPassportCapacity').value='11';document.getElementById('eventPassportGenerate').click();document.getElementById('eventPassportSave').click()");
   await waitFor(page,"document.getElementById('eventImagesStatus').textContent.includes('Đã lưu')&&!document.getElementById('eventImagesSelect').disabled");
   check("template coordinates persisted for all booths",await page.run("EVENTS.find(e=>e.id===managedEventId()).images.passport.layout.slots.length===11"));
   const beforeB=cloud.post("GET_EVENT_SETUP",{...btc,eventId:eventB});

@@ -245,14 +245,28 @@
                 </div>
               </section>
               <section class="passport-image-layout" aria-label="Bố trí và xem trước phiếu">
-                <details id="eventPassportAdvanced" class="event-image-advanced"><summary>Bố trí con dấu nâng cao</summary><label>Bố trí con dấu<select id="eventPassportMode"><option value="auto">Vòng tròn tự động</option><option value="template">Vị trí trên ảnh mẫu</option></select></label>
-                  <div id="eventPassportLayoutTools" hidden><label>Số ô có sẵn trên ảnh <input id="eventPassportCapacity" type="number" min="1" max="80" step="1"></label><p id="eventPassportGuide" class="text-xs text-slate-600"></p></div>
-                  <div id="eventPassportPositions" class="event-images-positions" hidden></div>
+                <details id="eventPassportAdvanced" class="event-image-advanced"><summary>Bố trí con dấu nâng cao</summary>
+                  <fieldset id="eventPassportLayoutControls">
+                    <label>Bố trí con dấu<select id="eventPassportMode"><option value="auto">Vòng tròn tự động</option><option value="template">Vị trí trên ảnh mẫu</option></select></label>
+                    <div class="passport-safe-controls" aria-label="Vùng an toàn của ảnh">
+                      <label>Trái (%)<input id="eventPassportSafeX" type="number" min="0" max="100" step="0.1"></label>
+                      <label>Trên (%)<input id="eventPassportSafeY" type="number" min="0" max="100" step="0.1"></label>
+                      <label>Rộng (%)<input id="eventPassportSafeWidth" type="number" min="1" max="100" step="0.1"></label>
+                      <label>Cao (%)<input id="eventPassportSafeHeight" type="number" min="1" max="100" step="0.1"></label>
+                    </div>
+                    <div id="eventPassportLayoutTools" hidden><label>Số slot thực tế trên ảnh<input id="eventPassportCapacity" type="number" min="1" max="80" step="1"></label><button id="eventPassportGenerate" type="button">Tạo lại các slot</button></div>
+                    <p id="eventPassportGuide" class="text-xs text-slate-600" role="status"></p>
+                    <div class="event-images-buttons"><button id="eventPassportUndo" type="button">Hoàn tác</button><button id="eventPassportRestoreLayout" type="button">Khôi phục bố trí đã lưu trước</button></div>
+                    <div id="eventPassportPositions" class="event-images-positions" hidden></div>
+                    <p id="eventPassportMapping" class="passport-slot-mapping"></p>
+                  </fieldset>
                 </details>
                 <h3>Xem trước phiếu sau khi bố trí</h3>
                 <div class="event-layout-preview-tabs"><button id="eventPassportPreviewDesktop" type="button" aria-pressed="true">Desktop</button><button id="eventPassportPreviewMobile" type="button" aria-pressed="false">Mobile</button></div>
                 <p id="eventPassportPreviewInfo" class="text-xs text-slate-600" role="status"></p>
-                <div id="eventPassportPreview" class="event-images-preview" data-preview-mode="desktop"><p id="eventPassportEmpty" class="event-image-empty">Phiếu mặc định</p><img id="eventPassportImagePreview" hidden alt="Xem trước ảnh phiếu trải nghiệm"><div id="eventPassportMarks" aria-hidden="true"></div></div>
+                <div id="eventPassportPreview" class="event-images-preview" data-preview-mode="desktop"><p id="eventPassportEmpty" class="event-image-empty">Phiếu mặc định</p><img id="eventPassportImagePreview" hidden alt="Xem trước ảnh phiếu trải nghiệm"><div id="eventPassportMarks" aria-label="Các slot trên trang xem trước"></div></div>
+                <div id="eventPassportPages" class="passport-pages" hidden><button id="eventPassportPrevious" type="button">← Trước</button><span id="eventPassportPageStatus" role="status" aria-live="polite"></span><button id="eventPassportNext" type="button">Sau →</button></div>
+                <p id="eventPassportPageWarning" class="text-xs text-slate-600" role="status"></p>
               </section>
             </fieldset>
           </article></div></div></div>
@@ -335,7 +349,7 @@
   </dialog>
   <dialog id="eventImageViewer" class="event-image-viewer" aria-labelledby="eventImageViewerTitle">
     <div class="event-image-viewer-heading"><h2 id="eventImageViewerTitle"></h2><button id="eventImageViewerClose" type="button" aria-label="Đóng xem trước ảnh">Đóng</button></div>
-    <div class="event-image-viewer-scroll"><div id="eventImageViewerCanvas" class="event-images-preview"><img id="eventImageViewerImage" alt="Ảnh sự kiện đang xem trước"><div id="eventImageViewerMarks" aria-hidden="true"></div></div></div>
+    <div class="event-image-viewer-scroll"><div id="eventImageViewerCanvas" class="event-images-preview"><img id="eventImageViewerImage" alt="Ảnh sự kiện đang xem trước"><div id="eventImageViewerMarks" aria-label="Các slot trên trang xem trước"></div></div><div class="passport-pages"><button id="eventImageViewerPrevious" type="button">← Trước</button><span id="eventImageViewerPageStatus" role="status" aria-live="polite"></span><button id="eventImageViewerNext" type="button">Sau →</button></div></div>
   </dialog>
   <dialog id="rosterEditor" class="w-full max-w-md rounded-2xl bg-white p-5 text-slate-900 shadow-xl backdrop:bg-slate-950/70">
     <form id="rosterEditorForm" class="grid gap-3 text-xs"><h2 class="text-base font-extrabold text-blue-950">Hồ sơ học sinh</h2>
@@ -352,7 +366,7 @@
           <h2 id="studentPassTitle">Phiếu trải nghiệm</h2>
           <p id="studentPassEvent"></p>
         </div>
-        <button id="studentPassClose" type="button" class="student-pass-close" autofocus aria-label="Đóng phiếu trải nghiệm"><span aria-hidden="true">×</span></button>
+        <button id="studentPassClose" type="button" class="student-pass-close" autofocus aria-label="Đóng phiếu trải nghiệm"><i data-lucide="x" aria-hidden="true"></i></button>
       </div>
     </div>
     <section id="studentPassStampDetails" class="student-pass-stamp-details" aria-label="Thông tin gian hàng đang chọn" aria-live="polite" aria-atomic="true" hidden>
@@ -371,7 +385,9 @@
       </div>
       <p id="studentPassSync" class="student-pass-sync" role="status" hidden>Đang chờ đồng bộ. Phiếu đang hiển thị các dấu đã được xác nhận gần nhất.</p>
       <p id="studentPassImageStatus" class="student-pass-sync" role="status" hidden></p>
-      <p id="studentPassPanHint" hidden class="student-pass-pan-hint">Các dấu được xếp tự động để vừa màn hình; vị trí nâng cao vẫn được giữ trong cấu hình.</p>
+      <p id="studentPassPanHint" hidden class="student-pass-pan-hint" role="status"></p>
+      <div id="studentPassPages" class="passport-pages" hidden><button id="studentPassPrevious" type="button" aria-controls="studentPassBooths">← Trước</button><span id="studentPassPageStatus" role="status" aria-live="polite"></span><button id="studentPassNext" type="button" aria-controls="studentPassBooths">Sau →</button></div>
+      <label id="studentPassFallback" class="student-pass-sync" hidden>Xem tiến độ đã xác nhận<select id="studentPassFallbackBooth" aria-label="Chọn gian hàng để xem tiến độ"></select></label>
       <div id="studentPassCanvas" class="student-pass-canvas">
         <div id="studentPassArtwork" class="student-pass-artwork" aria-hidden="true"></div>
         <ul id="studentPassBooths" class="student-pass-booths"></ul>
@@ -382,6 +398,8 @@
   <script src="./event-excel.js"></script>
   <script src="./event-roster.js"></script>
   <script src="./event-admin.js"></script>
+  <script src="./passport-layout.js"></script>
+  <script src="./passport-layout-editor.js"></script>
   <script src="./student-pass.js"></script>
   <script src="./event-images.js"></script>
   <script>

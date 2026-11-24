@@ -178,8 +178,8 @@ body:has(#qrScannerModal:not(.hidden)) #toastStack { display:none; }
     .event-glass > header, .event-glass #teacher-mobile-menu-dropdown { background: white; }
     .event-glass .glass-poster-light { display: none; }
     .event-glass .glass-emblem { background: #183f61; }
-    .event-glass .student-pass-stamp { background: #152e52; }
-    .event-glass .student-pass-stamp.is-complete { background: #114147; }
+    .event-glass .student-pass-stamp { background: #142D63; }
+    .event-glass .student-pass-stamp.is-complete { background: #142D63; }
   }
 }
 

@@ -680,6 +680,8 @@ function mockBrowser(cloud, sessionStorage=mockStore(), localStorage=mockStore()
   vm.runInContext(source("event-excel.js"),context);
   vm.runInContext(source("event-roster.js"),context);
   vm.runInContext(source("event-admin.js"),context);
+  vm.runInContext(source("passport-layout.js"),context);
+  vm.runInContext(source("passport-layout-editor.js"),context);
   vm.runInContext(source("student-pass.js"),context);
   vm.runInContext(source("event-images.js"),context);
   mainScript.runInContext(context);
@@ -2583,4 +2585,70 @@ test("tọa độ chỉ áp dụng mẫu đã chọn, khớp ảnh; chữ độn
   assert.equal(run('testArtProfile.className.children[0].textContent'),'10A1');
   assert.equal(browser.requests.length,before);assert.equal(passStamps(browser).length,0);
   run('window.FSchoolPassArtwork.placeArtProfile(testArtProfile,null,null)');assert.equal(run('testArtProfile.overlay.hidden'),true);assert.equal(run('testArtProfile.name.children[0].textContent'),'');
+});
+
+// Prompt 16: pure geometry and the real POST router with fake Sheets/Drive.
+function layoutGeometry(){const context=vm.createContext({window:{}});vm.runInContext(source('passport-layout.js'),context);return context.window.FSchoolPassportLayout;}
+function layoutBooths(count){return Array.from({length:count},(_,i)=>({id:'layout-'+i,name:'Gian '+i,location:'Phòng thử',topic:'Thử',description:'Dữ liệu giả',pin:String(1000+i),icon:'brain',color:'blue'}));}
+function layoutFixture(){
+  const fixture=setup(),{cloud,btc}=fixture;cloud.setProperty('FS_EVENT_IMAGE_FOLDER_ID','fixture-images');cloud.setProperty('FS_EVENT_PUBLIC_IMAGES','true');
+  const booths=layoutBooths(15);expectOk(cloud.post('SAVE_EVENT_BOOTHS',{...btc,booths}));
+  const G=layoutGeometry(),asset={width:280,height:100,layout:{profileTemplate:'open-stem-landscape-v1'}},safeArea=G.areaOf(null,asset),slots=G.generate(12,asset,safeArea,'desktop');
+  const layout=JSON.parse(JSON.stringify({layoutVersion:G.version,mode:'template',capacity:12,safeArea,slots,assignments:G.bind(booths,slots),profileTemplate:'open-stem-landscape-v1'}));
+  const images=expectOk(cloud.post('SAVE_EVENT_IMAGE',{...btc,eventId,kind:'passport',operation:'upload',expectedRevision:'',upload:profilePng(280,100),layout})).images;
+  return {...fixture,G,booths,layout,images};
+}
+for(const count of [2,6,10,11,12,15,20])test('hình học '+count+' gian: nằm trong ảnh, vùng an toàn, không chồng dấu; phân trang giữ thứ tự',()=>{
+  const G=layoutGeometry(),booths=layoutBooths(count);
+  for(const [device,width,asset] of [['desktop',900,{width:2098,height:749,layout:{profileTemplate:'open-stem-landscape-v1'}}],['desktop',1156,{width:2098,height:749,layout:{profileTemplate:'open-stem-landscape-v1'}}],['mobile',250,{width:1179,height:2556,layout:{profileTemplate:'open-stem-portrait-v1'}}],['mobile',320,{width:1179,height:2556,layout:{profileTemplate:'open-stem-portrait-v1'}}]]){
+    const plan=G.plan({booths,asset,width,device});assert.ok(plan.pages.length);
+    assert.deepEqual(Array.from(plan.pages.flat(),s=>s.boothId),booths.map(b=>b.id));
+    for(const page of plan.pages){
+      const normalized=page.map(s=>({...s,slotId:s.boothId,size:s.sizePx/width*100}));
+      assert.equal(G.validateSlots(normalized,asset,plan.area),'');
+      for(const item of page)assert.ok(item.sizePx>=(device==='mobile'?70:80));
+    }
+  }
+});
+test('15 gian / 12 slot thành 12+3; mapping duy nhất và không phụ thuộc dữ liệu hoàn thành',()=>{
+  const {G,booths,layout,images}=layoutFixture();assert.equal(images.passportLayoutVersion,G.version);
+  const plan=G.plan({booths,asset:images.passport,width:900,device:'desktop'});
+  assert.deepEqual(Array.from(plan.pages,p=>p.length),[12,3]);
+  assert.equal(new Set(layout.slots.map(s=>s.slotId)).size,12);assert.equal(new Set(layout.assignments.map(a=>a.boothId)).size,15);
+  const reversed=G.adapt(layout,[...booths].reverse());assert.equal(new Set(reversed.assignments.map(a=>a.page+':'+a.slotId)).size,15);
+  assert.equal(G.plan({booths,asset:{width:2098,height:749,layout},width:250,device:'mobile'}).pages.length,0);
+});
+test('backend từ chối slot trùng/chồng/vượt ảnh, mapping thiếu/sai booth/trang và phiên bản lạ, không ghi hoặc tạo file',()=>{
+  const {cloud,btc,layout,images}=layoutFixture();const before=cloud.metrics.writes,files=cloud.imageFiles.size;
+  const mutations=[l=>l.slots[1].slotId=l.slots[0].slotId,l=>Object.assign(l.slots[1],{x:l.slots[0].x,y:l.slots[0].y}),l=>l.slots[0].x=0,l=>l.safeArea.y=0,l=>l.capacity=11,l=>l.assignments.pop(),l=>l.assignments[0].boothId='other-event',l=>l.assignments[1].slotId=l.assignments[0].slotId,l=>l.assignments[0].page=2,l=>l.layoutVersion='unknown'];
+  for(const mutate of mutations){const bad=JSON.parse(JSON.stringify(layout));mutate(bad);expectDenied(cloud.post('SAVE_EVENT_IMAGE',{...btc,eventId,kind:'passport',operation:'layout',expectedRevision:images.revision,layout:bad}),'IMAGE_LAYOUT');}
+  assert.equal(cloud.metrics.writes,before);assert.equal(cloud.imageFiles.size,files);
+});
+test('lưu Desktop/Mobile độc lập, reload/khôi phục bố trí không thay bytes ảnh, tiến độ hoặc quyền',()=>{
+  const {cloud,btc,teacher,G,booths,layout,images}=layoutFixture();
+  const mobileAsset={width:184,height:400,layout:{profileTemplate:'open-stem-portrait-v1'}},area=G.areaOf(null,mobileAsset),slots=G.generate(6,mobileAsset,area,'mobile');
+  const mobileLayout=JSON.parse(JSON.stringify({layoutVersion:G.version,mode:'template',capacity:6,safeArea:area,slots,assignments:G.bind(booths,slots),profileTemplate:'open-stem-portrait-v1'}));
+  const mobile=expectOk(cloud.post('SAVE_EVENT_IMAGE',{...btc,eventId,kind:'passportMobile',operation:'upload',expectedRevision:images.revision,upload:profilePng(184,400),layout:mobileLayout})).images;
+  assert.deepEqual(mobile.passport.layout,layout);assert.deepEqual(mobile.passportMobile.layout,mobileLayout);
+  const before=JSON.stringify(cloud.sheets.get('WorkflowState').rows.filter(r=>r[1]!=='event-images:'+eventId)),files=cloud.imageFiles.size;
+  const next=expectOk(cloud.post('SAVE_EVENT_IMAGE',{...btc,eventId,kind:'passport',operation:'layout',expectedRevision:mobile.revision,layout:{layoutVersion:G.version,mode:'auto',safeArea:layout.safeArea,profileTemplate:layout.profileTemplate}})).images;
+  assert.equal(next.passport.canRestoreLayout,true);assert.equal(next.passport.version,images.passport.version);
+  expectDenied(cloud.post('SAVE_EVENT_IMAGE',{...teacher,eventId,kind:'passport',operation:'restoreLayout',expectedRevision:next.revision}),'FORBIDDEN');
+  const restored=expectOk(cloud.post('SAVE_EVENT_IMAGE',{...btc,eventId,kind:'passport',operation:'restoreLayout',expectedRevision:next.revision})).images;
+  assert.deepEqual(restored.passport.layout,layout);assert.deepEqual(restored.passportMobile.layout,mobileLayout);
+  expectDenied(cloud.post('SAVE_EVENT_IMAGE',{...btc,eventId,kind:'passport',operation:'layout',expectedRevision:next.revision,layout}),'CONFLICT');
+  const pub=mediaFrom(expectOk(cloud.post('GET_EVENT_VIEW')),eventId);assert.deepEqual(pub.passport.layout,layout);assert.equal(pub.passport.canRestoreLayout,undefined);
+  const other=expectOk(cloud.post('GET_EVENT_SETUP',{...btc,eventId:'fixture-event-b'}));assert.equal(other.event.images.passport,undefined);
+  assert.equal(JSON.stringify(cloud.sheets.get('WorkflowState').rows.filter(r=>r[1]!=='event-images:'+eventId)),before);assert.equal(files,cloud.imageFiles.size);assert.equal(cloud.mail.length,0);
+});
+test('phân trang frontend không gọi API, không sinh dấu giả; phiên không hợp lệ đóng phiếu',async()=>{
+  const {cloud,btc}=layoutFixture(),browser=mockBrowser(cloud);await browserSettled();
+  await activateStudentInBrowser(browser,studentLogins(cloud,btc,[actorA])[0]);
+  browser.node('studentPassCanvas').clientWidth=900;browser.run("window.matchMedia=()=>({matches:false});globalThis.pagedPass=window.createStudentExperiencePass($,()=>{},(node,event,kind,version,done)=>{if(done)done(!!version)});pagedPass.acceptSnapshot("+JSON.stringify(cloud.post('GET_EVENT_VIEW',browser.run('eventAuth()')))+","+JSON.stringify(browser.run('eventAuth().studentSession'))+")");
+  browser.node('studentPassButton').click();const cards=()=>browser.node('studentPassBooths').children;
+  assert.equal(cards().filter(c=>!c.hidden).length,12);assert.equal(passStamps(browser).length,0);
+  const calls=browser.requests.length;browser.node('studentPassNext').click();assert.equal(cards().filter(c=>!c.hidden).length,3);assert.equal(browser.requests.length,calls);
+  browser.node('studentPassPrevious').click();assert.equal(cards().filter(c=>!c.hidden).length,12);
+  const before=browser.requests.length;browser.node('studentPassNext').click();cards().filter(c=>!c.hidden)[0].children[0].click();assert.equal(passStamps(browser).length,0);assert.equal(browser.requests.length,before);
+  browser.run('pagedPass.acceptSnapshot({success:false},eventAuth().studentSession)');assert.equal(browser.node('studentPassDialog').open,false);assert.equal(cards().length,0);
 });

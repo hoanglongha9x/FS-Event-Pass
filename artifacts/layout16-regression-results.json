@@ -1,0 +1,16 @@
+{
+  "environment": "Chrome localhost; fake Apps Script/Sheets/Drive/MailApp; external HTTPS blocked",
+  "baseline": {
+    "unit": 122
+  },
+  "after": {
+    "unit": 133,
+    "passportBrowser": 118,
+    "eventAdminBrowser": 84,
+    "qrBrowser": 147,
+    "studentLoginBrowser": 33,
+    "artworkProfileBrowser": 45
+  },
+  "production": "NOT_DEPLOYED",
+  "hardware": "NOT_TESTED"
+}

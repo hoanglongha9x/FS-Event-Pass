@@ -41,7 +41,7 @@ cloud.cache.remove("event-pass-read-v1");
 const [fixtureStudent]=studentLogins(cloud,btc,[profiles[0].code],eventA);
 const calls=[];
 const profileBackend=(action, task)=>{calls.push(action);return {result:task(),metric:{action}};};
-const allowedFile=new Set(["event-admin.js","event-ui.js","event-ui.css","vendor/lucide.js","tailwind.css","lucian-ui.css","event-glass.css","index.html","student-pass.css","student-pass.js","event-roster.js","event-excel.js","event-images.js"]);
+const allowedFile=new Set(["passport-layout.js","passport-layout-editor.js","event-admin.js","event-ui.js","event-ui.css","vendor/lucide.js","tailwind.css","lucian-ui.css","event-glass.css","index.html","student-pass.css","student-pass.js","event-roster.js","event-excel.js","event-images.js"]);
 const redirects=new Map(), servers=[], tabs=[], measurements=[];
 const injected="window.diagnosticMeasure=()=>{}";
 const baselineDir=null;

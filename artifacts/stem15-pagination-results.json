@@ -1,0 +1,1236 @@
+{
+  "checks": [
+    {
+      "name": "POST/redirect/JSON stores passport",
+      "status": "PASS"
+    },
+    {
+      "name": "POST/redirect/JSON stores passportMobile",
+      "status": "PASS"
+    },
+    {
+      "name": "passport draft has actual number of slots",
+      "status": "PASS"
+    },
+    {
+      "name": "passport saved capability is genuine",
+      "status": "PASS"
+    },
+    {
+      "name": "passportMobile draft has actual number of slots",
+      "status": "PASS"
+    },
+    {
+      "name": "passportMobile saved capability is genuine",
+      "status": "PASS"
+    },
+    {
+      "name": "independent Desktop/Mobile slot geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "real pointer drag updates normalized X",
+      "status": "PASS"
+    },
+    {
+      "name": "undo restores previous draft geometry",
+      "status": "PASS"
+    },
+    {
+      "name": "numeric diameter updates preview draft",
+      "status": "PASS"
+    },
+    {
+      "name": "saving Desktop edit preserves Mobile mapping",
+      "status": "PASS"
+    },
+    {
+      "name": "server restores prior layout without changing completion",
+      "status": "PASS"
+    },
+    {
+      "name": "touch drag changes only Mobile draft",
+      "status": "PASS"
+    },
+    {
+      "name": "keyboard refines Mobile slot and keeps focus inside viewer",
+      "status": "PASS"
+    },
+    {
+      "name": "restored Desktop profile comes from ACK while Mobile is dirty",
+      "status": "PASS"
+    },
+    {
+      "name": "Desktop restore preserves unsaved Mobile profile independently",
+      "status": "PASS"
+    },
+    {
+      "name": "resize handle adjusts diameter",
+      "status": "PASS"
+    },
+    {
+      "name": "reload reads saved layout from backend",
+      "status": "PASS"
+    },
+    {
+      "name": "page count 1280/1",
+      "status": "PASS"
+    },
+    {
+      "name": "no tail or distortion 1280/1",
+      "status": "PASS"
+    },
+    {
+      "name": "all circles inside safe area 1280/1",
+      "status": "PASS"
+    },
+    {
+      "name": "no fake completion 1280/1",
+      "status": "PASS"
+    },
+    {
+      "name": "page count 1280/2",
+      "status": "PASS"
+    },
+    {
+      "name": "no tail or distortion 1280/2",
+      "status": "PASS"
+    },
+    {
+      "name": "all circles inside safe area 1280/2",
+      "status": "PASS"
+    },
+    {
+      "name": "no fake completion 1280/2",
+      "status": "PASS"
+    },
+    {
+      "name": "page count 430/1",
+      "status": "PASS"
+    },
+    {
+      "name": "no tail or distortion 430/1",
+      "status": "PASS"
+    },
+    {
+      "name": "all circles inside safe area 430/1",
+      "status": "PASS"
+    },
+    {
+      "name": "no fake completion 430/1",
+      "status": "PASS"
+    },
+    {
+      "name": "page count 430/2",
+      "status": "PASS"
+    },
+    {
+      "name": "no tail or distortion 430/2",
+      "status": "PASS"
+    },
+    {
+      "name": "all circles inside safe area 430/2",
+      "status": "PASS"
+    },
+    {
+      "name": "no fake completion 430/2",
+      "status": "PASS"
+    },
+    {
+      "name": "page count 430/3",
+      "status": "PASS"
+    },
+    {
+      "name": "no tail or distortion 430/3",
+      "status": "PASS"
+    },
+    {
+      "name": "all circles inside safe area 430/3",
+      "status": "PASS"
+    },
+    {
+      "name": "no fake completion 430/3",
+      "status": "PASS"
+    },
+    {
+      "name": "page count 390/1",
+      "status": "PASS"
+    },
+    {
+      "name": "no tail or distortion 390/1",
+      "status": "PASS"
+    },
+    {
+      "name": "all circles inside safe area 390/1",
+      "status": "PASS"
+    },
+    {
+      "name": "no fake completion 390/1",
+      "status": "PASS"
+    },
+    {
+      "name": "page count 390/2",
+      "status": "PASS"
+    },
+    {
+      "name": "no tail or distortion 390/2",
+      "status": "PASS"
+    },
+    {
+      "name": "all circles inside safe area 390/2",
+      "status": "PASS"
+    },
+    {
+      "name": "no fake completion 390/2",
+      "status": "PASS"
+    },
+    {
+      "name": "page count 390/3",
+      "status": "PASS"
+    },
+    {
+      "name": "no tail or distortion 390/3",
+      "status": "PASS"
+    },
+    {
+      "name": "all circles inside safe area 390/3",
+      "status": "PASS"
+    },
+    {
+      "name": "no fake completion 390/3",
+      "status": "PASS"
+    },
+    {
+      "name": "page count 375/1",
+      "status": "PASS"
+    },
+    {
+      "name": "no tail or distortion 375/1",
+      "status": "PASS"
+    },
+    {
+      "name": "all circles inside safe area 375/1",
+      "status": "PASS"
+    },
+    {
+      "name": "no fake completion 375/1",
+      "status": "PASS"
+    },
+    {
+      "name": "page count 375/2",
+      "status": "PASS"
+    },
+    {
+      "name": "no tail or distortion 375/2",
+      "status": "PASS"
+    },
+    {
+      "name": "all circles inside safe area 375/2",
+      "status": "PASS"
+    },
+    {
+      "name": "no fake completion 375/2",
+      "status": "PASS"
+    },
+    {
+      "name": "page count 375/3",
+      "status": "PASS"
+    },
+    {
+      "name": "no tail or distortion 375/3",
+      "status": "PASS"
+    },
+    {
+      "name": "all circles inside safe area 375/3",
+      "status": "PASS"
+    },
+    {
+      "name": "no fake completion 375/3",
+      "status": "PASS"
+    },
+    {
+      "name": "page count 320/1",
+      "status": "PASS"
+    },
+    {
+      "name": "no tail or distortion 320/1",
+      "status": "PASS"
+    },
+    {
+      "name": "all circles inside safe area 320/1",
+      "status": "PASS"
+    },
+    {
+      "name": "no fake completion 320/1",
+      "status": "PASS"
+    },
+    {
+      "name": "page count 320/2",
+      "status": "PASS"
+    },
+    {
+      "name": "no tail or distortion 320/2",
+      "status": "PASS"
+    },
+    {
+      "name": "all circles inside safe area 320/2",
+      "status": "PASS"
+    },
+    {
+      "name": "no fake completion 320/2",
+      "status": "PASS"
+    },
+    {
+      "name": "page count 320/3",
+      "status": "PASS"
+    },
+    {
+      "name": "no tail or distortion 320/3",
+      "status": "PASS"
+    },
+    {
+      "name": "all circles inside safe area 320/3",
+      "status": "PASS"
+    },
+    {
+      "name": "no fake completion 320/3",
+      "status": "PASS"
+    },
+    {
+      "name": "student cannot self-stamp",
+      "status": "PASS"
+    },
+    {
+      "name": "completion waits for authenticated snapshot",
+      "status": "PASS"
+    },
+    {
+      "name": "page 3 retains exact completed boothId",
+      "status": "PASS"
+    },
+    {
+      "name": "reload preserves backend-confirmed stamp",
+      "status": "PASS"
+    },
+    {
+      "name": "auto bounded circles 2/1280",
+      "status": "PASS"
+    },
+    {
+      "name": "auto bounded circles 2/430",
+      "status": "PASS"
+    },
+    {
+      "name": "auto bounded circles 2/390",
+      "status": "PASS"
+    },
+    {
+      "name": "auto bounded circles 2/375",
+      "status": "PASS"
+    },
+    {
+      "name": "auto bounded circles 2/320",
+      "status": "PASS"
+    },
+    {
+      "name": "auto bounded circles 6/1280",
+      "status": "PASS"
+    },
+    {
+      "name": "auto bounded circles 6/430",
+      "status": "PASS"
+    },
+    {
+      "name": "auto bounded circles 6/390",
+      "status": "PASS"
+    },
+    {
+      "name": "auto bounded circles 6/375",
+      "status": "PASS"
+    },
+    {
+      "name": "auto bounded circles 6/320",
+      "status": "PASS"
+    },
+    {
+      "name": "auto bounded circles 10/1280",
+      "status": "PASS"
+    },
+    {
+      "name": "auto bounded circles 10/430",
+      "status": "PASS"
+    },
+    {
+      "name": "auto bounded circles 10/390",
+      "status": "PASS"
+    },
+    {
+      "name": "auto bounded circles 10/375",
+      "status": "PASS"
+    },
+    {
+      "name": "auto bounded circles 10/320",
+      "status": "PASS"
+    },
+    {
+      "name": "auto bounded circles 11/1280",
+      "status": "PASS"
+    },
+    {
+      "name": "auto bounded circles 11/430",
+      "status": "PASS"
+    },
+    {
+      "name": "auto bounded circles 11/390",
+      "status": "PASS"
+    },
+    {
+      "name": "auto bounded circles 11/375",
+      "status": "PASS"
+    },
+    {
+      "name": "auto bounded circles 11/320",
+      "status": "PASS"
+    },
+    {
+      "name": "auto bounded circles 12/1280",
+      "status": "PASS"
+    },
+    {
+      "name": "auto bounded circles 12/430",
+      "status": "PASS"
+    },
+    {
+      "name": "auto bounded circles 12/390",
+      "status": "PASS"
+    },
+    {
+      "name": "auto bounded circles 12/375",
+      "status": "PASS"
+    },
+    {
+      "name": "auto bounded circles 12/320",
+      "status": "PASS"
+    },
+    {
+      "name": "auto bounded circles 15/1280",
+      "status": "PASS"
+    },
+    {
+      "name": "auto bounded circles 15/430",
+      "status": "PASS"
+    },
+    {
+      "name": "auto bounded circles 15/390",
+      "status": "PASS"
+    },
+    {
+      "name": "auto bounded circles 15/375",
+      "status": "PASS"
+    },
+    {
+      "name": "auto bounded circles 15/320",
+      "status": "PASS"
+    },
+    {
+      "name": "auto bounded circles 20/1280",
+      "status": "PASS"
+    },
+    {
+      "name": "auto bounded circles 20/430",
+      "status": "PASS"
+    },
+    {
+      "name": "auto bounded circles 20/390",
+      "status": "PASS"
+    },
+    {
+      "name": "auto bounded circles 20/375",
+      "status": "PASS"
+    },
+    {
+      "name": "auto bounded circles 20/320",
+      "status": "PASS"
+    },
+    {
+      "name": "geometry never modifies image bytes",
+      "status": "PASS"
+    },
+    {
+      "name": "template to auto save ACK excludes obsolete slots",
+      "status": "PASS"
+    },
+    {
+      "name": "missing layout capability disables new controls",
+      "status": "PASS"
+    },
+    {
+      "name": "teacher cannot edit layouts",
+      "status": "PASS"
+    },
+    {
+      "name": "teacher direct API cannot change layouts",
+      "status": "PASS"
+    }
+  ],
+  "metrics": [
+    {
+      "width": 1280,
+      "w": 1156.40625,
+      "h": 412.828125,
+      "artH": 410.828125,
+      "visible": [
+        {
+          "id": "robotics",
+          "x": 85.671875,
+          "y": 172.84375,
+          "w": 100,
+          "h": 100,
+          "done": false
+        },
+        {
+          "id": "chemistry",
+          "x": 262.6875,
+          "y": 172.84375,
+          "w": 100,
+          "h": 100,
+          "done": false
+        },
+        {
+          "id": "ai-iot",
+          "x": 439.6875,
+          "y": 172.84375,
+          "w": 100,
+          "h": 100,
+          "done": false
+        },
+        {
+          "id": "3d-print",
+          "x": 616.703125,
+          "y": 172.84375,
+          "w": 100,
+          "h": 100,
+          "done": false
+        },
+        {
+          "id": "culture",
+          "x": 793.703125,
+          "y": 172.84375,
+          "w": 100,
+          "h": 100,
+          "done": false
+        },
+        {
+          "id": "green",
+          "x": 970.71875,
+          "y": 172.84375,
+          "w": 100,
+          "h": 100,
+          "done": false
+        },
+        {
+          "id": "perf-1",
+          "x": 85.671875,
+          "y": 287.875,
+          "w": 100,
+          "h": 100,
+          "done": false
+        },
+        {
+          "id": "perf-2",
+          "x": 262.6875,
+          "y": 287.875,
+          "w": 100,
+          "h": 100,
+          "done": false
+        },
+        {
+          "id": "perf-3",
+          "x": 439.6875,
+          "y": 287.875,
+          "w": 100,
+          "h": 100,
+          "done": false
+        },
+        {
+          "id": "perf-4",
+          "x": 616.703125,
+          "y": 287.875,
+          "w": 100,
+          "h": 100,
+          "done": false
+        },
+        {
+          "id": "perf-5",
+          "x": 793.703125,
+          "y": 287.875,
+          "w": 100,
+          "h": 100,
+          "done": false
+        },
+        {
+          "id": "layout-extra-11",
+          "x": 970.71875,
+          "y": 287.875,
+          "w": 100,
+          "h": 100,
+          "done": false
+        }
+      ],
+      "overflow": 0,
+      "page": "Trang 1 / 2"
+    },
+    {
+      "width": 1280,
+      "w": 1156.40625,
+      "h": 412.828125,
+      "artH": 410.828125,
+      "visible": [
+        {
+          "id": "layout-extra-12",
+          "x": 85.671875,
+          "y": 172.84375,
+          "w": 100,
+          "h": 100,
+          "done": false
+        },
+        {
+          "id": "layout-extra-13",
+          "x": 262.6875,
+          "y": 172.84375,
+          "w": 100,
+          "h": 100,
+          "done": false
+        },
+        {
+          "id": "layout-extra-14",
+          "x": 439.6875,
+          "y": 172.84375,
+          "w": 100,
+          "h": 100,
+          "done": false
+        }
+      ],
+      "overflow": 0,
+      "page": "Trang 2 / 2"
+    },
+    {
+      "width": 430,
+      "w": 359.90625,
+      "h": 779.859375,
+      "artH": 777.859375,
+      "visible": [
+        {
+          "id": "robotics",
+          "x": 52.625,
+          "y": 313.8125,
+          "w": 90,
+          "h": 90,
+          "done": false
+        },
+        {
+          "id": "chemistry",
+          "x": 217.265625,
+          "y": 313.8125,
+          "w": 90,
+          "h": 90,
+          "done": false
+        },
+        {
+          "id": "ai-iot",
+          "x": 52.625,
+          "y": 469.375,
+          "w": 90,
+          "h": 90,
+          "done": false
+        },
+        {
+          "id": "3d-print",
+          "x": 217.265625,
+          "y": 469.375,
+          "w": 90,
+          "h": 90,
+          "done": false
+        },
+        {
+          "id": "culture",
+          "x": 52.625,
+          "y": 624.953125,
+          "w": 90,
+          "h": 90,
+          "done": false
+        },
+        {
+          "id": "green",
+          "x": 217.265625,
+          "y": 624.953125,
+          "w": 90,
+          "h": 90,
+          "done": false
+        }
+      ],
+      "overflow": 0,
+      "page": "Trang 1 / 3"
+    },
+    {
+      "width": 430,
+      "w": 359.90625,
+      "h": 779.859375,
+      "artH": 777.859375,
+      "visible": [
+        {
+          "id": "perf-1",
+          "x": 52.625,
+          "y": 313.8125,
+          "w": 90,
+          "h": 90,
+          "done": false
+        },
+        {
+          "id": "perf-2",
+          "x": 217.265625,
+          "y": 313.8125,
+          "w": 90,
+          "h": 90,
+          "done": false
+        },
+        {
+          "id": "perf-3",
+          "x": 52.625,
+          "y": 469.375,
+          "w": 90,
+          "h": 90,
+          "done": false
+        },
+        {
+          "id": "perf-4",
+          "x": 217.265625,
+          "y": 469.375,
+          "w": 90,
+          "h": 90,
+          "done": false
+        },
+        {
+          "id": "perf-5",
+          "x": 52.625,
+          "y": 624.953125,
+          "w": 90,
+          "h": 90,
+          "done": false
+        },
+        {
+          "id": "layout-extra-11",
+          "x": 217.265625,
+          "y": 624.953125,
+          "w": 90,
+          "h": 90,
+          "done": false
+        }
+      ],
+      "overflow": 0,
+      "page": "Trang 2 / 3"
+    },
+    {
+      "width": 430,
+      "w": 359.90625,
+      "h": 779.859375,
+      "artH": 777.859375,
+      "visible": [
+        {
+          "id": "layout-extra-12",
+          "x": 52.625,
+          "y": 313.8125,
+          "w": 90,
+          "h": 90,
+          "done": false
+        },
+        {
+          "id": "layout-extra-13",
+          "x": 217.265625,
+          "y": 313.8125,
+          "w": 90,
+          "h": 90,
+          "done": false
+        },
+        {
+          "id": "layout-extra-14",
+          "x": 52.625,
+          "y": 469.375,
+          "w": 90,
+          "h": 90,
+          "done": false
+        }
+      ],
+      "overflow": 0,
+      "page": "Trang 3 / 3"
+    },
+    {
+      "width": 390,
+      "w": 322.71875,
+      "h": 699.28125,
+      "artH": 697.28125,
+      "visible": [
+        {
+          "id": "robotics",
+          "x": 42.59375,
+          "y": 276.734375,
+          "w": 90,
+          "h": 90,
+          "done": false
+        },
+        {
+          "id": "chemistry",
+          "x": 190.109375,
+          "y": 276.734375,
+          "w": 90,
+          "h": 90,
+          "done": false
+        },
+        {
+          "id": "ai-iot",
+          "x": 42.59375,
+          "y": 416.203125,
+          "w": 90,
+          "h": 90,
+          "done": false
+        },
+        {
+          "id": "3d-print",
+          "x": 190.109375,
+          "y": 416.203125,
+          "w": 90,
+          "h": 90,
+          "done": false
+        },
+        {
+          "id": "culture",
+          "x": 42.59375,
+          "y": 555.65625,
+          "w": 90,
+          "h": 90,
+          "done": false
+        },
+        {
+          "id": "green",
+          "x": 190.109375,
+          "y": 555.65625,
+          "w": 90,
+          "h": 90,
+          "done": false
+        }
+      ],
+      "overflow": 0,
+      "page": "Trang 1 / 3"
+    },
+    {
+      "width": 390,
+      "w": 322.71875,
+      "h": 699.28125,
+      "artH": 697.28125,
+      "visible": [
+        {
+          "id": "perf-1",
+          "x": 42.59375,
+          "y": 276.734375,
+          "w": 90,
+          "h": 90,
+          "done": false
+        },
+        {
+          "id": "perf-2",
+          "x": 190.109375,
+          "y": 276.734375,
+          "w": 90,
+          "h": 90,
+          "done": false
+        },
+        {
+          "id": "perf-3",
+          "x": 42.59375,
+          "y": 416.203125,
+          "w": 90,
+          "h": 90,
+          "done": false
+        },
+        {
+          "id": "perf-4",
+          "x": 190.109375,
+          "y": 416.203125,
+          "w": 90,
+          "h": 90,
+          "done": false
+        },
+        {
+          "id": "perf-5",
+          "x": 42.59375,
+          "y": 555.65625,
+          "w": 90,
+          "h": 90,
+          "done": false
+        },
+        {
+          "id": "layout-extra-11",
+          "x": 190.109375,
+          "y": 555.65625,
+          "w": 90,
+          "h": 90,
+          "done": false
+        }
+      ],
+      "overflow": 0,
+      "page": "Trang 2 / 3"
+    },
+    {
+      "width": 390,
+      "w": 322.71875,
+      "h": 699.28125,
+      "artH": 697.28125,
+      "visible": [
+        {
+          "id": "layout-extra-12",
+          "x": 42.59375,
+          "y": 276.734375,
+          "w": 90,
+          "h": 90,
+          "done": false
+        },
+        {
+          "id": "layout-extra-13",
+          "x": 190.109375,
+          "y": 276.734375,
+          "w": 90,
+          "h": 90,
+          "done": false
+        },
+        {
+          "id": "layout-extra-14",
+          "x": 42.59375,
+          "y": 416.203125,
+          "w": 90,
+          "h": 90,
+          "done": false
+        }
+      ],
+      "overflow": 0,
+      "page": "Trang 3 / 3"
+    },
+    {
+      "width": 375,
+      "w": 307.8125,
+      "h": 666.96875,
+      "artH": 664.96875,
+      "visible": [
+        {
+          "id": "robotics",
+          "x": 38.5625,
+          "y": 261.875,
+          "w": 90,
+          "h": 90,
+          "done": false
+        },
+        {
+          "id": "chemistry",
+          "x": 179.234375,
+          "y": 261.875,
+          "w": 90,
+          "h": 90,
+          "done": false
+        },
+        {
+          "id": "ai-iot",
+          "x": 38.5625,
+          "y": 394.875,
+          "w": 90,
+          "h": 90,
+          "done": false
+        },
+        {
+          "id": "3d-print",
+          "x": 179.234375,
+          "y": 394.875,
+          "w": 90,
+          "h": 90,
+          "done": false
+        },
+        {
+          "id": "culture",
+          "x": 38.5625,
+          "y": 527.859375,
+          "w": 90,
+          "h": 90,
+          "done": false
+        },
+        {
+          "id": "green",
+          "x": 179.234375,
+          "y": 527.859375,
+          "w": 90,
+          "h": 90,
+          "done": false
+        }
+      ],
+      "overflow": 0,
+      "page": "Trang 1 / 3"
+    },
+    {
+      "width": 375,
+      "w": 307.8125,
+      "h": 666.96875,
+      "artH": 664.96875,
+      "visible": [
+        {
+          "id": "perf-1",
+          "x": 38.5625,
+          "y": 261.875,
+          "w": 90,
+          "h": 90,
+          "done": false
+        },
+        {
+          "id": "perf-2",
+          "x": 179.234375,
+          "y": 261.875,
+          "w": 90,
+          "h": 90,
+          "done": false
+        },
+        {
+          "id": "perf-3",
+          "x": 38.5625,
+          "y": 394.875,
+          "w": 90,
+          "h": 90,
+          "done": false
+        },
+        {
+          "id": "perf-4",
+          "x": 179.234375,
+          "y": 394.875,
+          "w": 90,
+          "h": 90,
+          "done": false
+        },
+        {
+          "id": "perf-5",
+          "x": 38.5625,
+          "y": 527.859375,
+          "w": 90,
+          "h": 90,
+          "done": false
+        },
+        {
+          "id": "layout-extra-11",
+          "x": 179.234375,
+          "y": 527.859375,
+          "w": 90,
+          "h": 90,
+          "done": false
+        }
+      ],
+      "overflow": 0,
+      "page": "Trang 2 / 3"
+    },
+    {
+      "width": 375,
+      "w": 307.8125,
+      "h": 666.96875,
+      "artH": 664.96875,
+      "visible": [
+        {
+          "id": "layout-extra-12",
+          "x": 38.5625,
+          "y": 261.875,
+          "w": 90,
+          "h": 90,
+          "done": false
+        },
+        {
+          "id": "layout-extra-13",
+          "x": 179.234375,
+          "y": 261.875,
+          "w": 90,
+          "h": 90,
+          "done": false
+        },
+        {
+          "id": "layout-extra-14",
+          "x": 38.5625,
+          "y": 394.875,
+          "w": 90,
+          "h": 90,
+          "done": false
+        }
+      ],
+      "overflow": 0,
+      "page": "Trang 3 / 3"
+    },
+    {
+      "width": 320,
+      "w": 252.8125,
+      "h": 547.796875,
+      "artH": 545.796875,
+      "visible": [
+        {
+          "id": "robotics",
+          "x": 25.546875,
+          "y": 208.890625,
+          "w": 86.34375,
+          "h": 86.34375,
+          "done": false
+        },
+        {
+          "id": "chemistry",
+          "x": 140.90625,
+          "y": 208.890625,
+          "w": 86.34375,
+          "h": 86.34375,
+          "done": false
+        },
+        {
+          "id": "ai-iot",
+          "x": 25.546875,
+          "y": 318.046875,
+          "w": 86.34375,
+          "h": 86.34375,
+          "done": false
+        },
+        {
+          "id": "3d-print",
+          "x": 140.90625,
+          "y": 318.046875,
+          "w": 86.34375,
+          "h": 86.34375,
+          "done": false
+        },
+        {
+          "id": "culture",
+          "x": 25.546875,
+          "y": 427.203125,
+          "w": 86.34375,
+          "h": 86.34375,
+          "done": false
+        },
+        {
+          "id": "green",
+          "x": 140.90625,
+          "y": 427.203125,
+          "w": 86.34375,
+          "h": 86.34375,
+          "done": false
+        }
+      ],
+      "overflow": 0,
+      "page": "Trang 1 / 3"
+    },
+    {
+      "width": 320,
+      "w": 252.8125,
+      "h": 547.796875,
+      "artH": 545.796875,
+      "visible": [
+        {
+          "id": "perf-1",
+          "x": 25.546875,
+          "y": 208.890625,
+          "w": 86.34375,
+          "h": 86.34375,
+          "done": false
+        },
+        {
+          "id": "perf-2",
+          "x": 140.90625,
+          "y": 208.890625,
+          "w": 86.34375,
+          "h": 86.34375,
+          "done": false
+        },
+        {
+          "id": "perf-3",
+          "x": 25.546875,
+          "y": 318.046875,
+          "w": 86.34375,
+          "h": 86.34375,
+          "done": false
+        },
+        {
+          "id": "perf-4",
+          "x": 140.90625,
+          "y": 318.046875,
+          "w": 86.34375,
+          "h": 86.34375,
+          "done": false
+        },
+        {
+          "id": "perf-5",
+          "x": 25.546875,
+          "y": 427.203125,
+          "w": 86.34375,
+          "h": 86.34375,
+          "done": false
+        },
+        {
+          "id": "layout-extra-11",
+          "x": 140.90625,
+          "y": 427.203125,
+          "w": 86.34375,
+          "h": 86.34375,
+          "done": false
+        }
+      ],
+      "overflow": 0,
+      "page": "Trang 2 / 3"
+    },
+    {
+      "width": 320,
+      "w": 252.8125,
+      "h": 547.796875,
+      "artH": 545.796875,
+      "visible": [
+        {
+          "id": "layout-extra-12",
+          "x": 25.546875,
+          "y": 208.890625,
+          "w": 86.34375,
+          "h": 86.34375,
+          "done": false
+        },
+        {
+          "id": "layout-extra-13",
+          "x": 140.90625,
+          "y": 208.890625,
+          "w": 86.34375,
+          "h": 86.34375,
+          "done": false
+        },
+        {
+          "id": "layout-extra-14",
+          "x": 25.546875,
+          "y": 318.046875,
+          "w": 86.34375,
+          "h": 86.34375,
+          "done": false
+        }
+      ],
+      "overflow": 0,
+      "page": "Trang 3 / 3"
+    }
+  ],
+  "environment": "Chrome localhost, real frontend POST/302/JSON; fake Sheets/Drive/MailApp; HTTPS blocked",
+  "fixture": {
+    "students": 395,
+    "classes": 12,
+    "booths": [
+      2,
+      6,
+      10,
+      11,
+      12,
+      15,
+      20
+    ]
+  },
+  "limits": [
+    "Safari/iPhone and Android hardware not tested",
+    "No staging/production deployment"
+  ]
+}

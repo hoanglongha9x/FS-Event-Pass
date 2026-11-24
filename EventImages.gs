@@ -3,6 +3,7 @@ const EVENT_IMAGE_KINDS = ["theme", "passport", "passportMobile"];
 const EVENT_PASSPORT_VARIANTS_VERSION = "passport-responsive-v1";
 const EVENT_IMAGE_API_VERSION = "event-images-v3";
 const EVENT_PASSPORT_PROFILE_VERSION = "passport-profile-v1";
+const EVENT_PASSPORT_LAYOUT_VERSION = "passport-layout-v2";
 
 function eventImageData_(rows, eventId) {
   const row = rows.find(function(entry) { return entry[0] === "config" && entry[1] === "event-images:" + eventId; });
@@ -15,6 +16,7 @@ function eventImagesPublic_() {
 
 function eventImageMetadata_(data, admin) {
   const result = admin ? { revision: data.revision, passportVariantsVersion: EVENT_PASSPORT_VARIANTS_VERSION,
+    passportLayoutVersion: EVENT_PASSPORT_LAYOUT_VERSION,
     passportProfileVersion: typeof eventPassportProfileTemplate_ === "function" ? EVENT_PASSPORT_PROFILE_VERSION : undefined } : {};
   EVENT_IMAGE_KINDS.forEach(function(kind) {
     const slot = data[kind] || {};
@@ -24,6 +26,7 @@ function eventImageMetadata_(data, admin) {
       if (admin) result[kind].publishApproved = current.publishApproved === true;
       if (kind !== "theme") result[kind].layout = slot.layout || { mode: "auto" };
     }
+    if (admin && slot.previousLayout && result[kind]) result[kind].canRestoreLayout = true;
     if (admin && slot.previous) {
       if (!result[kind]) result[kind] = {};
       result[kind].canRestore = true;
@@ -153,8 +156,48 @@ function eventPassportProfileTemplate_(layout, asset) {
   return {profileTemplate: id};
 }
 
+// Bounded geometry only; completion data is neither read nor changed by layout saves.
+function eventPassportLayoutV2_(layout, asset, booths, profile) {
+  const fail = function(message) { eventError_("IMAGE_LAYOUT", message); };
+  const header = {"open-stem-landscape-v1":40,"open-stem-portrait-v1":36}[profile.profileTemplate] || 22;
+  const area = layout.safeArea;
+  if (!asset?.width || !asset?.height || !area || ![area.x,area.y,area.width,area.height].every(Number.isFinite) ||
+      area.x < 0 || area.y < header || area.width <= 0 || area.height <= 0 || area.x+area.width > 100 || area.y+area.height > 100) {
+    fail("Vùng an toàn phải nằm trong ảnh và dưới logo/họ tên/lớp.");
+  }
+  const common = {layoutVersion:EVENT_PASSPORT_LAYOUT_VERSION, safeArea:{x:area.x,y:area.y,width:area.width,height:area.height}, ...profile};
+  if (layout.mode === "auto") return {mode:"auto", ...common};
+  if (layout.mode !== "template" || !Number.isInteger(layout.capacity) || layout.capacity < 1 || layout.capacity > 80 ||
+      !Array.isArray(layout.slots) || layout.slots.length !== layout.capacity) fail("Số slot phải khớp số vị trí thực tế trên ảnh.");
+  const seen = new Set();
+  const slots = layout.slots.map(function(slot) {
+    if (!slot || typeof slot.slotId !== "string" || !/^[a-zA-Z0-9][a-zA-Z0-9_-]{0,63}$/.test(slot.slotId) || seen.has(slot.slotId) ||
+        ![slot.x,slot.y,slot.size].every(Number.isFinite) || slot.size < 4 || slot.size > 65) fail("slotId phải duy nhất và tọa độ phải hợp lệ.");
+    seen.add(slot.slotId);
+    const rx=slot.size/2, ry=rx*asset.width/asset.height;
+    if (slot.x-rx < area.x-.0001 || slot.x+rx > area.x+area.width+.0001 || slot.y-ry < area.y-.0001 || slot.y+ry > area.y+area.height+.0001) fail("Dấu vượt vùng an toàn hoặc ranh giới ảnh.");
+    return {slotId:slot.slotId,x:slot.x,y:slot.y,size:slot.size};
+  });
+  for (let i=0;i<slots.length;i++) for (let j=0;j<i;j++) {
+    if (Math.hypot(slots[i].x-slots[j].x,(slots[i].y-slots[j].y)*asset.height/asset.width) < (slots[i].size+slots[j].size)/2-.0001) fail("Hai vị trí đang trùng hoặc chồng lên nhau.");
+  }
+  const boothIds=new Map(booths.map(function(booth,index){return [booth.id,index];})), occupied=new Set();
+  if (!Array.isArray(layout.assignments) || layout.assignments.length !== boothIds.size) fail("Mỗi gian hàng cần đúng một slot trên một trang.");
+  const assignments=layout.assignments.map(function(item) {
+    const index=item && boothIds.get(item.boothId);
+    if (index === undefined || !seen.has(item.slotId) || !Number.isInteger(item.page) || item.page !== Math.floor(index/slots.length)+1 || occupied.has(item.page+":"+item.slotId)) fail("Ánh xạ gian hàng, slot hoặc trang không hợp lệ.");
+    boothIds.delete(item.boothId);occupied.add(item.page+":"+item.slotId);
+    return {boothId:item.boothId,slotId:item.slotId,page:item.page};
+  });
+  return {mode:"template",capacity:slots.length,slots:slots,assignments:assignments,...common};
+}
+
 function eventPassportLayout_(layout, asset, booths) {
   const profile = eventPassportProfileTemplate_(layout, asset);
+  if (layout?.layoutVersion) {
+    if (layout.layoutVersion !== EVENT_PASSPORT_LAYOUT_VERSION) eventError_("IMAGE_LAYOUT", "Phiên bản bố trí chưa được hỗ trợ. BTC cần cập nhật Apps Script.");
+    return eventPassportLayoutV2_(layout, asset, booths, profile);
+  }
   if (!layout || layout.mode === "auto") return { mode: "auto", ...profile };
   const ids = new Set(booths.map(function(booth) { return booth.id; }));
   if (layout.mode !== "template" || !asset || !Number.isInteger(layout.capacity) ||
@@ -190,11 +233,12 @@ function eventImageDraft_(body, rows, uploaded) {
   const data = eventImageData_(rows, eventId), slot = data[kind] || {};
   if (body.expectedRevision !== data.revision) eventError_("CONFLICT", "Ảnh đã được cập nhật. Hãy tải lại cấu hình rồi thử lại.");
   const op = body.operation;
-  if (!["upload", "layout", "default", "restore", "approve"].includes(op) ||
+  if (!["upload", "layout", "default", "restore", "restoreLayout", "approve"].includes(op) ||
       (op === "layout" && (kind === "theme" || !slot.current)) || (op === "approve" && !slot.current)) {
     eventError_("INVALID_INPUT", "Thao tác ảnh không hợp lệ.");
   }
   if (op === "restore" && !slot.previous) eventError_("INVALID_INPUT", "Chưa có phiên bản trước để khôi phục.");
+  if (op === "restoreLayout" && (kind === "theme" || !slot.current || !slot.previousLayout)) eventError_("INVALID_INPUT", "Chưa có bố trí trước để khôi phục.");
   // A BTC passport upload is the publication action; the old theme API keeps its legacy approval contract.
   if (kind === "theme" && ["upload", "approve"].includes(op) && body.publishApproved !== true) {
     eventError_("IMAGE_APPROVAL_REQUIRED", "BTC cần xác nhận artwork không chứa dữ liệu cá nhân và được phép hiển thị cho học sinh.");
@@ -208,6 +252,10 @@ function eventImageDraft_(body, rows, uploaded) {
   if (kind !== "theme" && ["layout", "upload", "approve"].includes(op)) {
     next.layout = eventPassportLayout_(body.layout, next.current, eventBooths_(rows, eventId));
   }
+  if (kind !== "theme" && ["layout", "upload", "approve", "restoreLayout"].includes(op)) {
+    if (op === "restoreLayout") next.layout=eventPassportLayout_(slot.previousLayout, next.current, eventBooths_(rows,eventId));
+    if (slot.layout) next.previousLayout=JSON.parse(JSON.stringify(slot.layout));
+  }
   if (next.previous && !next.previous.current) delete next.previous;
   return { ...data, [kind]: next };
 }
@@ -216,7 +264,7 @@ function saveEventImage_(body) {
   requireEventPermission_(eventStaff_(body), "events");
   const uploaded = body.operation === "upload" ? checkedEventImageUpload_(body.upload) : null;
   eventImageDraft_(body, canonicalEventRows_(), uploaded);
-  if (["approve", "layout", "restore"].includes(body.operation)) {
+  if (["approve", "layout", "restore", "restoreLayout"].includes(body.operation)) {
     const slot = eventImageData_(canonicalEventRows_(), body.eventId)[body.kind];
     checkedStoredEventImage_(body.operation === "restore" ? slot?.previous?.current : slot?.current);
   }

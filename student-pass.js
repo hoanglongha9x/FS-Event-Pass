@@ -159,6 +159,10 @@
       getElement("studentPassClass"), getElement("studentPassCode")];
     const animated = new Set();
     const pending = new Set();
+    const geometry=window.FSchoolPassportLayout, pager=getElement("studentPassPages"), pageStatus=getElement("studentPassPageStatus"),
+      previousPage=getElement("studentPassPrevious"), nextPage=getElement("studentPassNext"),
+      fallback=getElement("studentPassFallback"), fallbackBooth=getElement("studentPassFallbackBooth");
+    let pageIndex=0;
     let pass = null, artworkLoaded = false, selectedArtwork = null, selectedBoothId = "";
 
     function renderStampDetails() {
@@ -189,8 +193,8 @@
 
     function responsiveArtwork() {
       const mobile = window.matchMedia && window.matchMedia("(max-width:767px)").matches;
-      return mobile && pass?.mobileArtwork?.version ? {kind:"passportMobile", asset:pass.mobileArtwork} :
-        {kind:"passport", asset:pass?.artwork};
+      return mobile && pass?.mobileArtwork?.version ? {kind:"passportMobile", asset:pass.mobileArtwork, mobile} :
+        {kind:"passport", asset:pass?.artwork, mobile};
     }
 
     function setSyncPending(value) {
@@ -198,7 +202,7 @@
     }
 
     function reset() {
-      pass = null;
+      pass = null; pageIndex=0;
       artworkLoaded = false;
       selectedArtwork = null;
       animated.clear();
@@ -222,31 +226,42 @@
     }
 
     function applyTemplate(loaded) {
-      const artwork = selectedArtwork?.asset;
-      const slots = new Map((artwork?.layout?.slots || []).map(slot => [slot.boothId, slot]));
-      const wide = !window.matchMedia || window.matchMedia("(min-width:1024px)").matches;
-      const width = canvas.clientWidth || 0;
-      const preset=profileTemplate(artwork),imageHeight=width*(artwork?.height||1)/(artwork?.width||1);
-      const positioned = Boolean(loaded && wide && selectedArtwork?.kind === "passport" && artwork?.layout?.mode === "template" && slots.size &&
-        slots.size === pass.booths.length && pass.booths.every(booth => slots.has(booth.id)) &&
-        [...slots.values()].every(slot => width * slot.size / 100 >= 96 && (!preset || slot.y*imageHeight/100-48>=preset.header*imageHeight/100)));
-      grid.classList.toggle("has-template", positioned);
-      panHint.hidden = !loaded || artwork?.layout?.mode !== "template" || positioned;
-      canvas.tabIndex = -1;
-      const ratio = artwork?.width > 0 && artwork?.height > 0 ? artwork.width + " / " + artwork.height : "16 / 9";
-      art.style.setProperty("--pass-image-ratio", ratio);
-      // Reserve the top of the artwork for its logos; overflow continues over the fallback surface, never a zoomed crop.
-      canvas.style.setProperty("--pass-art-header", loaded ? ((profileTemplate(artwork)?.header||22) * artwork.height / artwork.width) + "%" : "1rem");
-      placeArtProfile(artProfile,loaded?artwork:null,pass,readable=>profileBlock.classList.toggle("has-art-profile",readable));
-      if (!positioned) return;
-      grid.style.setProperty("--pass-image-ratio", artwork.width + " / " + artwork.height);
-      for (const card of grid.children) {
-        const slot = slots.get(card.dataset.boothId);
-        card.style.setProperty("--stamp-x", slot.x + "%");
-        card.style.setProperty("--stamp-y", slot.y + "%");
-        card.style.setProperty("--stamp-size", slot.size + "%");
+      const artwork=selectedArtwork?.asset, mobile=!!selectedArtwork?.mobile;
+      const image=artwork?.width&&artwork?.height?artwork:{width:mobile?3:16,height:mobile?4:9};
+      const ratio=image.width+" / "+image.height;
+      art.style.setProperty("--pass-image-ratio",ratio);
+      canvas.style.setProperty("--pass-image-ratio",ratio);
+      // A Desktop fallback supplies pixels, never Mobile coordinates.
+      const layout=mobile&&selectedArtwork?.kind!=="passportMobile"?{mode:"auto"}:artwork?.layout;
+      const plan=geometry.plan({booths:pass?.booths||[],asset:artwork,layout,
+        width:canvas.clientWidth|| (mobile?250:900),device:mobile?"mobile":"desktop"});
+      pageIndex=Math.min(pageIndex,Math.max(0,plan.pages.length-1));
+      const visible=new Map((plan.pages[pageIndex]||[]).map(item=>[item.boothId,item]));
+      grid.classList.toggle("has-template",false);
+      grid.dataset.layoutMode=plan.mode;
+      for(const card of grid.children){
+        const item=visible.get(card.dataset.boothId);card.hidden=!item;
+        if(!item)continue;
+        card.style.setProperty("--stamp-x",item.x+"%");card.style.setProperty("--stamp-y",item.y+"%");
+        card.style.setProperty("--stamp-px",item.sizePx+"px");
       }
+      pager.hidden=plan.pages.length<2;
+      pageStatus.textContent="Trang "+(pageIndex+1)+" / "+Math.max(1,plan.pages.length);
+      previousPage.disabled=pageIndex===0;nextPage.disabled=pageIndex>=plan.pages.length-1;
+      panHint.textContent=plan.message;panHint.hidden=!plan.message;
+      fallback.hidden=plan.pages.length>0||!pass;
+      if(!fallback.hidden){
+        const placeholder=makeElement("option","","Chọn gian hàng…");placeholder.value="";placeholder.disabled=true;placeholder.selected=true;
+        fallbackBooth.replaceChildren(placeholder,...pass.booths.map(booth=>{
+          const option=makeElement("option","",booth.name+(booth.completed?" · Đã hoàn thành":" · Chưa hoàn thành"));
+          option.value=booth.id;return option;
+        }));
+      }
+      placeArtProfile(artProfile,loaded?artwork:null,pass,readable=>profileBlock.classList.toggle("has-art-profile",readable));
     }
+    previousPage.addEventListener("click",()=>{pageIndex=Math.max(0,pageIndex-1);clearStampSelection();applyTemplate(artworkLoaded);});
+    nextPage.addEventListener("click",()=>{pageIndex++;clearStampSelection();applyTemplate(artworkLoaded);});
+    fallbackBooth.addEventListener("change",()=>selectStamp(fallbackBooth.value));
 
     function render() {
       [pass.eventName, pass.name, pass.className, pass.code].forEach((value, index) => {
@@ -317,7 +332,7 @@
     window.addEventListener("resize", () => {
       if (!pass || !dialog.open) return;
       const next = responsiveArtwork();
-      if (next.kind !== selectedArtwork?.kind || next.asset?.version !== selectedArtwork?.asset?.version) renderArtwork();
+      if (next.kind !== selectedArtwork?.kind || next.asset?.version !== selectedArtwork?.asset?.version || next.mobile !== selectedArtwork?.mobile) renderArtwork();
       else applyTemplate(artworkLoaded);
     });
 

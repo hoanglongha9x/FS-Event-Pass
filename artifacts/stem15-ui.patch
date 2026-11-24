@@ -1,0 +1,187 @@
+--- a/index.html
++++ b/index.html
+@@ -366,7 +366,7 @@
+           <h2 id="studentPassTitle">Phiếu trải nghiệm</h2>
+           <p id="studentPassEvent"></p>
+         </div>
+-        <button id="studentPassClose" type="button" class="student-pass-close" autofocus aria-label="Đóng phiếu trải nghiệm"><span aria-hidden="true">×</span></button>
++        <button id="studentPassClose" type="button" class="student-pass-close" autofocus aria-label="Đóng phiếu trải nghiệm"><i data-lucide="x" aria-hidden="true"></i></button>
+       </div>
+     </div>
+     <section id="studentPassStampDetails" class="student-pass-stamp-details" aria-label="Thông tin gian hàng đang chọn" aria-live="polite" aria-atomic="true" hidden>
+--- a/student-pass.css
++++ b/student-pass.css
+@@ -100,17 +100,38 @@
+   overflow-wrap: anywhere;
+ }
+ 
+-.student-pass-close {
+-  flex: none;
+-  width: 2.75rem;
+-  height: 2.75rem;
+-  border: 1px solid #d2dfff94;
++/* Override shared icon margins and hover transforms only for the passport close control. */
++#studentPassClose {
++  display: grid;
++  place-items: center;
++  box-sizing: border-box;
++  flex: 0 0 44px;
++  width: 44px;
++  height: 44px;
++  min-width: 44px;
++  min-height: 44px;
++  max-width: 44px;
++  max-height: 44px;
++  margin: 0;
++  padding: 0;
++  border: 1px solid #A7BFEA;
+   border-radius: .85rem;
+-  background: #0e1a64c9;
+-  color: #fff;
+-  font-size: 1.65rem;
+-  line-height: 1;
+-}
++  background: #0B1D46;
++  color: #FFFFFF;
++  font-size: 0;
++  line-height: 0;
++  transform: none;
++}
++#studentPassClose svg {
++  display: block;
++  box-sizing: border-box;
++  width: 20px;
++  height: 20px;
++  margin: 0;
++  padding: 0;
++  transform: none;
++}
++.student-pass-hero { padding-top: 16px; padding-right: 16px; }
+ 
+ .student-pass-dialog button:focus-visible,
+ .student-pass-trigger:focus-visible {
+@@ -227,27 +248,27 @@
+   aspect-ratio:1;
+   margin:0 auto;
+   padding:10px;
+-  border:2px dashed #a6e7ffaa;
++  border:2px dashed #7186B5;
+   border-radius:50%;
+-  background:#07274522;
++  background:#142D63;
+   -webkit-backdrop-filter:blur(3px);
+   backdrop-filter:blur(3px);
+-  color:#c5fff0;
++  color:#FFFFFF;
+   cursor:pointer;
+-  box-shadow:inset 0 1px 2px #efffff30;
++  box-shadow:none;
+   appearance:none;
+ }
+ .student-pass-stamp::before {
+-  content:""; position:absolute; inset:5px; border:1px dashed #b9edff77; border-radius:50%; pointer-events:none;
++  content:""; position:absolute; inset:5px; border:1px dashed #7186B5; border-radius:50%; pointer-events:none;
+ }
+ .student-pass-stamp.is-complete {
+-  border-style:solid; border-color:#b0ffe9;
+-  background:radial-gradient(ellipse at 30% 12%,#baffee45,transparent 65%),#073b40c4;
+-  box-shadow:inset 0 1px 3px #e7fffaa6,0 4px 10px #060e2b66;
+-}
+-.student-pass-stamp.is-complete::before { border-style:solid; border-color:#a5ffe1bb; }
+-.student-pass-stamp.is-selected { outline:2px solid #f3c786; outline-offset:3px; }
+-.student-pass-stamp:focus-visible { outline:3px solid #fff2cf; outline-offset:3px; }
++  border-style:solid; border-color:#FFD166;
++  background:#142D63;
++  box-shadow:0 0 8px #FFD16618;
++}
++.student-pass-stamp.is-complete::before { border-style:solid; border-color:#FFD166; }
++.student-pass-stamp.is-selected { outline:2px solid #C5D4F3; outline-offset:3px; }
++.student-pass-stamp:focus-visible { outline:3px solid #C5D4F3; outline-offset:3px; }
+ .student-pass-stamp-details {
+   flex:none; display:flex; align-items:start; justify-content:space-between; gap:.65rem;
+   padding:.7rem clamp(.85rem,2.5vw,1.3rem); border-block:1px solid #a8d5ef55;
+@@ -264,13 +285,12 @@
+ .student-pass-stamp.animate-stampPop { animation: studentPassSeal .32s ease-out both; }
+ 
+ @keyframes studentPassSeal {
+-  from { opacity: .78; transform: scale(1.055) rotate(-3deg); }
+-  70% { transform: scale(.985) rotate(.5deg); }
+-  to { opacity: 1; transform: scale(1) rotate(0); }
+-}
+-
+-.student-pass-dialog .student-pass-stamp .student-pass-stamp-icon { flex:none; width:26px; height:26px; color:#beffe8; }
+-.student-pass-state { margin:0; color:#d6fff1; font-size:10.5px; line-height:1.1; font-weight:850; letter-spacing:0; white-space:nowrap; }
++  from { opacity: .7; transform: scale(1.035); }
++  to { opacity: 1; transform: scale(1); }
++}
++
++.student-pass-dialog .student-pass-stamp .student-pass-stamp-icon { flex:none; width:26px; height:26px; color:#FFFFFF; }
++.student-pass-state { margin:0; color:#FFFFFF; font-size:10.5px; line-height:1.1; font-weight:850; letter-spacing:0; white-space:nowrap; }
+ 
+ @media (max-width: 42rem) {
+   .student-pass-actions { flex-direction: column-reverse; }
+@@ -289,8 +309,8 @@
+ }
+ 
+ @media (prefers-reduced-transparency: reduce) {
+-  .student-pass-stamp { background: #152e52; }
+-  .student-pass-stamp.is-complete { background: #114147; }
++  .student-pass-stamp { background: #142D63; }
++  .student-pass-stamp.is-complete { background: #142D63; }
+ }
+ 
+ @media (prefers-reduced-motion: reduce) {
+@@ -399,9 +419,9 @@
+ :is(#eventPassportPreview,#eventImageViewerCanvas)[data-preview-mode="mobile"] :is(#eventPassportMarks,#eventImageViewerMarks) { grid-template-columns:repeat(2,minmax(0,1fr)); }
+ :is(#eventPassportMarks,#eventImageViewerMarks) .event-preview-seal {
+   position:relative; width:var(--preview-seal-size,24px); max-width:100%; aspect-ratio:1;
+-  border:1px dashed #b5ecffbb; border-radius:50%; background:#0e304511;
+-}
+-:is(#eventPassportMarks,#eventImageViewerMarks) .event-preview-seal::before {content:"";position:absolute;inset:4px;border:1px dashed #b5ecff66;border-radius:50%;}
++  border:1px dashed #7186B5; border-radius:50%; background:#142D63;
++}
++:is(#eventPassportMarks,#eventImageViewerMarks) .event-preview-seal::before {content:"";position:absolute;inset:4px;border:1px dashed #7186B5;border-radius:50%;}
+ :is(#eventPassportMarks,#eventImageViewerMarks).is-template-preview { display:block; position:relative; aspect-ratio:var(--preview-image-ratio,16 / 9); padding:0; }
+ :is(#eventPassportMarks,#eventImageViewerMarks).is-template-preview span { position:absolute; transform:translate(-50%,-50%); }
+ .event-images-positions { max-height: 17rem; overflow: auto; }
+@@ -456,9 +476,6 @@
+ .student-pass-canvas .student-pass-booth {position:absolute;left:var(--stamp-x);top:var(--stamp-y);width:var(--stamp-px);height:var(--stamp-px);transform:translate(-50%,-50%);display:block;}
+ .student-pass-canvas .student-pass-booth[hidden],.passport-pages[hidden],.student-pass-sync[hidden] {display:none;}
+ .student-pass-canvas .student-pass-stamp {width:100%;height:100%;}
+-.student-pass-stamp.is-complete {border-color:#b4f4ff;color:#c9f6ff;background:radial-gradient(ellipse at 30% 12%,#a9edff40,transparent 65%),#08284de6;}
+-.student-pass-stamp.is-complete::before {border-color:#92dfffcc;}
+-.student-pass-dialog .student-pass-stamp .student-pass-stamp-icon,.student-pass-state {color:#d0f6ff;}
+ .passport-pages {display:flex;align-items:center;justify-content:center;gap:.65rem;margin:.7rem 0;flex-wrap:wrap;font-size:.8rem;}
+ .passport-pages button {min-width:44px;min-height:44px;padding:.4rem .75rem;border:1px solid #8ac8e488;border-radius:.65rem;background:#16395c;color:#e9faff;}
+ .passport-pages button:disabled {opacity:.45;cursor:default;}
+@@ -478,5 +495,5 @@
+ #eventPassportLayoutTools[hidden] {display:none;}
+ #eventPassportLayoutControls {min-width:0;}
+ @media(max-width:390px){.passport-safe-controls{grid-template-columns:repeat(2,minmax(0,1fr));}}
+-@media(prefers-reduced-transparency:reduce){.student-pass-stamp.is-complete{background:#08284d;}}
++
+ .passport-safe-overlay {position:absolute;pointer-events:none;border:1px dashed #e0f6ff55;border-radius:.3rem;}
+--- a/event-ui.css
++++ b/event-ui.css
+@@ -105,7 +105,7 @@
+ .ui-toast.ui-toast-leave { opacity:0; transform:translateY(5px); animation:none; }
+ 
+ .event-glass .student-pass-stamp-icon { width:20px; height:20px; }
+-.event-glass .student-pass-stamp.animate-stampPop { animation-duration:220ms; }
++.event-glass .student-pass-stamp.animate-stampPop { animation-duration:320ms; }
+ .event-glass .student-pass-stamp:not(.is-complete) .student-pass-stamp-icon { color:#b7e8ff; }
+ .event-glass .student-pass-stamp.has-long-name .student-pass-stamp-icon { width:16px; height:16px; }
+ .event-glass :is(#studentPassClose,#eventImageViewerClose,#eventArchiveClose) { min-height:44px; min-width:44px; }
+--- a/event-glass.css
++++ b/event-glass.css
+@@ -178,8 +178,8 @@
+     .event-glass > header, .event-glass #teacher-mobile-menu-dropdown { background: white; }
+     .event-glass .glass-poster-light { display: none; }
+     .event-glass .glass-emblem { background: #183f61; }
+-    .event-glass .student-pass-stamp { background: #152e52; }
+-    .event-glass .student-pass-stamp.is-complete { background: #114147; }
++    .event-glass .student-pass-stamp { background: #142D63; }
++    .event-glass .student-pass-stamp.is-complete { background: #142D63; }
+   }
+ }
+ 

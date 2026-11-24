@@ -105,7 +105,7 @@
 .ui-toast.ui-toast-leave { opacity:0; transform:translateY(5px); animation:none; }
 
 .event-glass .student-pass-stamp-icon { width:20px; height:20px; }
-.event-glass .student-pass-stamp.animate-stampPop { animation-duration:220ms; }
+.event-glass .student-pass-stamp.animate-stampPop { animation-duration:320ms; }
 .event-glass .student-pass-stamp:not(.is-complete) .student-pass-stamp-icon { color:#b7e8ff; }
 .event-glass .student-pass-stamp.has-long-name .student-pass-stamp-icon { width:16px; height:16px; }
 .event-glass :is(#studentPassClose,#eventImageViewerClose,#eventArchiveClose) { min-height:44px; min-width:44px; }
